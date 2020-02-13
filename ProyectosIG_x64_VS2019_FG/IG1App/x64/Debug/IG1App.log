@@ -1,2 +1,5 @@
-﻿  Scene.cpp
-  IG1App.vcxproj -> C:\Users\anass\Desktop\Practica0-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe
+﻿  Mesh.cpp
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(75,20): warning C4018:  '<': no coinciden signed/unsigned
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(110,20): warning C4018:  '<': no coinciden signed/unsigned
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(116,20): warning C4018:  '<': no coinciden signed/unsigned
+  IG1App.vcxproj -> C:\Users\forev\OneDrive\Desktop\Practica0-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe

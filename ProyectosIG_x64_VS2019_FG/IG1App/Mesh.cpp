@@ -141,23 +141,32 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 meshita->vVertices.reserve(meshita->mNumVertices);
 	 meshita->vColors.reserve(meshita->mNumVertices);
 
-	 
-		 meshita->vVertices.emplace_back(0,0,0);
-		 meshita->vVertices.emplace_back(0, h,0);
-		 meshita->vVertices.emplace_back(w, 0, 0);
+	 //estas coordenadas para que la figure este centrada en los planos
+	 meshita->vVertices.emplace_back(-w/2, h/2, 0.0);
+	 meshita->vVertices.emplace_back(-w/2, -h/2, 0.0);
+	 meshita->vVertices.emplace_back(w/2, h/2, 0.0);
+	 meshita->vVertices.emplace_back(w/2, -h/2, 0.0);
 
-		 meshita->vVertices.emplace_back(w, h,0);
+	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
+	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
 
+	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
+	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
 
-		 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);	
-		 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
+	 return meshita;
+ }
 
-		 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
-		 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
+ Mesh* Mesh::generaRectanguloRGB(GLdouble w, GLdouble h) {
+	 Mesh* rectRGB = generaRectangulo(w, h);
 
+	 //limpio primero el vector para que asi no salga los colores fijados por generaRectangulo
+	 rectRGB->vColors.clear();
+	 rectRGB->vColors.emplace_back(255.0, 0.0, 0.0, 1.0);
+	 rectRGB->vColors.emplace_back(0.0, 0.0, 255.0, 1.0);
+	 rectRGB->vColors.emplace_back(0.0, 128.0, 0.0, 1.0);
+	 rectRGB->vColors.emplace_back(0.0, 0.0, 0.0, 1.0);
 
-		 return meshita;
-
+	 return rectRGB;
  }
 //-------------------------------------------------------------------------
 

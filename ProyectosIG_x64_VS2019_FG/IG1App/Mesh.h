@@ -18,6 +18,7 @@ public:
 	static Mesh* generaSierpinski(GLdouble rd, GLuint numP);
 	static Mesh* generaTrianguloRGB(GLdouble rd);
 	static Mesh* generaRectangulo(GLdouble w, GLdouble h);
+	static Mesh* generaRectanguloRGB(GLdouble w, GLdouble h);
 	Mesh() {};
 	virtual ~Mesh() {};
 
