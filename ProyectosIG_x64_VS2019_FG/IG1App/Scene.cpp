@@ -16,10 +16,11 @@ void Scene::init()
 
     // Graphics objects (entities) of the scene
 	gObjects.push_back(new EjesRGB(400.0));
-	/*gObjects.push_back(new Poligono(3, 200.0));*/
-	/*gObjects.push_back(new Poligono(100, 100.0));
-	gObjects.push_back(new Sierpinski(100, 1000.0));*/
-	gObjects.push_back(new TrianguloRGB(100.0));
+	//gObjects.push_back(new Poligono(3, 200.0));
+	//gObjects.push_back(new Poligono(100, 100.0));
+	//gObjects.push_back(new Sierpinski(100, 1000.0));
+	//gObjects.push_back(new TrianguloRGB(100.0));
+	gObjects.push_back(new RectanguloRGB(150, 100));
 
 }
 //-------------------------------------------------------------------------

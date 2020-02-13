@@ -97,11 +97,34 @@ void TrianguloRGB::render(dmat4 const& modelViewMat)const {
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 		upload(aMat);
-		glPolygonMode(GL_BACK, GL_LINE);
+		glPolygonMode(GL_FRONT, GL_LINES);
 		glPolygonMode(GL_BACK, GL_POINT);
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
 		mMesh->render();
 		
+	}
+}
+RectanguloRGB::RectanguloRGB(GLdouble w, GLdouble h) : Abs_Entity()
+{
+	mMesh = Mesh::generaRectangulo(w,h);
+}
+
+RectanguloRGB::~RectanguloRGB() {
+	delete mMesh; mMesh = nullptr;
+}
+
+void RectanguloRGB::render(dmat4 const& modelViewMat)const {
+	if (mMesh != nullptr) {
+		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
+
+		upload(aMat);
+		glPointSize(3);
+		glColor3d(0.5, 1, 0.25); // -> alpha =1 = opaco
+		mMesh->render();
+
+		glPointSize(1); // valores por defecto
+		glColor4d(1, 1, 1, 1); // valores por defecto
+	
 	}
 }
 //-------------------------------------------------------------------------

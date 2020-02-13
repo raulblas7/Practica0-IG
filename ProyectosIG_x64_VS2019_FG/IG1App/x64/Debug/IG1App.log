@@ -1,3 +1,2 @@
 ﻿  Scene.cpp
-C:\Users\forev\OneDrive\Documentos\IG\ProyectosIG_x64_VS2019_FG\IG1App\Scene.cpp(21,41): warning C4244:  'argumento': conversión de 'double' a 'GLuint'; posible pérdida de datos
-  IG1App.vcxproj -> C:\Users\forev\OneDrive\Documentos\IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe
+  IG1App.vcxproj -> C:\Users\anass\Desktop\Practica0-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe
