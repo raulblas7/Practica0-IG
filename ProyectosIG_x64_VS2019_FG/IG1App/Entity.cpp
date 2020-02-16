@@ -38,9 +38,10 @@ void EjesRGB::render(dmat4 const& modelViewMat) const
 	}
 }
 
-Poligono::Poligono(GLuint l, GLdouble r) : Abs_Entity()
+
+Poligono::Poligono(GLuint l, GLdouble r, GLdouble c1, GLdouble c2, GLdouble c3) : Abs_Entity()
 {
-	mMesh = Mesh::generaPoligono(l, r);
+	mMesh = Mesh::generaPoligono(l, r, c1, c2, c3);
 }
 
 Poligono::~Poligono()
@@ -86,6 +87,7 @@ void Sierpinski::render(dmat4 const& modelViewMat)const {
 
 TrianguloRGB::TrianguloRGB(GLdouble r) : Abs_Entity()
 {
+	rotation = 10.0;
 	mMesh = Mesh::generaTrianguloRGB(r);
 }
 
@@ -101,6 +103,13 @@ void TrianguloRGB::render(dmat4 const& modelViewMat)const {
 		glPolygonMode(GL_BACK, GL_LINE);
 		mMesh->render();
 		
+	}
+}
+void TrianguloRGB::update() {
+	if (mMesh != nullptr) {
+		mModelMat = translate(dmat4(1), dvec3(200.0 * cos(radians(rotation)), 200.0 * sin(radians(rotation)), 0));
+		mModelMat = rotate(mModelMat, radians(rotation), dvec3(0, 0, 1));	
+		rotation += 10.0;
 	}
 }
 RectanguloRGB::RectanguloRGB(GLdouble w, GLdouble h) : Abs_Entity()

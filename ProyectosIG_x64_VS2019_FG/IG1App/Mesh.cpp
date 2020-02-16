@@ -64,7 +64,7 @@ Mesh * Mesh::createRGBAxes(GLdouble l)
   return mesh;
 }
 
-Mesh* Mesh::generaPoligono(GLuint numL, GLdouble rd) {
+Mesh* Mesh::generaPoligono(GLuint numL, GLdouble rd, GLdouble c1, GLdouble c2, GLdouble c3) {
 	Mesh* mesh = new Mesh();
 
 	mesh->mNumVertices = numL;
@@ -75,7 +75,7 @@ Mesh* Mesh::generaPoligono(GLuint numL, GLdouble rd) {
 	for (int i = 0; i < numL; i++)
 	{
 		mesh->vVertices.emplace_back(rd * cos(radians(90.0+(360.0/numL)*i)), rd * sin(radians(90.0+(360.0 / numL) * i)), 0.0);
-		mesh->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
+		mesh->vColors.emplace_back(c1,c2,c3,1.0);
 	}
 	/*mesh->vVertices.emplace_back(rd * cos(radians(90.0)), rd * sin(radians(90.0)), 0.0);
 	mesh->vVertices.emplace_back(rd * cos(radians(90.0 + 360.0/numL)), rd * sin(radians(90.0 + 360.0 / numL)), 0.0);
@@ -86,7 +86,7 @@ Mesh* Mesh::generaPoligono(GLuint numL, GLdouble rd) {
 }
 
 Mesh* Mesh::generaSierpinski(GLdouble rd, GLuint numP) {
-	Mesh* triangulo = generaPoligono(3, rd);
+	Mesh* triangulo = generaPoligono(3, rd, 255.0,255.0,0.0);
 //	Mesh* circulo = generaPoligono(68, rd);
 	Mesh* meshita = new Mesh();
 	meshita->mPrimitive = GL_POINTS;
@@ -122,7 +122,7 @@ Mesh* Mesh::generaSierpinski(GLdouble rd, GLuint numP) {
 }
 
 Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
-	Mesh* rgbTriang = generaPoligono(3,rd);
+	Mesh* rgbTriang = generaPoligono(3,rd, 0.0,0.0,0.0);
 
 	rgbTriang->mPrimitive = GL_TRIANGLES;
 	//limpio primero el vector para que asi no salga los colores fijados por generaPoligono
