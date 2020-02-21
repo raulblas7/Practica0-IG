@@ -108,8 +108,8 @@ void TrianguloRGB::render(dmat4 const& modelViewMat)const {
 void TrianguloRGB::update() {
 	if (mMesh != nullptr) {
 		mModelMat = translate(dmat4(1), dvec3(200.0 * cos(radians(rotation)), 200.0 * sin(radians(rotation)), 0));
-		mModelMat = rotate(mModelMat, radians(rotation), dvec3(0, 0, 1));	
-		rotation += 10.0;
+		mModelMat = rotate(mModelMat, radians(-rotation), dvec3(0, 0, 1));	
+		rotation += 5.0;
 	}
 }
 RectanguloRGB::RectanguloRGB(GLdouble w, GLdouble h) : Abs_Entity()
