@@ -172,5 +172,18 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 
 	 return rectRGB;
  }
+
+ Mesh* Mesh::generaEstrella3D(GLdouble re, GLuint np, GLdouble h) {
+	 Mesh* estrella = new Mesh();
+	 estrella->mPrimitive = GL_TRIANGLE_FAN;
+	 estrella->mNumVertices = 2 * np + 2;
+	 estrella->vVertices.reserve(estrella->mNumVertices);
+
+	 estrella->vVertices.emplace_back(0.0, 0.0, 0.0);
+	 for (int i = 0; i < estrella->mNumVertices-1; i++) {
+		 estrella->vVertices.emplace_back((re/2) * cos(radians(90.0 + (360.0 / estrella->mNumVertices) * i)), (re / 2) * sin(radians(90.0 + (360.0 / estrella->mNumVertices) * i)), h);
+	 }
+	 return estrella;
+ }
 //-------------------------------------------------------------------------
 

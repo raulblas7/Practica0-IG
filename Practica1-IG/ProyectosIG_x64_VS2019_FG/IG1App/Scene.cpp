@@ -12,46 +12,48 @@ void Scene::init()
 	// allocate memory and load resources
     // Lights
     // Textures
-	if (mId == 0) {
-		// Graphics objects (entities) of the scene
+	//if (mId == 0) {
+	//	// Graphics objects (entities) of the scene
 		gObjects.push_back(new EjesRGB(400.0));
-		gObjects.push_back(new Poligono(100, 200.0, 128.0, 0.0, 128.0));
-		gObjects.push_back(new Poligono(3, 200.0, 255.0, 255.0, 0.0));
-		gObjects.push_back(new Sierpinski(200, 5000.0));
+	//	gObjects.push_back(new Poligono(100, 200.0, 128.0, 0.0, 128.0));
+	//	gObjects.push_back(new Poligono(3, 200.0, 255.0, 255.0, 0.0));
+	//	gObjects.push_back(new Sierpinski(200, 5000.0));
 
-		auto r = new RectanguloRGB(1000.0, 1000.0);
-		gObjects.push_back(r);
-		r->setModelMat(translate(r->modelMat(), dvec3(0, 0, -100.0)));
+	//	auto r = new RectanguloRGB(1000.0, 1000.0);
+	//	gObjects.push_back(r);
+	//	r->setModelMat(translate(r->modelMat(), dvec3(0, 0, -100.0)));
 
 
 
-		auto g = new TrianguloRGB(20.0);
-		gObjects.push_back(g);
+	//	auto g = new TrianguloRGB(20.0);
+	//	gObjects.push_back(g);
 
-		g->setModelMat(translate(g->modelMat(), dvec3(1.0, 200.0, 0)));
-		g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
-	}
+	//	g->setModelMat(translate(g->modelMat(), dvec3(1.0, 200.0, 0)));
+	//	g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
+	//}
 
-	else {
+	//else {
+		/*gObjects.clear();*/
+		
 		//load textures
 		Texture* baldosaC = new Texture();
-		baldosaC->load("Bmps/baldosaC",255);
+		baldosaC->load("..//Bmps//baldosaC.bmp",255);
 		Texture* baldosaF = new Texture();
-		baldosaF->load("baldosaF.bmp");
+		baldosaF->load("..//Bmps//baldosaF.bmp");
 		Texture* baldosaP = new Texture();
-		baldosaP->load("baldosaP.bmp");
+		baldosaP->load("..//Bmps//baldosaP.bmp");
 		Texture* container = new Texture();
-		container->load("container.bmp");
+		container->load("..//Bmps//container.bmp");
 		Texture* grass = new Texture();
-		grass->load("grass.bmp");
+		grass->load("..//Bmps//grass.bmp");
 		Texture* papelC = new Texture();
-		papelC->load("papelC.bmp");
+		papelC->load("..//Bmps//papelC.bmp");
 		Texture* papelE = new Texture();
-		papelE->load("papelE.bmp");
+		papelE->load("..//Bmps//papelE.bmp");
 		Texture* windowC = new Texture();
-		windowC->load("windowC.bmp");
+		windowC->load("..//Bmps//windowC.bmp");
 		Texture* windowV = new Texture();
-		windowV->load("windowV.bmp");
+		windowV->load("..//Bmps//windowV.bmp");
 
 		//push to the vector of textures
 		gTextures.push_back(baldosaC);
@@ -63,7 +65,10 @@ void Scene::init()
 		gTextures.push_back(papelE);
 		gTextures.push_back(windowC);
 		gTextures.push_back(windowV);
-	}
+
+		auto g = new Estrella3D(200.0, 9, 100.0);
+		gObjects.push_back(g);
+		g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
 }
 //-------------------------------------------------------------------------
 void Scene::free() 

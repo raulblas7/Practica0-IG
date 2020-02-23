@@ -1,3 +1,6 @@
-﻿  Scene.cpp
-C:\Users\forev\OneDrive\Desktop\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Scene.cpp(20,42): warning C4244:  'argumento': conversión de 'double' a 'GLuint'; posible pérdida de datos
-  IG1App.vcxproj -> C:\Users\forev\OneDrive\Desktop\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe
+﻿  Mesh.cpp
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(79,20): warning C4018:  '<': no coinciden signed/unsigned
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(114,20): warning C4018:  '<': no coinciden signed/unsigned
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(120,20): warning C4018:  '<': no coinciden signed/unsigned
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(183,21): warning C4018:  '<': no coinciden signed/unsigned
+  IG1App.vcxproj -> C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe

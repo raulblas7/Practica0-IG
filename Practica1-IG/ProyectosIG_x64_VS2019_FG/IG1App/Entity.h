@@ -86,6 +86,18 @@ public:
 	virtual void update() {};
 
 };
+
+class Estrella3D : public Abs_Entity
+{
+private:
+	GLdouble rotation;
+public:
+	explicit Estrella3D(GLdouble re, GLuint np, GLdouble h);
+	~Estrella3D();
+	virtual void render(glm::dmat4 const& modelViewMat) const;
+	virtual void update();
+
+};
 //-------------------------------------------------------------------------
 
 #endif //_H_Entities_H_

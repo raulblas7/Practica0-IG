@@ -129,5 +129,36 @@ void RectanguloRGB::render(dmat4 const& modelViewMat)const {
 		mMesh->render();
 	}
 }
+
+Estrella3D::Estrella3D(GLdouble re, GLuint np, GLdouble h) {
+	rotation = 10.0;
+	mMesh = Mesh::generaEstrella3D(re, np, h);
+}
+Estrella3D::~Estrella3D() {
+	delete mMesh; mMesh = nullptr;
+}
+
+void Estrella3D::render(dmat4 const& modelViewMat)const {
+	if (mMesh != nullptr) {
+		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
+
+		upload(aMat);
+		glPolygonMode(GL_BACK ,GL_LINE);
+		glPolygonMode(GL_FRONT, GL_LINE);
+		mMesh->render();
+
+		//aMat = modelViewMat * (-mModelMat);  // glm matrix multiplication
+
+		//upload(aMat);
+		//mMesh->render();
+	}
+}
+
+void Estrella3D::update() {
+	if (mMesh != nullptr) {
+		mModelMat = rotate(mModelMat, radians(rotation), dvec3(0, 1, 1));
+		rotation += 10.0;
+	}
+}
 //-------------------------------------------------------------------------
  
