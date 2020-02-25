@@ -181,12 +181,16 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 
 	 estrella->vVertices.emplace_back(0.0, 0.0, 0.0);
 	 double angulo = 90;
-	 for (int i = 0; i < np; i++) {
+	for (int i = 0; i < np; i++) {
+
 		 estrella->vVertices.emplace_back(re * cos(radians(angulo)), re * sin(radians(angulo)), h);
-		 angulo = angulo + (360 / (np * 2));
+		 angulo = angulo + (180 / (np ));
 		 estrella->vVertices.emplace_back((re/2) * cos(radians(angulo)), (re / 2) * sin(radians(angulo)), h);
-		 angulo = angulo + (360 / (np * 2));
+		 angulo = angulo + (180 / (np));
+
 	 }
+	
+	 
 	 estrella->vVertices.emplace_back(re * cos(radians(angulo)), re * sin(radians(angulo)), h);
 	 return estrella;
  }
