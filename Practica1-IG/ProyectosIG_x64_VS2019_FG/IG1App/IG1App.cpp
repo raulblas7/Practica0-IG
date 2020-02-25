@@ -132,8 +132,10 @@ void IG1App::key(unsigned char key, int x, int y)
 		mScene->update();
 		break;
 	case '1':
+
+		/*mScene->~Scene();*/
 		std::cout << "Estoy en escena texturas";
-		mScene2 = new Scene;
+		mScene2 = new Scene();
 		mScene2->setState(1);
 		mScene2->init();
 		break;

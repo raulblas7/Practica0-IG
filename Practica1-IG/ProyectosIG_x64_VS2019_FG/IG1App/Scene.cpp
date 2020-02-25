@@ -12,9 +12,10 @@ void Scene::init()
 	// allocate memory and load resources
     // Lights
     // Textures
+	gObjects.push_back(new EjesRGB(400.0));
 	//if (mId == 0) {
 	//	// Graphics objects (entities) of the scene
-		gObjects.push_back(new EjesRGB(400.0));
+	//	
 	//	gObjects.push_back(new Poligono(100, 200.0, 128.0, 0.0, 128.0));
 	//	gObjects.push_back(new Poligono(3, 200.0, 255.0, 255.0, 0.0));
 	//	gObjects.push_back(new Sierpinski(200, 5000.0));
@@ -32,12 +33,12 @@ void Scene::init()
 	//	g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
 	//}
 
-	//else {
-		/*gObjects.clear();*/
-		
+	/*else {
+		*/
+
 		//load textures
 		Texture* baldosaC = new Texture();
-		baldosaC->load("..//Bmps//baldosaC.bmp",255);
+		baldosaC->load("..//Bmps//baldosaC.bmp", 255);
 		Texture* baldosaF = new Texture();
 		baldosaF->load("..//Bmps//baldosaF.bmp");
 		Texture* baldosaP = new Texture();
@@ -69,6 +70,7 @@ void Scene::init()
 		auto g = new Estrella3D(200.0, 9, 100.0);
 		gObjects.push_back(g);
 		g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
+	
 }
 //-------------------------------------------------------------------------
 void Scene::free() 
