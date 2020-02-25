@@ -2,7 +2,6 @@
 
 #include <gtc/matrix_transform.hpp>  
 #include <gtc/type_ptr.hpp>
-
 using namespace glm;
 
 //-------------------------------------------------------------------------
@@ -136,7 +135,8 @@ void RectanguloRGB::render(dmat4 const& modelViewMat)const {
 
 Estrella3D::Estrella3D(GLdouble re, GLuint np, GLdouble h) {
 	rotation = 10.0;
-	mMesh = Mesh::generaEstrella3D(re, np, h);
+	//setTexture();
+	mMesh = Mesh::generaEstrellaTexCor(re, np, h);
 }
 Estrella3D::~Estrella3D() {
 	delete mMesh; mMesh = nullptr;
@@ -149,12 +149,15 @@ void Estrella3D::render(dmat4 const& modelViewMat)const {
 		upload(aMat);
 		glPolygonMode(GL_BACK ,GL_LINE);
 		glPolygonMode(GL_FRONT, GL_LINE);
+		mTexture->bind(1);
 		mMesh->render();
+		mTexture->unbind();
 
-		aMat = rotate(mModelMat, radians(180.0), dvec3(1, 1, 0));
-		upload(aMat);
+		dmat4 aMat2 = rotate(aMat, radians(180.0), dvec3(1, 1, 0));;
+		upload(aMat2);
+		mTexture->bind(1);
 		mMesh->render();
-
+		mTexture->unbind();
 
 	}
 }
@@ -162,7 +165,7 @@ void Estrella3D::render(dmat4 const& modelViewMat)const {
 void Estrella3D::update() {
 	if (mMesh != nullptr) {
 		mModelMat = rotate(mModelMat, radians(rotation), dvec3(0, 1, 1));
-		rotation += 10.0;
+		rotation += 2.0;
 	}
 }
 //-------------------------------------------------------------------------

@@ -184,15 +184,26 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	for (int i = 0; i < np; i++) {
 
 		 estrella->vVertices.emplace_back(re * cos(radians(angulo)), re * sin(radians(angulo)), h);
-		 angulo = angulo + (180 / (np ));
+		 angulo = angulo + (360 / (np * 2));
 		 estrella->vVertices.emplace_back((re/2) * cos(radians(angulo)), (re / 2) * sin(radians(angulo)), h);
-		 angulo = angulo + (180 / (np));
+		 angulo = angulo + (360 / (np * 2));
 
-	 }
+	}
 	
 	 
 	 estrella->vVertices.emplace_back(re * cos(radians(angulo)), re * sin(radians(angulo)), h);
 	 return estrella;
+ }
+
+ Mesh* Mesh::generaEstrellaTexCor(GLdouble re, GLuint np, GLdouble h) {
+	 Mesh* estTex = generaEstrella3D(re, np, h);
+	 estTex->vTexCoords.reserve(estTex->mNumVertices);
+	 estTex->vTexCoords.emplace_back(0, 0);
+	 
+	 for (int i = 1; i < estTex->vVertices.size(); i++) {
+		 estTex->vTexCoords.emplace_back(estTex->vVertices.at(i).x, estTex->vVertices.at(i).y);
+	 }
+	 return estTex;
  }
 //-------------------------------------------------------------------------
 
