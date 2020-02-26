@@ -135,7 +135,6 @@ void RectanguloRGB::render(dmat4 const& modelViewMat)const {
 
 Estrella3D::Estrella3D(GLdouble re, GLuint np, GLdouble h) {
 	rotation = 10.0;
-	//setTexture();
 	mMesh = Mesh::generaEstrellaTexCor(re, np, h);
 }
 Estrella3D::~Estrella3D() {
@@ -147,9 +146,7 @@ void Estrella3D::render(dmat4 const& modelViewMat)const {
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 
 		upload(aMat);
-		glPolygonMode(GL_BACK ,GL_LINE);
-		glPolygonMode(GL_FRONT, GL_LINE);
-		mTexture->bind(1);
+		mTexture->bind(0);
 		mMesh->render();
 		mTexture->unbind();
 

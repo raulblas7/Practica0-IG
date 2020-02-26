@@ -69,6 +69,7 @@ void Scene::init()
 
 		auto g = new Estrella3D(200.0, 9, 100.0);
 		gObjects.push_back(g);
+		g->setTexture(gTextures.at(2));
 		g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
 	
 }

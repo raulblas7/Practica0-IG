@@ -197,12 +197,17 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 
  Mesh* Mesh::generaEstrellaTexCor(GLdouble re, GLuint np, GLdouble h) {
 	 Mesh* estTex = generaEstrella3D(re, np, h);
+
 	 estTex->vTexCoords.reserve(estTex->mNumVertices);
-	 estTex->vTexCoords.emplace_back(0, 0);
-	 
-	 for (int i = 1; i < estTex->vVertices.size(); i++) {
-		 estTex->vTexCoords.emplace_back(estTex->vVertices.at(i).x, estTex->vVertices.at(i).y);
+	 estTex->vTexCoords.emplace_back(0.5, 0.5);
+	 double angulo = 90;
+	 for (int i = 0; i < estTex->mNumVertices - 1; i++) {
+
+		 estTex->vTexCoords.emplace_back(0.5 * cos(radians(angulo)) + 0.5, 0.5 * sin(radians(angulo))+0.5);
+		 angulo = angulo + (360 / (estTex->mNumVertices - 2));
+
 	 }
+	 //estTex->vTexCoords.emplace_back(0.5 * cos(radians(angulo)) +0.5, 0.5 * sin(radians(angulo))+0.5);
 	 return estTex;
  }
 //-------------------------------------------------------------------------
