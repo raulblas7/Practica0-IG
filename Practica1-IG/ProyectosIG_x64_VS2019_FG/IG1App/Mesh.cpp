@@ -142,7 +142,7 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 Mesh* meshita = new Mesh();
 	 meshita->mPrimitive = GL_TRIANGLE_STRIP;
 	 meshita->mNumVertices = 4;
-	 meshita->vVertices.reserve(meshita->mNumVertices);
+	 //meshita->vVertices.reserve(meshita->mNumVertices);
 	 meshita->vColors.reserve(meshita->mNumVertices);
 
 	 //estas coordenadas para que la figure este centrada en los planos
@@ -151,11 +151,11 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 meshita->vVertices.emplace_back(w/2, h/2, 0.0);
 	 meshita->vVertices.emplace_back(w/2, -h/2, 0.0);
 
-	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
+	 /*meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
 	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
 
 	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
-	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
+	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);*/
 
 	 return meshita;
  }
@@ -214,14 +214,14 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
  Mesh* Mesh::generaRectanguloTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh){
 
 	 Mesh* m = generaRectangulo(w,h);
-
-	 m->vTexCoords.emplace_back(0.5, 0.5);
-	 double angulo = 90;
-	 m->vTexCoords.reserve(m->mNumVertices);
-	 m->vTexCoords.emplace_back(0, 1);
-	 m->vTexCoords.emplace_back(0, 0);
-	 m->vTexCoords.emplace_back(1, 1);
-	 m->vTexCoords.emplace_back(1, 0);
+	 
+	 m->vTexCoords.reserve(72);
+	 for (int i = 0; i < rw*rh; i++) {
+		 m->vTexCoords.emplace_back(0, 1);
+		 m->vTexCoords.emplace_back(0, 0);
+		 m->vTexCoords.emplace_back(1, 1);
+		 m->vTexCoords.emplace_back(1, 0);
+	 }
 	 return m;
  }
 //-------------------------------------------------------------------------

@@ -71,11 +71,10 @@ void Scene::init()
 		gObjects.push_back(g);
 		g->setTexture(gTextures.at(2));
 		g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
-		auto a = new Suelo(20.0, 20.0);
+		auto a = new Suelo(700.0, 700.0,3,3);
+		a->setTexture(baldosaC);
 		gObjects.push_back(a);
-		g->setTexture(gTextures.at(0));
-		g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
-	
+		
 }
 //-------------------------------------------------------------------------
 void Scene::free() 

@@ -101,7 +101,7 @@ public:
 class Suelo:public Abs_Entity
 {
 public:
-	explicit Suelo(GLdouble w, GLdouble h);
+	explicit Suelo(GLdouble w, GLdouble h, GLuint rw, GLuint rh);
 	~Suelo();
 	virtual void render(glm::dmat4 const& modelViewMat) const;
 	virtual void update() {};

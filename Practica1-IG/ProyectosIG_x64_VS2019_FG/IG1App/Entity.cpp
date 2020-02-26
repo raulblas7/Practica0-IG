@@ -166,8 +166,8 @@ void Estrella3D::update() {
 	}
 }
 
-Suelo::Suelo(GLdouble w,GLdouble h) {
-	mMesh = Mesh::generaRectanguloTexCor(w, h,8,8);
+Suelo::Suelo(GLdouble w,GLdouble h, GLuint rw, GLuint rh) {
+	mMesh = Mesh::generaRectanguloTexCor(w, h,rw,rh);
 }
 Suelo::~Suelo() {
 	delete mMesh; mMesh = nullptr;
@@ -175,7 +175,9 @@ Suelo::~Suelo() {
 
 void Suelo::render(dmat4 const& modelViewMat)const {
 	if (mMesh != nullptr) {
-		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
+		
+		dmat4 aMat = modelViewMat * mModelMat;
+		aMat = rotate(aMat, radians(-90.0), dvec3(1, 0,0));// glm matrix multiplication
 		upload(aMat);
 		mTexture->bind(0);
 		mMesh->render();
