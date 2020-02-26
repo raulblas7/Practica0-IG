@@ -98,6 +98,17 @@ public:
 	virtual void update();
 
 };
+class Suelo:public Abs_Entity
+{
+public:
+	explicit Suelo(GLdouble w, GLdouble h);
+	~Suelo();
+	virtual void render(glm::dmat4 const& modelViewMat) const;
+	virtual void update() {};
+
+
+};
+
 //-------------------------------------------------------------------------
 
 #endif //_H_Entities_H_

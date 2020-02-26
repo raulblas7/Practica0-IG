@@ -38,7 +38,7 @@ void Scene::init()
 
 		//load textures
 		Texture* baldosaC = new Texture();
-		baldosaC->load("..//Bmps//baldosaC.bmp", 255);
+		baldosaC->load("..//Bmps//baldosaC.bmp");
 		Texture* baldosaF = new Texture();
 		baldosaF->load("..//Bmps//baldosaF.bmp");
 		Texture* baldosaP = new Texture();
@@ -70,6 +70,10 @@ void Scene::init()
 		auto g = new Estrella3D(200.0, 9, 100.0);
 		gObjects.push_back(g);
 		g->setTexture(gTextures.at(2));
+		g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
+		auto a = new Suelo(20.0, 20.0);
+		gObjects.push_back(a);
+		g->setTexture(gTextures.at(0));
 		g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
 	
 }

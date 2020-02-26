@@ -21,6 +21,7 @@ public:
 	static Mesh* generaRectanguloRGB(GLdouble w, GLdouble h);
 	static Mesh* generaEstrella3D(GLdouble re, GLuint np, GLdouble h); 
 	static Mesh* generaEstrellaTexCor(GLdouble re, GLuint np, GLdouble h);
+	static Mesh* generaRectanguloTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh);
 	Mesh() {};
 	virtual ~Mesh() {};
 

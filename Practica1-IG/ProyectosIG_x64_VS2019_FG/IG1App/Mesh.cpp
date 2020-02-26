@@ -210,5 +210,19 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 //estTex->vTexCoords.emplace_back(0.5 * cos(radians(angulo)) +0.5, 0.5 * sin(radians(angulo))+0.5);
 	 return estTex;
  }
+
+ Mesh* Mesh::generaRectanguloTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh){
+
+	 Mesh* m = generaRectangulo(w,h);
+
+	 m->vTexCoords.emplace_back(0.5, 0.5);
+	 double angulo = 90;
+	 m->vTexCoords.reserve(m->mNumVertices);
+	 m->vTexCoords.emplace_back(0, 1);
+	 m->vTexCoords.emplace_back(0, 0);
+	 m->vTexCoords.emplace_back(1, 1);
+	 m->vTexCoords.emplace_back(1, 0);
+	 return m;
+ }
 //-------------------------------------------------------------------------
 
