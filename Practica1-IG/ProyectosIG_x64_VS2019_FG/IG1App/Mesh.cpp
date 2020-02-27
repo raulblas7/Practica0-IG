@@ -151,11 +151,11 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 meshita->vVertices.emplace_back(w/2, h/2, 0.0);
 	 meshita->vVertices.emplace_back(w/2, -h/2, 0.0);
 
-	 /*meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
+	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
 	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
 
 	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
-	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);*/
+	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
 
 	 return meshita;
  }
@@ -215,14 +215,45 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 
 	 Mesh* m = generaRectangulo(w,h);
 	 
-	 m->vTexCoords.reserve(72);
-	 for (int i = 0; i < rw*rh; i++) {
-		 m->vTexCoords.emplace_back(0, 1);
-		 m->vTexCoords.emplace_back(0, 0);
-		 m->vTexCoords.emplace_back(1, 1);
-		 m->vTexCoords.emplace_back(1, 0);
-	 }
+	 m->vTexCoords.reserve(4*rh);
+	 m->vTexCoords.emplace_back(0, 1);
+	 m->vTexCoords.emplace_back(0, 0);
+	 m->vTexCoords.emplace_back(1, 1);
+	 m->vTexCoords.emplace_back(1, 0);
+	 /*for (int i = 0; i <=rw; i++) {
+		 
+	 }*/
 	 return m;
+ }
+
+ Mesh* Mesh::generaContCubo(GLdouble ld) {
+	 Mesh* cubito = new Mesh();
+	 cubito->mPrimitive = GL_TRIANGLE_STRIP;
+	 cubito->mNumVertices = 10;
+	 cubito->vVertices.reserve(cubito->mNumVertices);
+	 cubito->vColors.reserve(cubito->mNumVertices);
+	 int half = ld / 2;
+	 
+	 cubito->vVertices.emplace_back(-half,half,-half);
+	 cubito->vVertices.emplace_back(-half,-half,-half);
+	 cubito->vVertices.emplace_back(half,half,-half);
+	 cubito->vVertices.emplace_back(half,-half,-half);
+
+	 cubito->vVertices.emplace_back(half, half, half);
+	 cubito->vVertices.emplace_back(half, -half, half);
+	 cubito->vVertices.emplace_back(-half, half, half);
+	 cubito->vVertices.emplace_back(-half, -half, half);
+
+	 cubito->vVertices.emplace_back(-half, half, -half);
+	 cubito->vVertices.emplace_back(-half, -half, -half);
+
+
+
+
+
+	 
+
+	 return cubito;
  }
 //-------------------------------------------------------------------------
 

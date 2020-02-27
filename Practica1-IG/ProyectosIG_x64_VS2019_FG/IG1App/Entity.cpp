@@ -179,6 +179,25 @@ void Suelo::render(dmat4 const& modelViewMat)const {
 		dmat4 aMat = modelViewMat * mModelMat;
 		aMat = rotate(aMat, radians(-90.0), dvec3(1, 0,0));// glm matrix multiplication
 		upload(aMat);
+		mTexture->bind(GL_CLAMP);
+		mMesh->render();
+		mTexture->unbind();
+	}
+}
+Caja::Caja(GLdouble ld) {
+	mMesh = Mesh::generaContCubo(ld);
+}
+Caja::~Caja() {
+	delete mMesh; mMesh = nullptr;
+}
+
+void Caja::render(dmat4 const& modelViewMat)const {
+	if (mMesh != nullptr) {
+
+		dmat4 aMat = modelViewMat * mModelMat;
+		upload(aMat);
+		glPolygonMode(GL_FRONT, GL_LINE);
+		glPolygonMode(GL_BACK, GL_LINE);
 		mTexture->bind(0);
 		mMesh->render();
 		mTexture->unbind();

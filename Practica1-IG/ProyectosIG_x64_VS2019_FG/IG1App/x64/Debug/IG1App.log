@@ -4,6 +4,5 @@ C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019
 C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(120,20): warning C4018:  '<': no coinciden signed/unsigned
 C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(184,20): warning C4018:  '<': no coinciden signed/unsigned
 C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(204,21): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(219,21): warning C4018:  '<=': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(220,22): warning C4018:  '<=': no coinciden signed/unsigned
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(235,12): warning C4244:  'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
   IG1App.vcxproj -> C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe
