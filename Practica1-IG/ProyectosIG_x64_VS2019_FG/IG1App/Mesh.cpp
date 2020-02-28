@@ -213,16 +213,14 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 
  Mesh* Mesh::generaRectanguloTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh){
 
-	 Mesh* m = generaRectangulo(w,h);
-	 
-	 m->vTexCoords.reserve(4*rh);
-	 m->vTexCoords.emplace_back(0, 1);
+	 Mesh* m = generaRectangulo(w, h);
+
+	 m->vTexCoords.reserve(72);
+	 m->vTexCoords.emplace_back(0, rh);
 	 m->vTexCoords.emplace_back(0, 0);
-	 m->vTexCoords.emplace_back(1, 1);
-	 m->vTexCoords.emplace_back(1, 0);
-	 /*for (int i = 0; i <=rw; i++) {
-		 
-	 }*/
+	 m->vTexCoords.emplace_back(rw, rh);
+	 m->vTexCoords.emplace_back(rw, 0);
+
 	 return m;
  }
 

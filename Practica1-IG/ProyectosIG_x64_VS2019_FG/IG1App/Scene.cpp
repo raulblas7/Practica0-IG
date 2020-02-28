@@ -67,16 +67,16 @@ void Scene::init()
 		gTextures.push_back(windowC);
 		gTextures.push_back(windowV);
 
-		/*auto g = new Estrella3D(200.0, 9, 100.0);
+		auto g = new Estrella3D(200.0, 9, 100.0);
 		gObjects.push_back(g);
 		g->setTexture(gTextures.at(2));
 		g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
-		auto a = new Suelo(700.0, 700.0,3,3);
+		auto a = new Suelo(700.0, 700.0,9,9);
 		a->setTexture(baldosaC);
-		gObjects.push_back(a);*/
-		auto c = new Caja(50);
+		gObjects.push_back(a);
+		/*auto c = new Caja(50);
 		c->setTexture(container);
-		gObjects.push_back(c);
+		gObjects.push_back(c);*/
 		
 		
 }
