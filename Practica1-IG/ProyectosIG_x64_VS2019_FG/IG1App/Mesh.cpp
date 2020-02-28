@@ -229,27 +229,41 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 cubito->mPrimitive = GL_TRIANGLE_STRIP;
 	 cubito->mNumVertices = 10;
 	 cubito->vVertices.reserve(cubito->mNumVertices);
-	 cubito->vColors.reserve(cubito->mNumVertices);
 	 int half = ld / 2;
 	 
-	 cubito->vVertices.emplace_back(-half,half,-half);
-	 cubito->vVertices.emplace_back(-half,-half,-half);
-	 cubito->vVertices.emplace_back(half,half,-half);
-	 cubito->vVertices.emplace_back(half,-half,-half);
-
-	 cubito->vVertices.emplace_back(half, half, half);
-	 cubito->vVertices.emplace_back(half, -half, half);
+	 cubito->vVertices.emplace_back(-half, half, half);
+	 cubito->vVertices.emplace_back(-half, -half, half);
+	 cubito->vVertices.emplace_back(half, half , half );
+	 cubito->vVertices.emplace_back(half, -half, half );
+	 cubito->vVertices.emplace_back(half, half , -half);
+	 cubito->vVertices.emplace_back(half, -half ,- half );
+	 cubito->vVertices.emplace_back(-half, half, -half);
+	 cubito->vVertices.emplace_back(-half, -half, -half);
 	 cubito->vVertices.emplace_back(-half, half, half);
 	 cubito->vVertices.emplace_back(-half, -half, half);
 
-	 cubito->vVertices.emplace_back(-half, half, -half);
-	 cubito->vVertices.emplace_back(-half, -half, -half);
+	 return cubito;
+ }
 
+ Mesh* Mesh::generaCajaTexCubo(GLdouble nl) {
+	 Mesh* cubito = generaContCubo(nl);
+	 cubito->vTexCoords.reserve(cubito->mNumVertices);
+	 int half = nl / 2;
 
+	
+		 cubito->vTexCoords.emplace_back(0, 1);
+		 cubito->vTexCoords.emplace_back(0, 0);
+		 cubito->vTexCoords.emplace_back(1,1);
+		 cubito->vTexCoords.emplace_back(1, 0);
 
-
-
+		 cubito->vTexCoords.emplace_back(2,1 );
+		 cubito->vTexCoords.emplace_back(2, 0);
+		 cubito->vTexCoords.emplace_back(3, 1);
+		 cubito->vTexCoords.emplace_back(3, 0);
 	 
+		 cubito->vTexCoords.emplace_back(4, 1);
+		 cubito->vTexCoords.emplace_back(4, 0);
+	
 
 	 return cubito;
  }

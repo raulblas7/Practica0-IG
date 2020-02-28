@@ -111,10 +111,13 @@ public:
 class Caja :public Abs_Entity
 {
 public:
+	Texture* TextureInt = nullptr; //the texture
+
 	explicit Caja(GLdouble ld);
 	~Caja();
 	virtual void render(glm::dmat4 const& modelViewMat) const;
 	virtual void update() {};
+	void setTextureInt(Texture* tex) { TextureInt = tex; };
 
 
 };

@@ -74,9 +74,10 @@ void Scene::init()
 		auto a = new Suelo(700.0, 700.0,9,9);
 		a->setTexture(baldosaC);
 		gObjects.push_back(a);
-		/*auto c = new Caja(50);
+		auto c = new Caja(100);
 		c->setTexture(container);
-		gObjects.push_back(c);*/
+		c->setTextureInt(papelE);
+		gObjects.push_back(c);
 		
 		
 }

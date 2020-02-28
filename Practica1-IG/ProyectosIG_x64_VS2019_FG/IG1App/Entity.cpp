@@ -141,20 +141,34 @@ Estrella3D::~Estrella3D() {
 	delete mMesh; mMesh = nullptr;
 }
 
-void Estrella3D::render(dmat4 const& modelViewMat)const {
+void Estrella3D::render(dmat4 const& modelViewMat) const
+{
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
-
 		upload(aMat);
-		mTexture->bind(0);
-		mMesh->render();
-		mTexture->unbind();
+		glPointSize(2);
+		glColor4dv(value_ptr(mColor));
 
-		dmat4 aMat2 = rotate(aMat, radians(180.0), dvec3(1, 1, 0));;
-		upload(aMat2);
-		mTexture->bind(1);
+
+		if (mTexture != nullptr) {
+			mTexture->bind(GL_REPLACE);
+		}
+		else {
+			glLineWidth(2);
+		}
+
 		mMesh->render();
-		mTexture->unbind();
+
+		aMat = rotate(aMat, radians(180.0), glm::dvec3(1, 0, 0));
+		upload(aMat);
+		mMesh->render();
+
+		glPointSize(1);
+		glColor4d(1, 1, 1, 1);
+
+		if (mTexture != nullptr) {
+			mTexture->unbind();
+		}
 
 	}
 }
@@ -175,17 +189,29 @@ Suelo::~Suelo() {
 
 void Suelo::render(dmat4 const& modelViewMat)const {
 	if (mMesh != nullptr) {
-		
-		dmat4 aMat = modelViewMat * mModelMat;
-		aMat = rotate(aMat, radians(-90.0), dvec3(1, 0,0));// glm matrix multiplication
-		upload(aMat);
-		mTexture->bind(GL_CLAMP);
-		mMesh->render();
-		mTexture->unbind();
+
+		if (mMesh != nullptr) {
+			dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
+			upload(aMat);
+			glPointSize(2);
+			glColor4dv(value_ptr(mColor));
+
+				mTexture->bind(GL_REPLACE);
+			
+			
+			mMesh->render();
+			glPointSize(1);
+			glColor4d(1, 1, 1, 1);
+
+			
+				mTexture->unbind();
+
+			
+		}
 	}
 }
 Caja::Caja(GLdouble ld) {
-	mMesh = Mesh::generaContCubo(ld);
+	mMesh = Mesh::generaCajaTexCubo(ld);
 }
 Caja::~Caja() {
 	delete mMesh; mMesh = nullptr;
@@ -193,14 +219,37 @@ Caja::~Caja() {
 
 void Caja::render(dmat4 const& modelViewMat)const {
 	if (mMesh != nullptr) {
+		dmat4 aMat = modelViewMat * mModelMat;		// glm matrix multiplication
+		glEnable(GL_CULL_FACE);
 
-		dmat4 aMat = modelViewMat * mModelMat;
+		glCullFace(GL_BACK);
+		mTexture->bind(GL_REPLACE);
 		upload(aMat);
-		glPolygonMode(GL_FRONT, GL_LINE);
-		glPolygonMode(GL_BACK, GL_LINE);
-		mTexture->bind(0);
+		glPointSize(2);
+		glColor4dv(value_ptr(mColor));
 		mMesh->render();
+		glPointSize(1);
+		glColor4d(1, 1, 1, 1);
 		mTexture->unbind();
+
+
+		glCullFace(GL_FRONT);
+
+		TextureInt->bind(GL_REPLACE);
+		upload(aMat);
+		glPointSize(2);
+		glColor4dv(value_ptr(mColor));
+		glEnable(GL_CULL_FACE);
+		mMesh->render();
+		glPointSize(1);
+		glColor4d(1, 1, 1, 1);
+		TextureInt->unbind();
+
+
+
+		glDisable(GL_CULL_FACE);
+
+
 	}
 }
 
