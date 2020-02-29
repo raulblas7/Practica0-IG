@@ -28,6 +28,16 @@ public:
   
   void setWrap(GLuint wp);  // GL_REPEAT, GL_CLAMP 
 
+
+  void loadColorBuffer( GLenum target,GLint level,GLenum internalFormat,
+	 GLint xLeft,GLint yBottom,GLsizei width,GLsizei height, GLint border)
+  {
+	  glCopyTexImage2D(GL_TEXTURE_2D, 0, internalFormat,
+		  xLeft, yBottom, width, height, 0);
+	  glReadBuffer(GL_FRONT / GL_BACK); // por defecto GL_BACK 
+
+  }
+
 protected:
 
   void init();
