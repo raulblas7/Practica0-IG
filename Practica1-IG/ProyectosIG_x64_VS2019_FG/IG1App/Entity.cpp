@@ -146,10 +146,7 @@ void Estrella3D::render(dmat4 const& modelViewMat) const
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 		upload(aMat);
-		glPointSize(2);
-		glColor4dv(value_ptr(mColor));
-
-
+		
 		if (mTexture != nullptr) {
 			mTexture->bind(GL_REPLACE);
 		}
@@ -162,9 +159,6 @@ void Estrella3D::render(dmat4 const& modelViewMat) const
 		aMat = rotate(aMat, radians(180.0), glm::dvec3(1, 0, 0));
 		upload(aMat);
 		mMesh->render();
-
-		glPointSize(1);
-		glColor4d(1, 1, 1, 1);
 
 		if (mTexture != nullptr) {
 			mTexture->unbind();
@@ -193,20 +187,12 @@ void Suelo::render(dmat4 const& modelViewMat)const {
 		if (mMesh != nullptr) {
 			dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 			upload(aMat);
-			glPointSize(2);
-			glColor4dv(value_ptr(mColor));
 
 				mTexture->bind(GL_REPLACE);
 			
-			
 			mMesh->render();
-			glPointSize(1);
-			glColor4d(1, 1, 1, 1);
-
 			
-				mTexture->unbind();
-
-			
+			mTexture->unbind();
 		}
 	}
 }
@@ -225,11 +211,7 @@ void Caja::render(dmat4 const& modelViewMat)const {
 		glCullFace(GL_BACK);
 		mTexture->bind(GL_REPLACE);
 		upload(aMat);
-		glPointSize(2);
-		glColor4dv(value_ptr(mColor));
 		mMesh->render();
-		glPointSize(1);
-		glColor4d(1, 1, 1, 1);
 		mTexture->unbind();
 
 
@@ -237,20 +219,35 @@ void Caja::render(dmat4 const& modelViewMat)const {
 
 		TextureInt->bind(GL_REPLACE);
 		upload(aMat);
-		glPointSize(2);
-		glColor4dv(value_ptr(mColor));
-		glEnable(GL_CULL_FACE);
 		mMesh->render();
-		glPointSize(1);
-		glColor4d(1, 1, 1, 1);
 		TextureInt->unbind();
 
-
-
 		glDisable(GL_CULL_FACE);
-
-
 	}
+}
+
+Habitacion::Habitacion(GLdouble ld) {
+	mMesh = Mesh::generaCajaTexCubo(ld);
+}
+
+void Habitacion::render(dmat4 const& modelViewMat)const {
+	if (mMesh != nullptr) {
+		dmat4 aMat = modelViewMat * mModelMat;		// glm matrix multiplication
+		glDepthMask(GL_FALSE);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//glAlphaFunc(GL_GREATER, 0.0);
+		mTexture->bind(GL_GREATER);
+		upload(aMat);
+		mMesh->render();
+		mTexture->unbind();
+		glDepthMask(GL_TRUE);
+		glDisable(GL_BLEND);
+	}
+}
+
+Habitacion::~Habitacion() {
+	delete mMesh; mMesh = nullptr;
 }
 
 //-------------------------------------------------------------------------

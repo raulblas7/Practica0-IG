@@ -248,8 +248,6 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
  Mesh* Mesh::generaCajaTexCubo(GLdouble nl) {
 	 Mesh* cubito = generaContCubo(nl);
 	 cubito->vTexCoords.reserve(cubito->mNumVertices);
-	 int half = nl / 2;
-
 	
 		 cubito->vTexCoords.emplace_back(0, 1);
 		 cubito->vTexCoords.emplace_back(0, 0);

@@ -32,6 +32,7 @@ public:
 	// Graphics objects of the scene
 	Scene const& scene() { return *mScene; };
 
+
 	void run();    // the main event processing loop
 	void close();  // the application
 	

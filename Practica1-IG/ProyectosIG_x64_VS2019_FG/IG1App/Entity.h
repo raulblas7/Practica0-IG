@@ -122,6 +122,17 @@ public:
 
 };
 
+class Habitacion :public Abs_Entity
+{
+public:
+	
+
+	explicit Habitacion(GLdouble ld);
+	~Habitacion();
+	virtual void render(glm::dmat4 const& modelViewMat) const;
+	virtual void update() {};
+};
+
 //-------------------------------------------------------------------------
 
 #endif //_H_Entities_H_

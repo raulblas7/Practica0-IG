@@ -186,5 +186,6 @@ void IG1App::specialKey(int key, int x, int y)
 	if (need_redisplay)
 		glutPostRedisplay(); // marks the window as needing to be redisplayed -> calls to display()
 }
+//IG1App::s_ig1app.winWidth();
 //-------------------------------------------------------------------------
 
