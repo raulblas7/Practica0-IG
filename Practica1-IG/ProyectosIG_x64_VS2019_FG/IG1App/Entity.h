@@ -121,12 +121,18 @@ public:
 
 
 };
+class Foto :public Abs_Entity
+{
+public:
+	explicit Foto(GLdouble w, GLdouble h, GLuint rw, GLuint rh);
+	~Foto();
+	virtual void render(glm::dmat4 const& modelViewMat) const;
+	virtual void update() {};
+};
 
 class Habitacion :public Abs_Entity
 {
 public:
-	
-
 	explicit Habitacion(GLdouble ld);
 	~Habitacion();
 	virtual void render(glm::dmat4 const& modelViewMat) const;

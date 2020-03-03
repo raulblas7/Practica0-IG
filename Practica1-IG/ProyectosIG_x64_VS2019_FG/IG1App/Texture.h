@@ -6,7 +6,6 @@
 #include <glm.hpp>
 #include "Pixmap32RGBA.h"
 #include <string>
-
 //-------------------------------------------------------------------------
 
 class Texture
@@ -29,13 +28,14 @@ public:
   void setWrap(GLuint wp);  // GL_REPEAT, GL_CLAMP 
 
 
-  void loadColorBuffer( GLenum target,GLint level,GLenum internalFormat,
-	 GLint xLeft,GLint yBottom,GLsizei width,GLsizei height, GLint border)
+  void loadColorBuffer()
   {
-	  glCopyTexImage2D(GL_TEXTURE_2D, 0, internalFormat,
-		  xLeft, yBottom, width, height, 0);
-	  glReadBuffer(GL_FRONT / GL_BACK); // por defecto GL_BACK 
-
+	  //if (mId == 0) init();
+	  glBindTexture(GL_TEXTURE_2D, 1);
+	  glReadBuffer(GL_FRONT); // por defecto GL_BACK 
+	  glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
+		  0, 0, 800, 600, 0);
+	  glBindTexture(GL_TEXTURE_2D, 0);
   }
 
 protected:

@@ -182,7 +182,6 @@ Suelo::~Suelo() {
 }
 
 void Suelo::render(dmat4 const& modelViewMat)const {
-	if (mMesh != nullptr) {
 
 		if (mMesh != nullptr) {
 			dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
@@ -194,7 +193,6 @@ void Suelo::render(dmat4 const& modelViewMat)const {
 			
 			mTexture->unbind();
 		}
-	}
 }
 Caja::Caja(GLdouble ld) {
 	mMesh = Mesh::generaCajaTexCubo(ld);
@@ -226,6 +224,26 @@ void Caja::render(dmat4 const& modelViewMat)const {
 	}
 }
 
+Foto::Foto(GLdouble w, GLdouble h, GLuint rw, GLuint rh) {
+	mMesh = Mesh::generaRectanguloTexCor(w, h, rw, rh);
+}
+
+Foto::~Foto() {
+	delete mMesh; mMesh = nullptr;
+}
+
+void Foto::render(dmat4 const& modelViewMat)const {
+	if (mMesh != nullptr) {
+		dmat4 aMat = modelViewMat * mModelMat;
+		mTexture->loadColorBuffer();
+		upload(aMat);
+		//mTexture->bind(0);
+		
+		mMesh->render();
+		//mTexture->unbind();
+	}
+}
+
 Habitacion::Habitacion(GLdouble ld) {
 	mMesh = Mesh::generaCajaTexCubo(ld);
 }
@@ -235,14 +253,17 @@ void Habitacion::render(dmat4 const& modelViewMat)const {
 		dmat4 aMat = modelViewMat * mModelMat;		// glm matrix multiplication
 		glDepthMask(GL_FALSE);
 		glEnable(GL_BLEND);
+		glEnable(GL_ALPHA_TEST);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		//glAlphaFunc(GL_GREATER, 0.0);
-		mTexture->bind(GL_GREATER);
+		//glAlphaFunc(GL_GREATER, 0.0);
+
+		mTexture->bind(GL_BLEND);
 		upload(aMat);
 		mMesh->render();
 		mTexture->unbind();
 		glDepthMask(GL_TRUE);
 		glDisable(GL_BLEND);
+		glDisable(GL_ALPHA_TEST);
 	}
 }
 

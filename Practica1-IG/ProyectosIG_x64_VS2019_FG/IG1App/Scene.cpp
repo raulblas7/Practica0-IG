@@ -12,6 +12,7 @@ void Scene::init()
 	// allocate memory and load resources
     // Lights
     // Textures
+	//glEnable(GL_DEPTH_TEST);
 	gObjects.push_back(new EjesRGB(400.0));
 	//if (mId == 0) {
 	//	// Graphics objects (entities) of the scene
@@ -81,10 +82,15 @@ void Scene::init()
 		c->setTextureInt(papelE);
 		gObjects.push_back(c);
 		c->setModelMat(translate(dmat4(1), dvec3(-1.0, 50.0, -1.0)));
+		auto f = new Foto(700.0, 700.0, 1, 1);
+		f->setTexture(windowC);
+		gObjects.push_back(f);
+		f->setModelMat(rotate(f->modelMat(), radians(90.0), dvec3(1.0, 0, 0)));
 		auto d = new Habitacion(700.0);
 		d->setTexture(windowV);
 		gObjects.push_back(d);
 		d->setModelMat(translate(dmat4(1), dvec3(-1.0, 350.0, -1.0)));
+		
 		
 }
 //-------------------------------------------------------------------------
