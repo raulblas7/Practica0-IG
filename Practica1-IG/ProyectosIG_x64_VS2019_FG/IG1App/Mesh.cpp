@@ -151,12 +151,6 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 meshita->vVertices.emplace_back(w/2, h/2, 0.0);
 	 meshita->vVertices.emplace_back(w/2, -h/2, 0.0);
 
-	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
-	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
-
-	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
-	 meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
-
 	 return meshita;
  }
 

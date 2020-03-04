@@ -55,25 +55,23 @@ void Scene::init()
 		Texture* windowC = new Texture();
 		windowC->load("..//Bmps//windowC.bmp");
 		Texture* windowV = new Texture();
-		windowV->load("..//Bmps//windowV.bmp");
+		windowV->load("..//Bmps//windowV.bmp",121);
+		Texture* foto = new Texture();
+		foto->loadColorBuffer();
 
 		//push to the vector of textures
 		gTextures.push_back(baldosaC);
-		gTextures.push_back(baldosaF);
 		gTextures.push_back(baldosaP);
 		gTextures.push_back(container);
-		gTextures.push_back(grass);
-		gTextures.push_back(papelC);
-		gTextures.push_back(papelE);
-		gTextures.push_back(windowC);
 		gTextures.push_back(windowV);
+		gTextures.push_back(foto);
 
 		auto g = new Estrella3D(100.0, 9, 100.0);
 		gObjects.push_back(g);
-		g->setTexture(gTextures.at(2));
+		g->setTexture(baldosaP);
 		g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
 		g->setModelMat(translate(dmat4(1), dvec3(-1.0, 300.0, -1.0)));
-		auto a = new Suelo(700.0, 700.0,9,9);
+		auto a = new Suelo(500.0, 500.0,9,9);
 		a->setTexture(baldosaC);
 		gObjects.push_back(a);
 		a->setModelMat(rotate(a->modelMat(),radians(90.0), dvec3(1.0, 0, 0)));
@@ -82,16 +80,17 @@ void Scene::init()
 		c->setTextureInt(papelE);
 		gObjects.push_back(c);
 		c->setModelMat(translate(dmat4(1), dvec3(-1.0, 50.0, -1.0)));
-		auto f = new Foto(700.0, 700.0, 1, 1);
-		f->setTexture(windowC);
-		gObjects.push_back(f);
-		f->setModelMat(rotate(f->modelMat(), radians(90.0), dvec3(1.0, 0, 0)));
-		auto d = new Habitacion(700.0);
+		
+		auto d = new Habitacion(500.0);
 		d->setTexture(windowV);
 		gObjects.push_back(d);
-		d->setModelMat(translate(dmat4(1), dvec3(-1.0, 350.0, -1.0)));
+		d->setModelMat(translate(dmat4(1), dvec3(-1.0, 250.0, -1.0)));
 		
-		
+		auto f = new Foto(100.0, 100.0, 1, 1);
+		f->setTexture(foto);
+		gObjects.push_back(f);
+		f->setModelMat(translate(dmat4(1.0), dvec3(200, 50, 0.0)));
+		f->setModelMat(rotate(f->modelMat(), radians(90.0), dvec3(1.0, 0, 0)));
 }
 //-------------------------------------------------------------------------
 void Scene::free() 

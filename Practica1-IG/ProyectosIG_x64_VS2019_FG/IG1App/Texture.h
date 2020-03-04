@@ -30,12 +30,10 @@ public:
 
   void loadColorBuffer()
   {
-	  //if (mId == 0) init();
-	  glBindTexture(GL_TEXTURE_2D, 1);
+	  glBindTexture(GL_TEXTURE_2D, 5);
 	  glReadBuffer(GL_FRONT); // por defecto GL_BACK 
 	  glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
 		  0, 0, 800, 600, 0);
-	  glBindTexture(GL_TEXTURE_2D, 0);
   }
 
 protected:

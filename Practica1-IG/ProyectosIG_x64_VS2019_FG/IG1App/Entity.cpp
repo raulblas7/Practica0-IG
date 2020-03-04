@@ -187,7 +187,7 @@ void Suelo::render(dmat4 const& modelViewMat)const {
 			dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 			upload(aMat);
 
-				mTexture->bind(GL_REPLACE);
+			mTexture->bind(GL_REPLACE);
 			
 			mMesh->render();
 			
@@ -235,12 +235,14 @@ Foto::~Foto() {
 void Foto::render(dmat4 const& modelViewMat)const {
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;
+		mTexture->bind(GL_REPLACE);
 		mTexture->loadColorBuffer();
 		upload(aMat);
-		//mTexture->bind(0);
-		
+		glLineWidth(2);
 		mMesh->render();
-		//mTexture->unbind();
+		glLineWidth(1);
+
+		mTexture->unbind();
 	}
 }
 
@@ -251,19 +253,18 @@ Habitacion::Habitacion(GLdouble ld) {
 void Habitacion::render(dmat4 const& modelViewMat)const {
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;		// glm matrix multiplication
+		mTexture->bind(GL_REPLACE);
+		upload(aMat);
 		glDepthMask(GL_FALSE);
 		glEnable(GL_BLEND);
-		glEnable(GL_ALPHA_TEST);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		//glAlphaFunc(GL_GREATER, 0.0);
 
-		mTexture->bind(GL_BLEND);
-		upload(aMat);
+		
 		mMesh->render();
-		mTexture->unbind();
 		glDepthMask(GL_TRUE);
 		glDisable(GL_BLEND);
-		glDisable(GL_ALPHA_TEST);
+		glBlendFunc(1, 0);
+		mTexture->unbind();
 	}
 }
 
