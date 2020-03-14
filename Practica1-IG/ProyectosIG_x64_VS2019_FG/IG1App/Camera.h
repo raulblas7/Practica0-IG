@@ -4,8 +4,9 @@
 
 #include <GL/freeglut.h>
 #include <glm.hpp>
-
+#include <gtc/matrix_access.hpp> 
 #include "Viewport.h"
+#include <ext\matrix_transform.hpp>
 
 //-------------------------------------------------------------------------
 
@@ -20,12 +21,15 @@ public:
 	// view matrix 
 	glm::dmat4 const& viewMat() const { return mViewMat; };
 	
-	void set2D();
-	void set3D();
+	void set2D() { /*mAng = ;*/ };
+	void set3D() { /*mAng = ;*/ };
 	
-	void pitch(GLdouble a); // rotates a degrees on the X axis
-	void yaw(GLdouble a);   // rotates a degrees on the Y axis
-	void roll(GLdouble a);  // rotates a degrees on the Z axis
+	//void pitch(GLdouble a); // rotates a degrees on the X axis
+	//void yaw(GLdouble a);   // rotates a degrees on the Y axis
+	//void roll(GLdouble a);  // rotates a degrees on the Z axis
+	void moveLR(GLdouble cs); // Left / Right
+	void moveFB(GLdouble cs); // Forward / Backward
+	void moveUD(GLdouble cs); // Up / Down 
 
 	// projection matrix
 	glm::dmat4 const& projMat() const { return mProjMat; };
@@ -38,6 +42,17 @@ public:
 	// transfers its viewport, the view matrix and projection matrix to the GPU
 	void upload() const { mViewPort->upload();  uploadVM(); uploadPM(); }; 
 
+	void orbit(GLdouble incAng, GLdouble incY) {
+		mAng += incAng;
+		mEye.x = mLook.x + cos(glm::radians(mAng)) * mRadio;
+		mEye.z = mLook.z - sin(glm::radians(mAng)) * mRadio;
+		mEye.y += incY;
+		setVM();
+	}
+
+	void changePrj() {
+
+	}
 protected:
 	
 	glm::dvec3 mEye = { 0.0, 0.0, 500.0 };  // camera's position
@@ -51,14 +66,24 @@ protected:
 	void uploadPM() const;   // transfers projMat to the GPU
 
 	GLdouble xRight, xLeft, yTop, yBot;      // size of scene visible area
+	glm::dvec3 mRight, mUpward, mFront;
 	GLdouble mNearVal = 1, mFarVal = 10000;  // view volume
 	GLdouble mScaleFact = 1;   // scale factor
+	GLdouble mAng;
+	GLdouble mRadio = 1000;
 	bool bOrto = true;   // orthogonal or perspective projection
 
 	Viewport* mViewPort;   // the viewport
 
 	void setVM();
 	void setPM();
+	void setAxes() {
+		mRight = row(mViewMat, 0);
+		mUpward = row(mViewMat, 1);
+		mFront = -row(mViewMat, 2);
+	};
+	void setViewMat() { mViewMat = lookAt(mEye, mLook, mUp); setAxes(); };
+	
 };
 //-------------------------------------------------------------------------
 

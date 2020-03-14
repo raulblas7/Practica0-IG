@@ -54,7 +54,11 @@ protected:
 	static void s_resize(int newWidth, int newHeight) { s_ig1app.resize(newWidth, newHeight); };
 	static void s_key(unsigned char key, int x, int y) { s_ig1app.key(key, x, y); };
 	static void s_specialKey(int key, int x, int y) { s_ig1app.specialKey(key, x, y); };
+	static void glutMouseFunc(/*s_mouse*/) {};
+	static void glutMotionFunc(/*s_motion*/) {};
+	static void glutMouseWheelFunc(/*s_mouseWheel*/) {};
 
+	
 	// Viewport position and size
 	Viewport *mViewPort = nullptr;
 	// Camera position, view volume and projection
@@ -66,7 +70,38 @@ protected:
 	int mWinId = 0;	    // window's identifier
 	int mWinW = 800;    // window's width 
 	int mWinH = 600;    // window's height
-	
+	glm::dvec2 mMouseCoord;
+	int mMouseButt;
+	void mouse(int button, int state, int x, int y) {
+		if (state == GLUT_DOWN) {
+			mMouseButt = button;
+			int cY = mWinH - y;
+			mMouseCoord = glm::dvec2(x, cY);
+		}
+	};
+	void motion(int x, int y) {
+		if (mMouseButt == GLUT_LEFT_BUTTON) {
+			// guardamos la anterior posición en var. temp.
+			glm::dvec2 mp = mMouseCoord;
+			// Guardamos la posición actual
+			int cordY = mWinH - y;
+			mMouseCoord = glm::dvec2(x, cordY);
+			mp = mMouseCoord - mp; // calculamos el desplazamiento realizado
+			mCamera->orbit(mp.x * 0.05, mp.y); // sensitivity = 0.05
+			glutPostRedisplay();
+		}
+		else if (mMouseButt == GLUT_RIGHT_BUTTON) {
+
+		}
+	};
+	void mouseWheel(int whellNumber, int direction, int x, int y) {
+		int m = glutGetModifiers();
+		if (m == 0) { // ninguna está presionada
+		// direction es la dirección de la rueda (+1 / -1)
+			if (direction == 1) mCamera->moveFB(5);
+			else mCamera->moveFB(-5);
+			glutPostRedisplay();		}		else if (m == GLUT_ACTIVE_CTRL) mCamera->setScale(2);
+	};
 };
 //-------------------------------------------------------------------------
 
