@@ -8,6 +8,7 @@
 #include "Viewport.h"
 #include <ext\matrix_transform.hpp>
 
+
 //-------------------------------------------------------------------------
 
 class Camera {
@@ -21,8 +22,8 @@ public:
 	// view matrix 
 	glm::dmat4 const& viewMat() const { return mViewMat; };
 	
-	void set2D() { /*mAng = ;*/ };
-	void set3D() { /*mAng = ;*/ };
+	void set2D();
+	void set3D();
 	
 	//void pitch(GLdouble a); // rotates a degrees on the X axis
 	//void yaw(GLdouble a);   // rotates a degrees on the Y axis
@@ -51,7 +52,11 @@ public:
 	}
 
 	void changePrj() {
-
+		if (bOrto) {
+			bOrto = false;
+			mProjMat = frustum(xLeft*mScaleFact, xRight * mScaleFact, yBot * mScaleFact, yTop * mScaleFact, mNearVal, mFarVal);
+		}
+		else { bOrto = true; setPM(); }
 	}
 protected:
 	
@@ -82,7 +87,7 @@ protected:
 		mUpward = row(mViewMat, 1);
 		mFront = -row(mViewMat, 2);
 	};
-	void setViewMat() { mViewMat = lookAt(mEye, mLook, mUp); setAxes(); };
+	void setViewMat() { setVM(); setAxes(); };
 	
 };
 //-------------------------------------------------------------------------

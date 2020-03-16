@@ -54,9 +54,9 @@ protected:
 	static void s_resize(int newWidth, int newHeight) { s_ig1app.resize(newWidth, newHeight); };
 	static void s_key(unsigned char key, int x, int y) { s_ig1app.key(key, x, y); };
 	static void s_specialKey(int key, int x, int y) { s_ig1app.specialKey(key, x, y); };
-	static void glutMouseFunc(/*s_mouse*/) {};
-	static void glutMotionFunc(/*s_motion*/) {};
-	static void glutMouseWheelFunc(/*s_mouseWheel*/) {};
+	static void glutMouseFunc(int button, int state, int x, int y) { s_ig1app.mouse(button, state, x, y); };
+	static void glutMotionFunc(int x, int y) { s_ig1app.motion(x, y); };
+	static void glutMouseWheelFunc(int wheelNumber, int direction, int x, int y) { s_ig1app.mouseWheel(wheelNumber, direction, x, y); };
 
 	
 	// Viewport position and size
@@ -91,7 +91,8 @@ protected:
 			glutPostRedisplay();
 		}
 		else if (mMouseButt == GLUT_RIGHT_BUTTON) {
-
+			mCamera->moveLR(x);
+			mCamera->moveUD(y);
 		}
 	};
 	void mouseWheel(int whellNumber, int direction, int x, int y) {
@@ -100,7 +101,10 @@ protected:
 		// direction es la dirección de la rueda (+1 / -1)
 			if (direction == 1) mCamera->moveFB(5);
 			else mCamera->moveFB(-5);
-			glutPostRedisplay();		}		else if (m == GLUT_ACTIVE_CTRL) mCamera->setScale(2);
+			glutPostRedisplay();
+		}
+		else if (m == GLUT_ACTIVE_CTRL) mCamera->setScale(2);
+
 	};
 };
 //-------------------------------------------------------------------------
