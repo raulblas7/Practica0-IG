@@ -72,6 +72,23 @@ protected:
 	int mWinH = 600;    // window's height
 	glm::dvec2 mMouseCoord;
 	int mMouseButt;
+	bool m2Vistas;
+
+	void display2Vistas() {
+		Camera auxCam = *mCamera;
+		//mViewPort->setPos(mWinW / 2, 0);
+		Viewport auxVP = *mViewPort;
+		mViewPort->setSize(mWinW / 2, mWinH);
+		// pero tenemos que cambiar la posición y orientación de la cámara
+		auxCam.setSize(mViewPort->width(), mViewPort->height());
+		mViewPort->setPos(0, 0);
+		mScene->render(auxCam);
+		mViewPort->setPos(mWinW / 2, 0);
+		auxCam.setCenital();
+		mScene->render(auxCam);
+		*mViewPort = auxVP;
+	};
+
 	void mouse(int button, int state, int x, int y) {
 		if (state == GLUT_DOWN) {
 			mMouseButt = button;

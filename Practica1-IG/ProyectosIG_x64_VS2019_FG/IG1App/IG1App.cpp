@@ -90,9 +90,10 @@ void IG1App::display() const
 {  // double buffering
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // clears the back buffer
-
-	mScene->render(*mCamera);  // uploads the viewport and camera to the GPU
-	
+	if (m2Vistas) s_ig1app.display2Vistas();
+	else {
+		mScene->render(*mCamera);  // uploads the viewport and camera to the GPU
+	}
 	glutSwapBuffers();	// swaps the front and back buffer
 }
 //-------------------------------------------------------------------------
@@ -147,6 +148,9 @@ void IG1App::key(unsigned char key, int x, int y)
 	case 'p':
 		mCamera->changePrj();
 		break;
+	case 'k':
+		m2Vistas = true;
+		break;
 	default:
 		need_redisplay = false;
 		break;
@@ -166,20 +170,26 @@ void IG1App::specialKey(int key, int x, int y)
 	case GLUT_KEY_RIGHT:
 		if (mdf == GLUT_ACTIVE_CTRL)
 			//mCamera->pitch(-1);   // rotates -1 on the X axis
-		//else
+			mCamera->moveLR(-1);
+		else
 			//mCamera->pitch(1);    // rotates 1 on the X axis
+			mCamera->moveLR(1);
 		break;
 	case GLUT_KEY_LEFT:
 		if (mdf == GLUT_ACTIVE_CTRL)
-		   // mCamera->yaw(1);      // rotates 1 on the Y axis 
-		//else 
+			// mCamera->yaw(1);      // rotates 1 on the Y axis 
+			mCamera->moveFB(1);
+		else
 			//mCamera->yaw(-1);     // rotate -1 on the Y axis 
+			mCamera->moveFB(-1);
 		break;
 	case GLUT_KEY_UP:
 		//mCamera->roll(1);    // rotates 1 on the Z axis
+		mCamera->moveUD(0.02);
 		break;
 	case GLUT_KEY_DOWN:
 		//mCamera->roll(-1);   // rotates -1 on the Z axis
+		mCamera->moveUD(-0.2);
 		break;
 	default:
 		need_redisplay = false;

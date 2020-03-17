@@ -7,7 +7,8 @@
 #include <gtc/matrix_access.hpp> 
 #include "Viewport.h"
 #include <ext\matrix_transform.hpp>
-
+#include <gtc/matrix_transform.hpp>  
+#include <gtc/type_ptr.hpp>
 
 //-------------------------------------------------------------------------
 
@@ -49,15 +50,20 @@ public:
 		mEye.z = mLook.z - sin(glm::radians(mAng)) * mRadio;
 		mEye.y += incY;
 		setVM();
-	}
+	};
 
 	void changePrj() {
 		if (bOrto) {
 			bOrto = false;
-			mProjMat = frustum(xLeft*mScaleFact, xRight * mScaleFact, yBot * mScaleFact, yTop * mScaleFact, mNearVal, mFarVal);
+			mProjMat = glm::frustum(xLeft * mScaleFact, xRight * mScaleFact, yBot * mScaleFact, yTop * mScaleFact, mNearVal, mFarVal);
 		}
 		else { bOrto = true; setPM(); }
-	}
+	};
+
+	void setCenital() {
+
+	};
+
 protected:
 	
 	glm::dvec3 mEye = { 0.0, 0.0, 500.0 };  // camera's position
