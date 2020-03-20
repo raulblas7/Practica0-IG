@@ -61,7 +61,9 @@ public:
 	};
 
 	void setCenital() {
-
+		mEye = glm::dvec3(0, 0, 0);
+		mLook = glm::dvec3(0, 0, 0);
+		mUp = glm::dvec3(1, 0, 1);
 	};
 
 protected:

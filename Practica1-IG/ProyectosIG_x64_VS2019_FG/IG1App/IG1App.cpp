@@ -72,6 +72,9 @@ void IG1App::iniWinOpenGL()
 	glutKeyboardFunc(s_key);
 	glutSpecialFunc(s_specialKey);
 	glutDisplayFunc(s_display);
+	glutMouseFunc(s_mouse); // cuando se presiona o suelta un botón
+	glutMotionFunc(s_motion); // cuando se mueve con un botón presionado
+	glutMouseWheelFunc(s_mouseWheel); // cuando se gira una rueda
 	
 	cout << glGetString(GL_VERSION) << '\n';
 	cout << glGetString(GL_VENDOR) << '\n';
@@ -149,7 +152,8 @@ void IG1App::key(unsigned char key, int x, int y)
 		mCamera->changePrj();
 		break;
 	case 'k':
-		m2Vistas = true;
+		if (!m2Vistas)m2Vistas = true;
+		else m2Vistas = false;
 		break;
 	default:
 		need_redisplay = false;
