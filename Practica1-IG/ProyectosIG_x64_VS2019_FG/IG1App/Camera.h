@@ -45,17 +45,17 @@ public:
 	void upload() const { mViewPort->upload();  uploadVM(); uploadPM(); }; 
 
 	void orbit(GLdouble incAng, GLdouble incY) {
-		mAng += incAng;
-		mEye.x = mLook.x + cos(glm::radians(mAng)) * mRadio;
-		mEye.z = mLook.z - sin(glm::radians(mAng)) * mRadio;
-		mEye.y += incY;
 		setVM();
+		mAng += incAng;
+		mEye.z = mLook.x + cos(glm::radians(mAng)) * mRadio;
+		mEye.x = mLook.z - sin(glm::radians(mAng)) * mRadio;
+		mEye.y -= incY;
 	};
 
 	void changePrj() {
 		if (bOrto) {
 			bOrto = false;
-			mProjMat = glm::frustum(xLeft * mScaleFact, xRight * mScaleFact, yBot * mScaleFact, yTop * mScaleFact, mNearVal, mFarVal);
+			mProjMat = glm::frustum(xLeft * 0.005, xRight *0.005, yBot * 0.005, yTop * 0.005, mNearVal, mFarVal);
 		}
 		else { bOrto = true; setPM(); }
 	};
@@ -82,7 +82,7 @@ protected:
 	glm::dvec3 mRight, mUpward, mFront;
 	GLdouble mNearVal = 1, mFarVal = 10000;  // view volume
 	GLdouble mScaleFact = 1;   // scale factor
-	GLdouble mAng;
+	GLdouble mAng = 0;
 	GLdouble mRadio = 1000;
 	bool bOrto = true;   // orthogonal or perspective projection
 
@@ -95,7 +95,6 @@ protected:
 		mUpward = row(mViewMat, 1);
 		mFront = -row(mViewMat, 2);
 	};
-	void setViewMat() { setVM(); setAxes(); };
 	
 };
 //-------------------------------------------------------------------------
