@@ -11,8 +11,7 @@ void Scene::init()
 	setGL();  // OpenGL settings
 	// allocate memory and load resources
     // Lights
-    // Textures
-	//glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 	gObjects.push_back(new EjesRGB(400.0));
 	//if (mId == 0) {
 	//	// Graphics objects (entities) of the scene
@@ -34,28 +33,18 @@ void Scene::init()
 	//	g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
 	//}
 
-	/*else {
-		*/
-
+	/*else {*/
 		//load textures
 		Texture* baldosaC = new Texture();
 		baldosaC->load("..//Bmps//baldosaC.bmp");
-		Texture* baldosaF = new Texture();
-		baldosaF->load("..//Bmps//baldosaF.bmp");
 		Texture* baldosaP = new Texture();
 		baldosaP->load("..//Bmps//baldosaP.bmp");
 		Texture* container = new Texture();
 		container->load("..//Bmps//container.bmp");
-		Texture* grass = new Texture();
-		grass->load("..//Bmps//grass.bmp");
-		Texture* papelC = new Texture();
-		papelC->load("..//Bmps//papelC.bmp");
 		Texture* papelE = new Texture();
 		papelE->load("..//Bmps//papelE.bmp");
-		Texture* windowC = new Texture();
-		windowC->load("..//Bmps//windowC.bmp");
 		Texture* windowV = new Texture();
-		windowV->load("..//Bmps//windowV.bmp",121);
+		windowV->load("..//Bmps//windowV.bmp", 121);
 		Texture* foto = new Texture();
 		foto->loadColorBuffer();
 
@@ -63,34 +52,36 @@ void Scene::init()
 		gTextures.push_back(baldosaC);
 		gTextures.push_back(baldosaP);
 		gTextures.push_back(container);
+		gTextures.push_back(papelE);
 		gTextures.push_back(windowV);
 		gTextures.push_back(foto);
 
-		auto g = new Estrella3D(100.0, 9, 100.0);
-		gObjects.push_back(g);
+		auto g = new Estrella3D(100.0, 9, -100.0);
 		g->setTexture(baldosaP);
+		gObjects.push_back(g);
 		g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
-		g->setModelMat(translate(dmat4(1), dvec3(-1.0, 300.0, -1.0)));
-		auto a = new Suelo(500.0, 500.0,9,9);
+		g->setModelMat(translate(dmat4(1), dvec3(-100.0, 200.0, -100.0)));
+		auto a = new Suelo(500.0, 500.0, 9, 9);
 		a->setTexture(baldosaC);
 		gObjects.push_back(a);
-		a->setModelMat(rotate(a->modelMat(),radians(90.0), dvec3(1.0, 0, 0)));
+		a->setModelMat(rotate(a->modelMat(), radians(90.0), dvec3(1.0, 0, 0)));
 		auto c = new Caja(100);
 		c->setTexture(container);
 		c->setTextureInt(papelE);
 		gObjects.push_back(c);
-		c->setModelMat(translate(dmat4(1), dvec3(-1.0, 50.0, -1.0)));
-		
+		c->setModelMat(translate(dmat4(1), dvec3(-100.0, 50.0, -100.0)));
+
 		auto d = new Habitacion(500.0);
 		d->setTexture(windowV);
 		gObjects.push_back(d);
 		d->setModelMat(translate(dmat4(1), dvec3(-1.0, 250.0, -1.0)));
-		
+
 		auto f = new Foto(100.0, 100.0, 1, 1);
 		f->setTexture(foto);
 		gObjects.push_back(f);
 		f->setModelMat(translate(dmat4(1.0), dvec3(200, 50, 0.0)));
 		f->setModelMat(rotate(f->modelMat(), radians(90.0), dvec3(1.0, 0, 0)));
+	
 }
 //-------------------------------------------------------------------------
 void Scene::free() 
@@ -104,6 +95,7 @@ void Scene::free()
 	{
 		delete tx;  tx = nullptr;
 	}
+	gTextures.clear();
 }
 //-------------------------------------------------------------------------
 void Scene::setGL() 
@@ -111,7 +103,7 @@ void Scene::setGL()
 	// OpenGL basic setting
 	glClearColor(0.0, 0.0, 0.0, 0.0);  // background color (alpha=1 -> opaque)
 	glEnable(GL_DEPTH_TEST);  // enable Depth test 
-	glEnable(GL_TEXTURE_2D);  //enable texture
+	glEnable(GL_TEXTURE_2D);//enable texture
 
 }
 //-------------------------------------------------------------------------

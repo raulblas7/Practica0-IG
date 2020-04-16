@@ -88,17 +88,32 @@ void IG1App::free()
 	delete mViewPort; mViewPort = nullptr;
 }
 //-------------------------------------------------------------------------
+void IG1App::display2vistas() const{
+	Camera auxCam = *mCamera;
+	Viewport auxVP = *mViewPort;
+	mViewPort->setSize(mWinW / 2, mWinH);
+	// pero tenemos que cambiar la posición y orientación de la cámara
+	auxCam.setSize(mViewPort->width(), mViewPort->height());
+	mViewPort->setPos(0, 0);
+	mScene->render(auxCam);
+	mViewPort->setPos(mWinW / 2, 0);
+	auxCam.setCenital();
+	mScene->render(auxCam);
+	*mViewPort = auxVP;
+}
 
 void IG1App::display() const   
 {  // double buffering
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // clears the back buffer
-	if (m2Vistas) s_ig1app.display2Vistas();
+	if (m2Vistas) display2vistas();
 	else {
 		mScene->render(*mCamera);  // uploads the viewport and camera to the GPU
 	}
 	glutSwapBuffers();	// swaps the front and back buffer
 }
+
+
 //-------------------------------------------------------------------------
 
 void IG1App::resize(int newWidth, int newHeight) 
@@ -112,7 +127,45 @@ void IG1App::resize(int newWidth, int newHeight)
 	mCamera->setSize(mViewPort->width(), mViewPort->height()); 
 }
 //-------------------------------------------------------------------------
+void IG1App::mouse(int button, int state, int x, int y) {
+	mMouseButt = button;
+	mMouseCoord = glm::dvec2(x, mWinH - y);
+}
+void IG1App::motion(int x, int y) {
+	// guardamos la anterior posicion en var. temp.
+	glm::dvec2 mp = mMouseCoord;
+	// Guardamos la posicion actual
+	mMouseCoord = glm::dvec2(x, mWinH - y);
+	mp = mMouseCoord - mp; // calculamos el desplazamiento realizado
+	if (mMouseButt == GLUT_LEFT_BUTTON) {
+		mCamera->orbit(mp.x * 0.05, mp.y); // sensitivity = 0.05
+		glutPostRedisplay();
+	}
+	//no va nada de lo que pide xd
+	else if (mMouseButt == GLUT_RIGHT_BUTTON) {
+		//Mueve la cámara en los ejes X, Y
+		mCamera->moveLR(-mp.x);
+		mCamera->moveUD(-mp.y);
 
+		glutPostRedisplay();
+	}
+}
+void IG1App::mouseWheel(int whellNumber, int direction, int x, int y) {
+	/*int m = glutGetModifiers();*/
+		//if (m == 0) { // ninguna está presionada
+		// direction es la dirección de la rueda (+1 / -1)
+			/*if (direction == 1) mCamera->moveFB(5);
+			else mCamera->moveFB(-5);
+			glutPostRedisplay();*/
+	int m = glutGetModifiers();
+	if (m == 0) // ninguna está presionada
+	{
+		mCamera->moveFB(direction);
+	}
+	else if (m == GLUT_ACTIVE_CTRL) mCamera->setScale(2);
+	glutPostRedisplay();
+}
+//------------------------------------------------------------------------
 void IG1App::key(unsigned char key, int x, int y) 
 {
 	bool need_redisplay = true;
@@ -136,15 +189,14 @@ void IG1App::key(unsigned char key, int x, int y)
 		mScene->update();
 		break;
 	case '1':
-
-		/*mScene->~Scene();*/
-		std::cout << "Estoy en escena texturas";
-		mScene2 = new Scene();
-		mScene2->setState(1);
-		mScene2->init();
+		delete mScene;
+		mScene = new Scene;
+		mScene->setState(1);
+		mScene->init();
 		break;
 	case '0':
-		std::cout << "Estoy en escena 2D";
+		delete mScene;
+		mScene = new Scene;
 		mScene->setState(0);
 		mScene->init();
 		break;

@@ -45,6 +45,7 @@ protected:
 	void free();   
  
 	void display() const;   // the scene
+	void display2vistas() const;
 	void resize(int newWidth, int newHeight);   // the viewport (without changing the scale) 
 	void key(unsigned char key, int x, int y);  // keypress event
 	void specialKey(int key, int x, int y);     // keypress event for special characters
@@ -65,7 +66,6 @@ protected:
 	Camera *mCamera = nullptr;
 	// Graphics objects of the scene
 	Scene *mScene = nullptr;
-	Scene* mScene2 = nullptr;
 	bool mStop = false; // main event processing loop
 	int mWinId = 0;	    // window's identifier
 	int mWinW = 800;    // window's width 
@@ -74,59 +74,9 @@ protected:
 	int mMouseButt;
 	bool m2Vistas = false;
 
-	void display2Vistas() {
-		Camera auxCam = *mCamera;
-		Viewport auxVP = *mViewPort;
-		mViewPort->setSize(mWinW / 2, mWinH);
-		// pero tenemos que cambiar la posición y orientación de la cámara
-		auxCam.setSize(mViewPort->width(), mViewPort->height());
-		mViewPort->setPos(0, 0);
-		mScene->render(auxCam);
-		mViewPort->setPos(mWinW / 2, 0);
-		auxCam.setCenital();
-		mScene->render(auxCam);
-		*mViewPort = auxVP;
-	};
-
-	void mouse(int button, int state, int x, int y) {
-			mMouseButt = button;
-			mMouseCoord = glm::dvec2(x, mWinH - y);
-		
-	};
-	void motion(int x, int y) {
-		// guardamos la anterior posicion en var. temp.
-		glm::dvec2 mp = mMouseCoord;
-		// Guardamos la posicion actual
-		mMouseCoord = glm::dvec2(x, mWinH - y);
-		mp = mMouseCoord - mp; // calculamos el desplazamiento realizado
-		if (mMouseButt == GLUT_LEFT_BUTTON) {
-			mCamera->orbit(mp.x * 0.05, mp.y); // sensitivity = 0.05
-			glutPostRedisplay();
-		}
-		//no va nada de lo que pide xd
-		else if (mMouseButt == GLUT_RIGHT_BUTTON) {
-			//Mueve la cámara en los ejes X, Y
-			mCamera->moveLR(-mp.x);
-			mCamera->moveUD(-mp.y);
-
-			glutPostRedisplay();
-		}
-	};
-	void mouseWheel(int whellNumber, int direction, int x, int y) {
-		/*int m = glutGetModifiers();*/
-		//if (m == 0) { // ninguna está presionada
-		// direction es la dirección de la rueda (+1 / -1)
-			/*if (direction == 1) mCamera->moveFB(5);
-			else mCamera->moveFB(-5);
-			glutPostRedisplay();*/
-		int m = glutGetModifiers();
-		if (m == 0) // ninguna está presionada
-		{
-			mCamera->moveFB(direction);
-			glutPostRedisplay();
-		}
-		else if (m == GLUT_ACTIVE_CTRL) mCamera->setScale(2);
-	};
+	void mouse(int button, int state, int x, int y);
+	void motion(int x, int y);
+	void mouseWheel(int whellNumber, int direction, int x, int y);
 };
 //-------------------------------------------------------------------------
 

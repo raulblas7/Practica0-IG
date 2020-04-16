@@ -223,6 +223,9 @@ void Caja::render(dmat4 const& modelViewMat)const {
 		glDisable(GL_CULL_FACE);
 	}
 }
+void Caja::setTextureInt(Texture* tex) {
+	TextureInt = tex;
+}
 
 Foto::Foto(GLdouble w, GLdouble h, GLuint rw, GLuint rh) {
 	mMesh = Mesh::generaRectanguloTexCor(w, h, rw, rh);

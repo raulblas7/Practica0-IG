@@ -110,15 +110,45 @@ void Camera::moveLR(GLdouble cs) {
 	mLook += mRight * cs;
 }
 void Camera::moveFB(GLdouble cs) {
-	setVM();
-	mEye += mFront * cs;
-	mLook += mFront * cs;
-	setScale(cs / 10);
+	if (bOrto) {
+		setVM();
+		mEye += mFront * cs;
+		mLook += mFront * cs;
+		setScale(cs / 10);
+	}
 }
 void Camera::moveUD(GLdouble cs) {
 	setVM();
 	mEye += mUpward * cs;
 	mLook += mUpward * cs;
+}
+void Camera::orbit(GLdouble incAng, GLdouble incY) {
+	setVM();
+	mAng += incAng;
+	mEye.z = mLook.x + cos(glm::radians(mAng)) * mRadio;
+	mEye.x = mLook.z - sin(glm::radians(mAng)) * mRadio;
+	mEye.y -= incY;
+}
+
+void Camera::changePrj() {
+	if (bOrto) {
+		bOrto = false;
+		mProjMat = glm::frustum(xLeft * 0.005, xRight * 0.005, yBot * 0.005, yTop * 0.005, mNearVal, mFarVal);
+	}
+	else { bOrto = true; setPM(); }
+}
+
+void Camera::setCenital() {
+	mEye = glm::dvec3(0, 500, 0);
+	mLook = glm::dvec3(0, 0, 0);
+	mUp = glm::dvec3(1, 1, 0);
+	setVM();
+}
+
+void Camera::setAxes() {
+	mRight = row(mViewMat, 0);
+	mUpward = row(mViewMat, 1);
+	mFront = -row(mViewMat, 2);
 }
 //-------------------------------------------------------------------------
 

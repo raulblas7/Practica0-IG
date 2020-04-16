@@ -1,2 +1,2 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppClean.targets(76,5): warning : El proceso no puede obtener acceso al archivo 'c:\users\forev\onedrive\desktop\practica0-ig\practica1-ig\proyectosig_x64_vs2019_fg\ig1app\x64\debug\vc142.pdb' porque está siendo utilizado en otro proceso.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppClean.targets(76,5): warning : El proceso no puede obtener acceso al archivo 'c:\users\forev\onedrive\desktop\practica0-ig\practica1-ig\proyectosig_x64_vs2019_fg\bin\ig1appdebug.exe' porque está siendo utilizado en otro proceso.
+﻿  Scene.cpp
+  IG1App.vcxproj -> C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe

@@ -117,7 +117,7 @@ public:
 	~Caja();
 	virtual void render(glm::dmat4 const& modelViewMat) const;
 	virtual void update() {};
-	void setTextureInt(Texture* tex) { TextureInt = tex; };
+	void setTextureInt(Texture* tex);
 
 
 };
