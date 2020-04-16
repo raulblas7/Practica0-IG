@@ -31,20 +31,20 @@ void Camera::setVM()
 
 void Camera::set2D() 
 {
-	mEye = dvec3(0, 0, 500);
+	mEye = dvec3(0, 0, mRadio);
 	mLook = dvec3(0, 0, 0);
 	mUp = dvec3(0, 1, 0);
-	mAng = 270;
+	mAng = 0.0;
 	setVM();
 }
 //-------------------------------------------------------------------------
 
 void Camera::set3D() 
 {
-	mEye = dvec3(500, 500, 500);  
+	mEye = dvec3(mRadio, mRadio, mRadio);
 	mLook = dvec3(0, 10, 0);   
 	mUp = dvec3(0, 1, 0);
-	mAng = -45;
+	mAng = 315.0;
 	setVM();
 }
 //-------------------------------------------------------------------------
@@ -82,9 +82,11 @@ void Camera::setSize(GLdouble xw, GLdouble yh)
 
 void Camera::setScale(GLdouble s) 
 {
-	mScaleFact -= s;
-	if (mScaleFact < 0) mScaleFact = 0.01;
-	setPM();
+	if (bOrto) {
+		mScaleFact -= s;
+		if (mScaleFact < 0) mScaleFact = 0.01;
+		setPM();
+	}
 }
 //-------------------------------------------------------------------------
 
@@ -93,6 +95,10 @@ void Camera::setPM()
 	if (bOrto) { //  if orthogonal projection
 		mProjMat = ortho(xLeft*mScaleFact, xRight*mScaleFact, yBot*mScaleFact, yTop*mScaleFact, mNearVal, mFarVal);
 		// glm::ortho defines the orthogonal projection matrix
+	}
+	else {
+		GLdouble mNear = yTop;
+		mProjMat = glm::frustum(xLeft * 0.005, xRight * 0.005, yBot * 0.005, yTop * 0.005, mNear, mFarVal);
 	}
 }
 //-------------------------------------------------------------------------
@@ -113,7 +119,6 @@ void Camera::moveFB(GLdouble cs) {
 	setVM();
 	mEye += mFront * cs;
 	mLook += mFront * cs;
-	setScale(cs / 10);
 }
 void Camera::moveUD(GLdouble cs) {
 	setVM();
@@ -121,5 +126,33 @@ void Camera::moveUD(GLdouble cs) {
 	mLook += mUpward * cs;
 }
 //-------------------------------------------------------------------------
+void Camera::orbit(GLdouble incAng, GLdouble incY) {
+	setVM();
+	mAng += incAng;
+	mEye.z = mLook.x + cos(glm::radians(mAng)) * mRadio;
+	mEye.x = mLook.z - sin(glm::radians(mAng)) * mRadio;
+	mEye.y -= incY;
+}
+
+void Camera::changePrj() {
+	if (bOrto) {
+		bOrto = false;
+		mProjMat = glm::frustum(xLeft * 0.005, xRight * 0.005, yBot * 0.005, yTop * 0.005, mNearVal, mFarVal);
+	}
+	else { bOrto = true; setPM(); }
+}
+
+void Camera::setCenital() {
+	mEye = glm::dvec3(0, 500, 0);
+	mLook = glm::dvec3(0, 0, 0);
+	mUp = glm::dvec3(1, 1, 0);
+	setVM();
+}
+
+void Camera::setAxes() {
+	mRight = row(mViewMat, 0);
+	mUpward = row(mViewMat, 1);
+	mFront = -row(mViewMat, 2);
+}
 
 

@@ -70,7 +70,7 @@ void Scene::init()
 		gObjects.push_back(g);
 		g->setTexture(baldosaP);
 		g->setModelMat(rotate(g->modelMat(), 25.0, dvec3(1.0, 0, 25.0)));
-		g->setModelMat(translate(dmat4(1), dvec3(-1.0, 300.0, -1.0)));
+		g->setModelMat(translate(dmat4(1), dvec3(-100.0, 200.0, -100.0)));
 		auto a = new Suelo(500.0, 500.0,9,9);
 		a->setTexture(baldosaC);
 		gObjects.push_back(a);
@@ -79,7 +79,7 @@ void Scene::init()
 		c->setTexture(container);
 		c->setTextureInt(papelE);
 		gObjects.push_back(c);
-		c->setModelMat(translate(dmat4(1), dvec3(-1.0, 50.0, -1.0)));
+		c->setModelMat(translate(dmat4(1), dvec3(-100.0, 50.0, -100.0)));
 		
 		auto d = new Habitacion(500.0);
 		d->setTexture(windowV);

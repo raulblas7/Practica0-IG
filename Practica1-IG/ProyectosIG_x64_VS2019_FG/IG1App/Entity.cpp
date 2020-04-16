@@ -169,8 +169,10 @@ void Estrella3D::render(dmat4 const& modelViewMat) const
 
 void Estrella3D::update() {
 	if (mMesh != nullptr) {
-		mModelMat = rotate(mModelMat, radians(rotation), dvec3(0, 1, 1));
-		rotation += 2.0;
+		rotation += 2.5;
+		setModelMat(translate(dmat4(1.0), dvec3(-100.0, 200.0, -100.0)));
+		dmat4 aMat = (rotate(modelMat(), radians(rotation), dvec3(0, 1, 0)));
+		setModelMat(rotate(aMat, radians(rotation), dvec3(0, 0, 1)));
 	}
 }
 

@@ -44,28 +44,11 @@ public:
 	// transfers its viewport, the view matrix and projection matrix to the GPU
 	void upload() const { mViewPort->upload();  uploadVM(); uploadPM(); }; 
 
-	void orbit(GLdouble incAng, GLdouble incY) {
-		setVM();
-		mAng += incAng;
-		mEye.z = mLook.x + cos(glm::radians(mAng)) * mRadio;
-		mEye.x = mLook.z - sin(glm::radians(mAng)) * mRadio;
-		mEye.y -= incY;
-	};
+	void orbit(GLdouble incAng, GLdouble incY);
 
-	void changePrj() {
-		if (bOrto) {
-			bOrto = false;
-			mProjMat = glm::frustum(xLeft * 0.005, xRight *0.005, yBot * 0.005, yTop * 0.005, mNearVal, mFarVal);
-		}
-		else { bOrto = true; setPM(); }
-	};
+	void changePrj();
 
-	void setCenital() {
-		mEye = glm::dvec3(0, 500, 0);
-		mLook = glm::dvec3(0, 0, 0);
-		mUp = glm::dvec3(1, 1, 0);
-		setVM();
-	};
+	void setCenital();
 
 protected:
 	
@@ -91,11 +74,7 @@ protected:
 
 	void setVM();
 	void setPM();
-	void setAxes() {
-		mRight = row(mViewMat, 0);
-		mUpward = row(mViewMat, 1);
-		mFront = -row(mViewMat, 2);
-	};
+	void setAxes();
 	
 };
 //-------------------------------------------------------------------------
