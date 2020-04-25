@@ -11,7 +11,7 @@ void Sphere::render(glm::dmat4 const& modelViewMat) const {
 	upload(aMat);
 	// Aquí se puede fijar el color de la esfera así:
 	/*glEnable(GL_COLOR_MATERIAL);
-	glColor3f(250, 0, 0);*/
+	glColor3f(250.0, 1.0, 1.0);*/
 	// Aquí se puede fijar el modo de dibujar la esfera:
 	gluQuadricDrawStyle(q, GLU_FILL);
 	gluSphere(q, r, 50, 50);

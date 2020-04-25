@@ -44,11 +44,10 @@ void Scene::init()
 	gObjects.push_back(gorro);
 
 	//sonrisa
-	PartialDisk* sonrisa = new PartialDisk(50.0, 90.0, 100.0, 100.0);
+	PartialDisk* sonrisa = new PartialDisk(60.0, 80.0, 90, 180);
 	glm::dmat4 mAuxs = sonrisa->modelMat();
-	mAuxs = translate(mAuxs, dvec3(100, 20, 20));
-	/*mAuxs = rotate(mAuxs, radians(-90.0), dvec3(0, 1.0, 0));
-	mAuxs = rotate(mAuxs, radians(-90.0), dvec3(1.0, 0, 0));*/
+	mAuxs = translate(mAuxs, dvec3(60, 20, 60));
+	mAuxs = rotate(mAuxs, radians(45.0), dvec3(0, 1.0, 0));
 	sonrisa->setModelMat(mAuxs);
 	gObjects.push_back(sonrisa);
 	//if (mId == 0) {
@@ -145,7 +144,8 @@ void Scene::sceneDirLight(Camera const& cam) const {
 	glLightfv(GL_LIGHT0, GL_AMBIENT, value_ptr(ambient));
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, value_ptr(diffuse));
 	glLightfv(GL_LIGHT0, GL_SPECULAR, value_ptr(specular));
-}
+}
+
 void Scene::free() 
 { // release memory and resources   
 

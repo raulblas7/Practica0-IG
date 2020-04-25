@@ -18,7 +18,8 @@ public:
 	void render(glm::dmat4 const& modelViewMat) const;
 protected:
 	GLdouble r;
-};
+};
+
 class Cylinder : public QuadricEntity {
 public:
 	Cylinder(GLdouble r, GLdouble r2, GLdouble h); // radios de las bases del cilindro
@@ -27,7 +28,8 @@ protected:
 	GLdouble r;
 	GLdouble r2;
 	GLdouble h;
-};
+};
+
 class  Disk : public QuadricEntity {
 public:
 	Disk(GLdouble  innerRadius, GLdouble  outerRadius); // radios del disco
@@ -35,7 +37,8 @@ public:
 protected:
 	GLdouble innerRadius;
 	GLdouble outerRadius;
-};
+};
+
 class  PartialDisk : public QuadricEntity {
 public:
 	PartialDisk(GLdouble  innerRadius, GLdouble  outerRadius, GLdouble startAngle, GLdouble sweepAngle); // radios del disco y angulos
