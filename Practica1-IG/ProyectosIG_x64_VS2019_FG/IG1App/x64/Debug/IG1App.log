@@ -1,3 +1,5 @@
-﻿  Scene.cpp
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Scene.cpp(166,33): warning C4305:  'argumento': truncamiento de 'double' a 'GLclampf'
-  IG1App.vcxproj -> C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe
+﻿  QuadricEntity.cpp
+  Scene.cpp
+  Generando código...
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Scene.cpp(166,33): warning C4305: 'argumento': truncamiento de 'double' a 'GLclampf'
+  IG1App.vcxproj -> C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe

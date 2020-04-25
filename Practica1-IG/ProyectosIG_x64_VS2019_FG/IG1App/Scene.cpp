@@ -12,11 +12,11 @@ void Scene::init()
 	// allocate memory and load resources
     // Lights
     // Textures
-	glEnable(GL_DEPTH_TEST);
 	
 	gObjects.push_back(new EjesRGB(400.0));
 	//cabeza
 	Sphere* esfera = new Sphere(100.0);
+	//esfera->setColor(glm::fvec3(2.30f, 0.25f, 0.25f));
 	gObjects.push_back(esfera);
 	//ojos
 	Cylinder* cono = new Cylinder(10.0, 0, 30.0);
@@ -44,7 +44,7 @@ void Scene::init()
 	gObjects.push_back(gorro);
 
 	//sonrisa
-	PartialDisk* sonrisa = new PartialDisk(60.0, 80.0, 90, 180);
+	PartialDisk* sonrisa = new PartialDisk(70.0, 80.0, 90, 180);
 	glm::dmat4 mAuxs = sonrisa->modelMat();
 	mAuxs = translate(mAuxs, dvec3(60, 20, 60));
 	mAuxs = rotate(mAuxs, radians(45.0), dvec3(0, 1.0, 0));

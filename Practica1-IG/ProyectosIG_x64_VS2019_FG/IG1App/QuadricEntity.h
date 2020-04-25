@@ -7,9 +7,13 @@ public:
 	QuadricEntity();
 	~QuadricEntity() { gluDeleteQuadric(q); };
 	virtual void update() {};
+	void setColor(glm::fvec3 const& aCol) { color = aCol; };
+
+
 protected:
 	GLUquadricObj* q;
 	glm::fvec3 color = glm::fvec3(-1, -1, -1);
+
 };
 
 class Sphere : public QuadricEntity {
