@@ -8,7 +8,7 @@
 #include "Camera.h"
 #include "Entity.h"
 #include "Texture.h"
-
+#include "QuadricEntity.h"
 
 #include <vector>
 
@@ -24,6 +24,8 @@ public:
 	Scene& operator=(const Scene& s) = delete;  // no copy assignment
 		
 	void init();
+
+	void sceneDirLight(Camera const& cam) const;
 
     void render(Camera const& cam) const;
 	void update();
