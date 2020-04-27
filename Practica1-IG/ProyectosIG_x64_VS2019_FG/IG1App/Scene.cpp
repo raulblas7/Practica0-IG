@@ -15,7 +15,7 @@ void Scene::init()
 	
 	gObjects.push_back(new EjesRGB(400.0));
 	//cabeza
-	Sphere* esfera = new Sphere(100.0, glm::fvec3(2.45f, 1.50f, 0.34f));
+	Sphere* esfera = new Sphere(100.0, glm::fvec3(2.55f, 1.06f, 0.54f));
 	//esfera->setColor(glm::fvec3(2.30f, 0.25f, 0.25f));
 	gObjects.push_back(esfera);
 	//ojos
@@ -44,9 +44,9 @@ void Scene::init()
 	gObjects.push_back(gorro);
 
 	//sonrisa
-	PartialDisk* sonrisa = new PartialDisk(70.0, 80.0, 90, 180, glm::fvec3(0.0f, 2.55f, 0.1f));
+	PartialDisk* sonrisa = new PartialDisk(60.0, 80.0, 90, 180, glm::fvec3(0.67f, 2.55f, 0.06f));
 	glm::dmat4 mAuxs = sonrisa->modelMat();
-	mAuxs = translate(mAuxs, dvec3(60, 20, 60));
+	mAuxs = translate(mAuxs, dvec3(58, 20, 58));
 	mAuxs = rotate(mAuxs, radians(45.0), dvec3(0, 1.0, 0));
 	sonrisa->setModelMat(mAuxs);
 	gObjects.push_back(sonrisa);
