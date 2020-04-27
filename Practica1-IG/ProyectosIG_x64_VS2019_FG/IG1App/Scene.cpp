@@ -15,18 +15,18 @@ void Scene::init()
 	
 	gObjects.push_back(new EjesRGB(400.0));
 	//cabeza
-	Sphere* esfera = new Sphere(100.0);
+	Sphere* esfera = new Sphere(100.0, glm::fvec3(2.45f, 1.50f, 0.34f));
 	//esfera->setColor(glm::fvec3(2.30f, 0.25f, 0.25f));
 	gObjects.push_back(esfera);
 	//ojos
-	Cylinder* cono = new Cylinder(10.0, 0, 30.0);
+	Cylinder* cono = new Cylinder(10.0, 0, 30.0, glm::fvec3(0.0f, 0.0f, 2.55f));
 	glm::dmat4 mAux = cono->modelMat();
 	mAux = translate(mAux, dvec3(20, 50, 75));
 	mAux = rotate(mAux, radians(-60.0), dvec3(1.0,0,1.0));
 	mAux = rotate(mAux, radians(20.0), dvec3(0, 1.0, 0));
 	cono->setModelMat(mAux);
 	gObjects.push_back(cono);
-	Cylinder* cono2 = new Cylinder(10.0, 0, 30.0);
+	Cylinder* cono2 = new Cylinder(10.0, 0, 30.0, glm::fvec3(0.0f, 1.50f, 2.20f));
 	glm::dmat4 mAuxx = cono2->modelMat();
 	mAuxx = translate(mAuxx, dvec3(70, 50, 35));
 	mAuxx = rotate(mAuxx, radians(-60.0), dvec3(1.0,0,1.0));
@@ -35,7 +35,7 @@ void Scene::init()
 	gObjects.push_back(cono2);
 
 	//Gorro
-	Disk* gorro = new Disk(50.0, 90.0);
+	Disk* gorro = new Disk(50.0, 90.0, glm::fvec3(2.30f, 0.25f, 0.25f));
 	glm::dmat4 mAuxg = gorro->modelMat();
 	mAuxg = translate(mAuxg, dvec3(0, 85, 0));
 	mAuxg = rotate(mAuxg, radians(-90.0), dvec3(0, 1.0, 0));
@@ -44,7 +44,7 @@ void Scene::init()
 	gObjects.push_back(gorro);
 
 	//sonrisa
-	PartialDisk* sonrisa = new PartialDisk(70.0, 80.0, 90, 180);
+	PartialDisk* sonrisa = new PartialDisk(70.0, 80.0, 90, 180, glm::fvec3(0.0f, 2.55f, 0.1f));
 	glm::dmat4 mAuxs = sonrisa->modelMat();
 	mAuxs = translate(mAuxs, dvec3(60, 20, 60));
 	mAuxs = rotate(mAuxs, radians(45.0), dvec3(0, 1.0, 0));
