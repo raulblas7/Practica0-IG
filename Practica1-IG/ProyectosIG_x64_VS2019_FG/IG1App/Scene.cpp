@@ -15,7 +15,7 @@ void Scene::init()
 	
 	gObjects.push_back(new EjesRGB(400.0));
 	//cabeza
-	Sphere* esfera = new Sphere(100.0, glm::fvec3(2.55f, 1.06f, 0.54f));
+	Sphere* esfera = new Sphere(100.0,glm::fvec3(1.0, 0.6, 0));
 	//esfera->setColor(glm::fvec3(2.30f, 0.25f, 0.25f));
 	gObjects.push_back(esfera);
 	//ojos
