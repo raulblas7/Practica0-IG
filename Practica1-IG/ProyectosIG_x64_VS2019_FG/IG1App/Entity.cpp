@@ -31,6 +31,8 @@ void EjesRGB::render(dmat4 const& modelViewMat) const
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 		upload(aMat);
+		glEnable(GL_COLOR_MATERIAL);
+
 		glLineWidth(2);
 		mMesh->render();
 		glLineWidth(1);
@@ -274,5 +276,25 @@ Habitacion::~Habitacion() {
 	delete mMesh; mMesh = nullptr;
 }
 
+
 //-------------------------------------------------------------------------
- 
+AnilloCuadrado::AnilloCuadrado() {
+	mMesh = Mesh::generaAnilloCuadrado();
+}
+
+void AnilloCuadrado::render(dmat4 const& modelViewMat)const {
+	
+		if (mMesh != nullptr) {
+			dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
+			glEnable(GL_COLOR_MATERIAL);
+			upload(aMat);
+			glPolygonMode(GL_FRONT, GL_FILL);
+
+			mMesh->render();
+		}
+	
+}
+
+AnilloCuadrado::~AnilloCuadrado() {
+	delete mMesh; mMesh = nullptr;
+}

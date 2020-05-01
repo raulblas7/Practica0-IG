@@ -25,7 +25,7 @@ public:
 	static Mesh* generaContCubo(GLdouble ld);
 
 	static Mesh* generaCajaTexCubo(GLdouble nl);
-
+	static Mesh* generaAnilloCuadrado();
 
 	Mesh() {};
 	virtual ~Mesh() {};
@@ -39,6 +39,7 @@ public:
 	std::vector<glm::dvec3> const& vertices() const { return vVertices; };
 	std::vector<glm::dvec4> const& colors() const { return vColors; };
 		
+ 	
 protected:
 	
 	GLuint mPrimitive = GL_TRIANGLES;   // graphic primitive: GL_POINTS, GL_LINES, GL_TRIANGLES, ...

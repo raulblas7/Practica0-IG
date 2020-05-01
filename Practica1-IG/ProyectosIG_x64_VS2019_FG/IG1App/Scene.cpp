@@ -14,9 +14,13 @@ void Scene::init()
     // Textures
 	
 	gObjects.push_back(new EjesRGB(400.0));
+	
 	if (mId == 1) {
+		AnilloCuadrado* anillo = new AnilloCuadrado();
+		gObjects.push_back(anillo);
+		
 		//cabeza
-		Sphere* esfera = new Sphere(100.0, glm::fvec3(1.0, 0.6, 0));
+		/*Sphere* esfera = new Sphere(100.0, glm::fvec3(1.0, 0.6, 0));
 		//esfera->setColor(glm::fvec3(2.30f, 0.25f, 0.25f));
 		gObjects.push_back(esfera);
 		//ojos
@@ -50,7 +54,7 @@ void Scene::init()
 		mAuxs = translate(mAuxs, dvec3(58, 20, 58));
 		mAuxs = rotate(mAuxs, radians(45.0), dvec3(0, 1.0, 0));
 		sonrisa->setModelMat(mAuxs);
-		gObjects.push_back(sonrisa);
+		gObjects.push_back(sonrisa);*/
 	}
 	//if (mId == 0) {
 	//	// Graphics objects (entities) of the scene

@@ -1,19 +1,8 @@
-﻿  Camera.cpp
-  Entity.cpp
-  IG1App.cpp
-  Mesh.cpp
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(79,20): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(114,20): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(120,20): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(178,20): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(198,21): warning C4018:  '<': no coinciden signed/unsigned
-  Pixmap32RGBA.cpp
-  QuadricEntity.cpp
-  Scene.cpp
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(226,12): warning C4244:  'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
-  Texture.cpp
-  Viewport.cpp
-  main.cpp
-  Generando código...
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Scene.cpp(168,33): warning C4305:  'argumento': truncamiento de 'double' a 'GLclampf'
-  IG1App.vcxproj -> C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe
+﻿  Mesh.cpp
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(91,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(126,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(132,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(190,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(210,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(238,12): warning C4244: 'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
+  IG1App.vcxproj -> C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe
