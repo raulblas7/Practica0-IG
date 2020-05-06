@@ -47,9 +47,23 @@ protected:
 	std::vector<glm::dvec3> vVertices;  // vertex array
 	std::vector<glm::dvec4> vColors;    // color array
 	std::vector<glm::dvec2> vTexCoords;//texture array
+	std::vector<glm::dvec3> vNormals; //tabla de normales
 	virtual void draw() const;
 	
 };
 //-------------------------------------------------------------------------
-
+class IndexMesh : public Mesh {
+protected:
+	GLuint* vIndices = nullptr; // tabla de índices
+	GLuint nNumIndices = 0;
+	unsigned int indices[] ;	
+public:
+	IndexMesh() { mPrimitive = GL_TRIANGLES; 
+	}
+	~IndexMesh() { delete[] indices; }
+	virtual void render() const;
+	virtual void draw() const;
+	static IndexMesh* generaIndexCuboConTapas(GLdouble l);
+	void buildNormalVectors();
+};
 #endif //_H_Scene_H_

@@ -289,12 +289,29 @@ void AnilloCuadrado::render(dmat4 const& modelViewMat)const {
 			glEnable(GL_COLOR_MATERIAL);
 			upload(aMat);
 			glPolygonMode(GL_FRONT, GL_FILL);
-
+			glPolygonMode(GL_BACK, GL_LINE);
 			mMesh->render();
+			glColor3f(1.0, 1.0, 1.0);
+
 		}
 	
 }
 
 AnilloCuadrado::~AnilloCuadrado() {
 	delete mMesh; mMesh = nullptr;
+}
+
+EntityWithIndexMesh::EntityWithIndexMesh(GLdouble l)
+{
+	mMesh = IndexMesh::generaIndexCuboConTapas(l);
+}
+
+EntityWithIndexMesh::~EntityWithIndexMesh()
+{
+	delete mMesh; mMesh = nullptr;
+}
+
+void EntityWithIndexMesh::render(glm::dmat4 const& modelViewMat) const
+{
+
 }
