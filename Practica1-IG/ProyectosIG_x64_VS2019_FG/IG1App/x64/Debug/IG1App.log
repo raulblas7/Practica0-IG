@@ -1,8 +1,12 @@
 ﻿  Mesh.cpp
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.h(59,25): warning C4200:  se ha utilizado una extensión no estándar: matriz de tamaño cero en struct/union
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.h(59,25): message :  Un constructor con valor predeterminado o un operador de asignación de copia o movimiento ignorará a este miembro.
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.h(63,15): warning C4154:  eliminación de una expresión de matriz; suministrada una conversión a puntero
 C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(95,20): warning C4018:  '<': no coinciden signed/unsigned
 C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(130,20): warning C4018:  '<': no coinciden signed/unsigned
 C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(136,20): warning C4018:  '<': no coinciden signed/unsigned
 C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(194,20): warning C4018:  '<': no coinciden signed/unsigned
 C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(214,21): warning C4018:  '<': no coinciden signed/unsigned
 C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(242,12): warning C4244:  'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(334,12): warning C4244:  'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
   IG1App.vcxproj -> C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe

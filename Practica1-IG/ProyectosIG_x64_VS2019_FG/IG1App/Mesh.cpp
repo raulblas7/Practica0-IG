@@ -351,7 +351,7 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
 	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
 	 cubitoConTapa->vNormals.reserve(8);
-	 for (int i = 0; i < 8; i++)
+	 /*for (int i = 0; i < 8; i++)
 	 {
 		auto  act = cubitoConTapa->vertices().at(i);
 		auto  sig = cubitoConTapa->vertices().at((i+1) % 8);
@@ -396,7 +396,7 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
 	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
 	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
+	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);*/
 	
 	 return cubitoConTapa;
  }

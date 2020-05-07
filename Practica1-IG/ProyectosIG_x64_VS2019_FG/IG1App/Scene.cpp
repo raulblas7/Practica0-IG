@@ -56,6 +56,9 @@ void Scene::init()
 		AnilloCuadrado* anillo = new AnilloCuadrado();
 		gObjects.push_back(anillo);
 	}
+	if (mId == 2) {
+		EntityWithIndexMesh* cubito = new EntityWithIndexMesh(100.0);
+	}
 	//if (mId == 0) {
 	//	// Graphics objects (entities) of the scene
 	//	
