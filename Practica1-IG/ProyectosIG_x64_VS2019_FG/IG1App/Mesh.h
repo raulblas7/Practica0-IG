@@ -56,7 +56,8 @@ class IndexMesh : public Mesh {
 protected:
 	GLuint* vIndices = nullptr; // tabla de índices
 	GLuint nNumIndices = 0;
-	unsigned int indices[] ;	
+	unsigned int indices[] ;
+	
 public:
 	IndexMesh() {
 		mPrimitive = GL_TRIANGLES;

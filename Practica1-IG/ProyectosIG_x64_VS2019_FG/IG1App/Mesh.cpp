@@ -8,11 +8,16 @@ using namespace glm;
 
 void Mesh::draw() const 
 {
-	/*glBegin(GL_TRIANGLE_STRIP);
+
+	//glDrawArrays(mPrimitive, 0, size());
+
+
+	/*glBegin(mPrimitive);
 	// Cuando se usa glArrayElement(i);
 	// vertices[i] y colors[i] se recuperan a la vez
 	for (int i = 0; i < 10; ++i) glArrayElement(i % 8);
 	glEnd();*/
+
 	unsigned int stripIndices[] =
 	{ 0, 1, 2, 3, 4, 5, 6, 7, 0, 1 };
 	glDrawElements(mPrimitive, 10, GL_UNSIGNED_INT,
@@ -276,9 +281,10 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
  Mesh* Mesh::generaAnilloCuadrado() {
 	 Mesh* anillo = new Mesh();
 	 anillo->mPrimitive = GL_TRIANGLE_STRIP;
-	 anillo->vVertices.reserve(10);
-	 anillo->vColors.reserve(10);
-	 anillo->vNormals.reserve(36);
+	 anillo->mNumVertices = 10;
+	 anillo->vVertices.reserve(anillo->mNumVertices);
+	 anillo->vColors.reserve(anillo->mNumVertices);
+
 	 anillo->vVertices.emplace_back( 300.0, 300.0, 0.0 );
 	 anillo->vVertices.emplace_back( 100.0, 100.0, 0.0);
 	 anillo->vVertices.emplace_back(700.0, 300.0, 0.0 );
@@ -289,7 +295,6 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 anillo->vVertices.emplace_back( 100.0, 900.0, 0.0 );
 	//anillo->vVertices.emplace_back( 30.0, 30.0, 0.0 );
 	 //anillo->vVertices.emplace_back( 10.0, 10.0, 0.0 );
-	 anillo->vColors.clear();
 
 	 anillo->vColors.emplace_back( 0.0, 0.0, 0.0,1.0 );
 	 anillo->vColors.emplace_back( 1.0, 0.0, 0.0,1.0 );
@@ -301,7 +306,6 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 anillo->vColors.emplace_back(1.0, 0.0, 0.0,1.0 );
 	// anillo->vColors.emplace_back( 0.0, 0.0, 0.0,1.0 );
 	 //anillo->vColors.emplace_back( 1.0, 0.0, 0.0,1.0 );
-	//	anillo->vNormals.emplace_back(anillo->vVertices[0], ,);
 
 	 return anillo;
  }
