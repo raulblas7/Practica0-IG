@@ -58,6 +58,7 @@ void Scene::init()
 	}
 	if (mId == 2) {
 		EntityWithIndexMesh* cubito = new EntityWithIndexMesh(100.0);
+		gObjects.push_back(cubito);
 	}
 	//if (mId == 0) {
 	//	// Graphics objects (entities) of the scene

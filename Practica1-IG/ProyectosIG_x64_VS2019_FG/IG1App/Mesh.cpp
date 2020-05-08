@@ -30,23 +30,19 @@ void Mesh::render() const
 
     glVertexPointer(3, GL_DOUBLE, 0, vVertices.data());  // number of coordinates per vertex, type of each coordinate, stride, pointer 
       glColorPointer(4, GL_DOUBLE, 0, vColors.data());  // components number (rgba=4), type of each component, stride, pointer  
-    
+	// se añaden comandos para la tabla de normales:
+	  if (vNormals.size() > 0) {
+		  glEnableClientState(GL_NORMAL_ARRAY);
+		  glNormalPointer(GL_DOUBLE, 0, vNormals.data());
+	  }
 	  draw();
 	  // Desactivación de los vertex arrays
 	  glDisableClientState(GL_COLOR_ARRAY);
 	  glDisableClientState(GL_VERTEX_ARRAY);
-
+	  glDisableClientState(GL_NORMAL_ARRAY);
 
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glTexCoordPointer(2, GL_DOUBLE, 0, vTexCoords.data());
-  }
-  // se añaden comandos para la tabla de normales:
-  if (vNormals.size() > 0) {
-	  glEnableClientState(GL_NORMAL_ARRAY);
-	  glNormalPointer(GL_DOUBLE, 0, vNormals.data());
-	  draw();
-	  //...
-	  glDisableClientState(GL_NORMAL_ARRAY);
   }
 }
 //-------------------------------------------------------------------------
@@ -311,13 +307,14 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
  }
 
  void IndexMesh::render() const {
-	 //… // Comandos OpenGL para enviar datos de arrays a GPU
+	 Mesh::render();
+	 // Comandos OpenGL para enviar datos de arrays a GPU
 	 // Nuevos comandos para la tabla de índices
 		 if (vIndices != nullptr) {
 			 glEnableClientState(GL_INDEX_ARRAY);
-			 glIndexPointer(GL_UNSIGNED_INT, 0, indices);
+			 glIndexPointer(GL_UNSIGNED_INT, 0, vIndices);
 		 }
-	 //… // Comandos OpenGL para deshabilitar datos enviados
+	 // Comandos OpenGL para deshabilitar datos enviados
 	// Nuevo comando para la tabla de índices:
 		 glDisableClientState(GL_INDEX_ARRAY);
  }
@@ -329,19 +326,38 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 
  IndexMesh* IndexMesh::generaIndexCuboConTapas(GLdouble l)
  {
-	 IndexMesh* cubitoConTapa = new IndexMesh()/*generaContCubo(nl)*/;
+	 IndexMesh* cubitoConTapa = new IndexMesh();
 	 cubitoConTapa->mPrimitive = GL_TRIANGLES;
-	 int half = l / 2;
+	 cubitoConTapa->nNumIndices = 36;
+	 //indices de los vertices de los triangulos
+	 GLuint indices[] = {
+		 0,1,2, 2,1,3,
+		 2,3,4, 4,3,5,
+		 4,5,6, 6,5,7,
+		 6,7,0, 0,7,1,
+		 4,6,2, 2,6,0,
+		 1,7,3, 3,7, 5
+	 };
+	 //vIndices del tamaño de nNumIndices y se inicializa
+	 cubitoConTapa->vIndices = new GLuint[cubitoConTapa->nNumIndices];
+	 for (int i = 0; i < cubitoConTapa->nNumIndices; i++) {
+		 cubitoConTapa->vIndices[i] = indices[i];
+	 }
+	 //hacemos el cubo poniendo los vertices y los colores en su lugar
+	int half = l / 2;
 
-	 cubitoConTapa->vVertices.emplace_back(half, half, -half);
-	 cubitoConTapa->vVertices.emplace_back(half, -half, -half);
-	 cubitoConTapa->vVertices.emplace_back(half, -half, half);
-	 cubitoConTapa->vVertices.emplace_back(half, half, half);
-	 cubitoConTapa->vVertices.emplace_back(-half, half, -half);
+	cubitoConTapa->mNumVertices = 8;
+	 cubitoConTapa->vVertices.reserve(cubitoConTapa->mNumVertices);
 	 cubitoConTapa->vVertices.emplace_back(-half, half, half);
 	 cubitoConTapa->vVertices.emplace_back(-half, -half, half);
+	 cubitoConTapa->vVertices.emplace_back(half, half, half);
+	 cubitoConTapa->vVertices.emplace_back(half, -half, half);
+	 cubitoConTapa->vVertices.emplace_back(half, half, -half);
+	 cubitoConTapa->vVertices.emplace_back(half, -half, -half);
+	 cubitoConTapa->vVertices.emplace_back(-half, half, -half);
 	 cubitoConTapa->vVertices.emplace_back(-half, -half, -half);
 
+	 cubitoConTapa->vColors.reserve(cubitoConTapa->mNumVertices);
 	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
 	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
 	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
@@ -350,57 +366,34 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
 	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
 	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
-	 cubitoConTapa->vNormals.reserve(8);
-	 /*for (int i = 0; i < 8; i++)
-	 {
-		auto  act = cubitoConTapa->vertices().at(i);
-		auto  sig = cubitoConTapa->vertices().at((i+1) % 8);
-		cubitoConTapa->vNormals.at(i).x = (act.y - sig.y) * (act.z - sig.z);
-		cubitoConTapa->vNormals.at(i).y = (act.z - sig.z) * (act.x - sig.x);
-		cubitoConTapa->vNormals.at(i).z = (act.x - sig.x) * (act.y - sig.y);
-		
-	 }
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);
-	 cubitoConTapa->vNormals.emplace_back(cubitoConTapa->vVertices[0]);*/
-	
+
+	 //construimos el vector de normales
+	 cubitoConTapa->buildNormalVectors();
+
 	 return cubitoConTapa;
  }
 
  void IndexMesh::buildNormalVectors()
  {
- }
+	 //vNormals le ponemos del mismo tamaño que vVertices usando mNumVertices
+	 vNormals.reserve(mNumVertices);
+	 //lo inicializamos a 0
+	 for (int i = 0; i < mNumVertices; i++) {
+		 vNormals.emplace_back(0.0, 0.0, 0.0);
+	 }
+	 //recorremos los indices de tres en tres para acceder a los indices de los triangulos
+	 for (int j = 0; j < nNumIndices; j = j + 3) {
+		 glm::dvec3 cara = dvec3(vIndices[j], vIndices[j + 1], vIndices[j + 2]);
+		 
+		 dvec3 n = cross(vVertices[cara.z] - vVertices[cara.y], vVertices[cara.x] - vVertices[cara.y]);
+		 vNormals[vIndices[j]] += n;
+		 vNormals[vIndices[j + 1]] += n;
+		vNormals[vIndices[j + 2]] += n; 
+	 }
+	 //nos aseguramos que se normalizan 
+	 for (int k = 0; k < vNormals.size(); k++) {
+		 vNormals[k] = normalize(vNormals[k]);
+	 }
+ }
+
+

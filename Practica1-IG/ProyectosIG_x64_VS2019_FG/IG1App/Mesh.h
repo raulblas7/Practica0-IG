@@ -58,9 +58,10 @@ protected:
 	GLuint nNumIndices = 0;
 	unsigned int indices[] ;	
 public:
-	IndexMesh() { mPrimitive = GL_TRIANGLES; 
-	}
-	~IndexMesh() { delete[] indices; }
+	IndexMesh() {
+		mPrimitive = GL_TRIANGLES;
+	};
+	~IndexMesh() {};
 	virtual void render() const;
 	virtual void draw() const;
 	static IndexMesh* generaIndexCuboConTapas(GLdouble l);
