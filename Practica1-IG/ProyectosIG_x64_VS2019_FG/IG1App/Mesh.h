@@ -49,6 +49,7 @@ protected:
 	std::vector<glm::dvec2> vTexCoords;//texture array
 	std::vector<glm::dvec3> vNormals; //tabla de normales
 	virtual void draw() const;
+	bool drawElements = false;
 	
 };
 //-------------------------------------------------------------------------

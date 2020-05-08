@@ -8,47 +8,47 @@ using namespace glm;
 
 void Mesh::draw() const 
 {
-
-	//glDrawArrays(mPrimitive, 0, size());
-
-
-	/*glBegin(mPrimitive);
-	// Cuando se usa glArrayElement(i);
-	// vertices[i] y colors[i] se recuperan a la vez
-	for (int i = 0; i < 10; ++i) glArrayElement(i % 8);
-	glEnd();*/
-
-	unsigned int stripIndices[] =
-	{ 0, 1, 2, 3, 4, 5, 6, 7, 0, 1 };
-	glDrawElements(mPrimitive, 10, GL_UNSIGNED_INT,
-		stripIndices);
-	// primitive graphic, first index and number of elements to be rendered
+	if (drawElements)
+	{
+		unsigned int stripIndices[] =
+		{ 0, 1, 2, 3, 4, 5, 6, 7, 0, 1 };
+		glDrawElements(mPrimitive, 10, GL_UNSIGNED_INT,
+			stripIndices);
+	}
+	else
+	{
+		glDrawArrays(mPrimitive, 0, size());
+	}	
 }
 //-------------------------------------------------------------------------
 
-void Mesh::render() const 
+void Mesh::render() const
 {
-  if (vVertices.size() > 0) {  // transfer data
-    // transfer the coordinates of the vertices
-    glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
 
-    glVertexPointer(3, GL_DOUBLE, 0, vVertices.data());  // number of coordinates per vertex, type of each coordinate, stride, pointer 
-      glColorPointer(4, GL_DOUBLE, 0, vColors.data());  // components number (rgba=4), type of each component, stride, pointer  
-	// se añaden comandos para la tabla de normales:
-	  if (vNormals.size() > 0) {
-		  glEnableClientState(GL_NORMAL_ARRAY);
-		  glNormalPointer(GL_DOUBLE, 0, vNormals.data());
-	  }
-	  draw();
-	  // Desactivación de los vertex arrays
-	  glDisableClientState(GL_COLOR_ARRAY);
-	  glDisableClientState(GL_VERTEX_ARRAY);
-	  glDisableClientState(GL_NORMAL_ARRAY);
+	if (vVertices.size() > 0) {  // transfer data
+	 // transfer the coordinates of the vertices
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glVertexPointer(3, GL_DOUBLE, 0, vVertices.data());  // number of coordinates per vertex, type of each coordinate, stride, pointer 
+		if (vColors.size() > 0) { // transfer colors
+			glEnableClientState(GL_COLOR_ARRAY);
+			glColorPointer(4, GL_DOUBLE, 0, vColors.data());  // components number (rgba=4), type of each component, stride, pointer  
+		}
+		if (vTexCoords.size() > 0) {
+			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+			glTexCoordPointer(2, GL_DOUBLE, 0, vTexCoords.data());
+		}
+		// se añaden comandos para la tabla de normales :
+		if (vNormals.size() > 0) {
+			glEnableClientState(GL_NORMAL_ARRAY);
+			glNormalPointer(GL_DOUBLE, 0, vNormals.data());
+		}
+		draw();
 
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		glTexCoordPointer(2, GL_DOUBLE, 0, vTexCoords.data());
-  }
+		glDisableClientState(GL_COLOR_ARRAY);
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		glDisableClientState(GL_NORMAL_ARRAY);
+	}
 }
 //-------------------------------------------------------------------------
 
@@ -282,8 +282,10 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 Mesh* anillo = new Mesh();
 	 anillo->mPrimitive = GL_TRIANGLE_STRIP;
 	 anillo->mNumVertices = 10;
+	anillo->drawElements = true;
 	 anillo->vVertices.reserve(anillo->mNumVertices);
 	 anillo->vColors.reserve(anillo->mNumVertices);
+	 anillo->vNormals.reserve(anillo->mNumVertices);
 
 	 anillo->vVertices.emplace_back( 300.0, 300.0, 0.0 );
 	 anillo->vVertices.emplace_back( 100.0, 100.0, 0.0);
@@ -296,17 +298,27 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	//anillo->vVertices.emplace_back( 30.0, 30.0, 0.0 );
 	 //anillo->vVertices.emplace_back( 10.0, 10.0, 0.0 );
 
-	 anillo->vColors.emplace_back( 0.0, 0.0, 0.0,1.0 );
-	 anillo->vColors.emplace_back( 1.0, 0.0, 0.0,1.0 );
-	 anillo->vColors.emplace_back( 0.0, 1.0, 0.0,1.0 );
-	 anillo->vColors.emplace_back( 0.0, 0.0, 1.0,1.0 );
-	 anillo->vColors.emplace_back( 1.0, 1.0, 0.0,1.0 );
-	 anillo->vColors.emplace_back( 1.0, 0.0, 0.0,1.0 );
-	 anillo->vColors.emplace_back( 0.0, 1.0, 1.0,1.0 );
-	 anillo->vColors.emplace_back(1.0, 0.0, 0.0,1.0 );
-	// anillo->vColors.emplace_back( 0.0, 0.0, 0.0,1.0 );
-	 //anillo->vColors.emplace_back( 1.0, 0.0, 0.0,1.0 );
+	 anillo->vColors.emplace_back(0.0, 0.0, 0.0, 1.0);
+	 anillo->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
+	 anillo->vColors.emplace_back(0.0, 1.0, 0.0, 1.0);
+	 anillo->vColors.emplace_back(0.0, 0.0, 1.0, 1.0);
+	 anillo->vColors.emplace_back(1.0, 1.0, 0.0, 1.0);
+	 anillo->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
+	 anillo->vColors.emplace_back(0.0, 1.0, 1.0, 1.0);
+	 anillo->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
+	  //anillo->vColors.emplace_back( 0.0, 0.0, 0.0,1.0 );
+	  //anillo->vColors.emplace_back( 1.0, 0.0, 0.0,1.0 );
 
+	 anillo->vNormals.emplace_back(0.0,0.0,1.0);
+	 anillo->vNormals.emplace_back(0.0,0.0,1.0);
+	 anillo->vNormals.emplace_back(0.0,0.0,1.0);
+	 anillo->vNormals.emplace_back(0.0,0.0,1.0);
+	 anillo->vNormals.emplace_back(0.0,0.0,1.0);
+	 anillo->vNormals.emplace_back(0.0,0.0,1.0);
+	 anillo->vNormals.emplace_back(0.0,0.0,1.0);
+	 anillo->vNormals.emplace_back(0.0,0.0,1.0);
+	//anillo->vNormals.emplace_back(0.0, 0.0, 1.0);
+	// anillo->vNormals.emplace_back(0.0, 0.0, 1.0);
 	 return anillo;
  }
 

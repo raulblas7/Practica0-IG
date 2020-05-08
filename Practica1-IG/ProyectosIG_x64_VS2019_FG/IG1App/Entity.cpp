@@ -26,13 +26,12 @@ EjesRGB::~EjesRGB()
 };
 //-------------------------------------------------------------------------
 
-void EjesRGB::render(dmat4 const& modelViewMat) const 
+void EjesRGB::render(dmat4 const& modelViewMat) const
 {
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 		upload(aMat);
 		glEnable(GL_COLOR_MATERIAL);
-
 		glLineWidth(2);
 		mMesh->render();
 		glLineWidth(1);

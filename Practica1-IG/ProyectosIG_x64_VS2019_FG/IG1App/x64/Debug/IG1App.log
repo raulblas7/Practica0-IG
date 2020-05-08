@@ -1,32 +1,32 @@
 ﻿  Mesh.cpp
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.h(59,25): warning C4200: se ha utilizado una extensión no estándar: matriz de tamaño cero en struct/union
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.h(59,25): message : Un constructor con valor predeterminado o un operador de asignación de copia o movimiento ignorará a este miembro.
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(97,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(132,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(138,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(196,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(216,21): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(244,12): warning C4244: 'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(348,21): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(352,11): warning C4244: 'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(386,21): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(390,21): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(393,34): warning C4244: 'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.h(60,25): warning C4200: se ha utilizado una extensión no estándar: matriz de tamaño cero en struct/union
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.h(60,25): message : Un constructor con valor predeterminado o un operador de asignación de copia o movimiento ignorará a este miembro.
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(96,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(131,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(137,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(195,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(215,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(243,12): warning C4244: 'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(359,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(363,11): warning C4244: 'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(397,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(401,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(404,34): warning C4244: 'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
           with
           [
               T=glm::f64
           ]
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(393,54): warning C4244: 'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(404,54): warning C4244: 'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
           with
           [
               T=glm::f64
           ]
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(393,73): warning C4244: 'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(404,73): warning C4244: 'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
           with
           [
               T=glm::f64
           ]
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(393,93): warning C4244: 'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(404,93): warning C4244: 'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
           with
           [
               T=glm::f64
