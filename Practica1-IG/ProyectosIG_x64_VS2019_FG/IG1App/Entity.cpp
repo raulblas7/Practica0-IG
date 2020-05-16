@@ -300,21 +300,50 @@ AnilloCuadrado::~AnilloCuadrado() {
 	delete mMesh; mMesh = nullptr;
 }
 
-EntityWithIndexMesh::EntityWithIndexMesh(GLdouble l)
+EntityWithIndexMesh::EntityWithIndexMesh()
+{
+}
+
+Cubo::Cubo(GLdouble l)
 {
 	mMesh = IndexMesh::generaIndexCuboConTapas(l);
 }
 
-EntityWithIndexMesh::~EntityWithIndexMesh()
+Cubo::~Cubo()
 {
 	delete mMesh; mMesh = nullptr;
 }
 
-void EntityWithIndexMesh::render(glm::dmat4 const& modelViewMat) const
+void Cubo::render(glm::dmat4 const& modelViewMat) const
 {
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 		upload(aMat);
 		mMesh->render();
 	}
+}
+
+CompoundEntity::CompoundEntity()
+{
+
+}
+
+void CompoundEntity::render(glm::dmat4 const& modelViewMat) const
+{
+	if (mMesh != nullptr) {
+		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
+		upload(aMat);
+		for (Abs_Entity* el : gObjects) {
+			el->render(aMat);
+		}
+	}
+}
+
+void CompoundEntity::update()
+{
+}
+
+void CompoundEntity::addEntity(Abs_Entity* ae)
+{
+	gObjects.push_back(ae);
 }

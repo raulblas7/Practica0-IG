@@ -57,8 +57,30 @@ void Scene::init()
 		gObjects.push_back(anillo);
 	}
 	if (mId == 2) {
-		EntityWithIndexMesh* cubito = new EntityWithIndexMesh(100.0);
+		Cubo* cubito = new Cubo(100.0);
 		gObjects.push_back(cubito);
+	}
+	if (mId == 3) {
+		CompoundEntity* avionsito = new CompoundEntity();
+		CompoundEntity* helices = new CompoundEntity();
+		Cylinder* helice1 = new Cylinder(10.0, 0, 30.0, glm::fvec3(0.0f, 0.0f, 2.55f));
+		glm::dmat4 mAuxhel = helice1->modelMat();
+		mAuxhel = translate(mAuxhel, dvec3(20, 50, 75));
+		mAuxhel = rotate(mAuxhel, radians(-60.0), dvec3(1.0, 0, 1.0));
+		mAuxhel = rotate(mAuxhel, radians(20.0), dvec3(0, 1.0, 0));
+		helice1->setModelMat(mAuxhel);
+		helices->addEntity(helice1);
+		Cylinder* helice2 = new Cylinder(10.0, 0, 30.0, glm::fvec3(0.0f, 0.0f, 2.55f));
+		glm::dmat4 mAuxhel2 = helice2->modelMat();
+		mAuxhel2 = translate(mAuxhel2, dvec3(20, 50, 75));
+		mAuxhel2 = rotate(mAuxhel2, radians(-60.0), dvec3(1.0, 0, 1.0));
+		mAuxhel2 = rotate(mAuxhel2, radians(20.0), dvec3(0, 1.0, 0));
+		helice2->setModelMat(mAuxhel2);
+		helices->addEntity(helice2);
+		avionsito->addEntity(helices);
+
+		gObjects.push_back(avionsito);
+
 	}
 	//if (mId == 0) {
 	//	// Graphics objects (entities) of the scene
