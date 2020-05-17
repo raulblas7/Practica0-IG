@@ -325,7 +325,7 @@ void Cubo::render(glm::dmat4 const& modelViewMat) const
 
 CompoundEntity::CompoundEntity()
 {
-
+	mMesh = IndexMesh::generaCompoundEntity();
 }
 
 void CompoundEntity::render(glm::dmat4 const& modelViewMat) const

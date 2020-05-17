@@ -411,5 +411,11 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 		 vNormals[k] = normalize(vNormals[k]);
 	 }
  }
+ IndexMesh* IndexMesh::generaCompoundEntity()
+ {
+	 IndexMesh* compound = new IndexMesh();
+
+	 return compound;
+ }
 
 

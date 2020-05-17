@@ -67,6 +67,7 @@ public:
 	virtual void render() const;
 	virtual void draw() const;
 	static IndexMesh* generaIndexCuboConTapas(GLdouble l);
+	static IndexMesh* generaCompoundEntity();
 	void buildNormalVectors();
 };
 #endif //_H_Scene_H_
