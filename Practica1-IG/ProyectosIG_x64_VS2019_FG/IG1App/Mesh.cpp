@@ -374,14 +374,14 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 cubitoConTapa->vVertices.emplace_back(-half, -half, -half);
 
 	 cubitoConTapa->vColors.reserve(cubitoConTapa->mNumVertices);
-	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
-	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
-	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
-	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
-	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
-	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
-	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
-	 cubitoConTapa->vColors.emplace_back(1.0, 0.0, 0.0, 1.0);
+	 cubitoConTapa->vColors.emplace_back( 0.0, 1.0, 0.0, 1.0);
+	 cubitoConTapa->vColors.emplace_back(0.0, 1.0, 0.0, 1.0);
+	 cubitoConTapa->vColors.emplace_back(0.0, 1.0, 0.0, 1.0);
+	 cubitoConTapa->vColors.emplace_back(0.0, 1.0, 0.0, 1.0);
+	 cubitoConTapa->vColors.emplace_back(0.0, 1.0, 0.0, 1.0);
+	 cubitoConTapa->vColors.emplace_back(0.0, 1.0, 0.0, 1.0);
+	 cubitoConTapa->vColors.emplace_back(0.0, 1.0, 0.0, 1.0);
+	 cubitoConTapa->vColors.emplace_back(0.0, 1.0, 0.0, 1.0);
 
 	 //construimos el vector de normales
 	 cubitoConTapa->buildNormalVectors();
@@ -411,11 +411,31 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 		 vNormals[k] = normalize(vNormals[k]);
 	 }
  }
- IndexMesh* IndexMesh::generaCompoundEntity()
+
+ MbR* MbR::generaIndexMeshByRevolution(int mm, int nn, glm::dvec3* perfil)
  {
-	 IndexMesh* compound = new IndexMesh();
-
-	 return compound;
+	 MbR* mesh = new MbR(mm, nn, perfil);
+	 // Definir primitiva
+	 mesh->mPrimitive = GL_TRIANGLES;
+	 // Definir el número de vértices como nn*mm
+	 mesh->mNumVertices = nn * mm;
+	 // Usar un vector auxiliar de vértices
+	 dvec3* vertices = new dvec3[mesh->mNumVertices];
+	 for (int i = 0; i < nn; i++) {
+		 // Generar la muestra i-ésima de vértices
+		 GLdouble theta = i * 360 / nn;
+		 GLdouble c = cos(radians(theta));
+		 GLdouble s = sin(radians(theta));
+		 // R_y(theta) es la matriz de rotación alrededor del eje Y
+		 for (int j = 0; j < mm; j++) {
+			 int indice = i * mm + j;
+			 GLdouble x = c * perfil[j].x + s * perfil[j].z;
+			 GLdouble z = -s * perfil[j].x + c * perfil[j].z;
+			 vertices[indice] = dvec3(x, perfil[j].y, z);
+		 }	 }
+	 //volcamos vector auxiliar vertices en vVertices de mesh
+	 for (int k = 0; k < mesh->mNumVertices; k++) {
+		 mesh->vVertices[k] = vertices[k];
+	 }
+	 return mesh;
  }
-
-

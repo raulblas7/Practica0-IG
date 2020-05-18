@@ -63,23 +63,40 @@ void Scene::init()
 	if (mId == 3) {
 		CompoundEntity* avionsito = new CompoundEntity();
 		gObjects.push_back(avionsito);
-		//CompoundEntity* helices = new CompoundEntity();
-		Cylinder* helice1 = new Cylinder(10.0, 0, 30.0, glm::fvec3(0.0f, 0.0f, 2.55f));
+		//helices
+		CompoundEntity* helices = new CompoundEntity();
+		Cylinder* helice1 = new Cylinder(20.0, 10.0, 40.0, glm::fvec3(0.0f, 0.0f, 2.55f));
 		glm::dmat4 mAuxhel = helice1->modelMat();
-		mAuxhel = translate(mAuxhel, dvec3(20, 50, 75));
-		mAuxhel = rotate(mAuxhel, radians(-60.0), dvec3(1.0, 0, 1.0));
-		mAuxhel = rotate(mAuxhel, radians(20.0), dvec3(0, 1.0, 0));
+		mAuxhel = translate(mAuxhel, dvec3(0, 30, 80));
+		mAuxhel = rotate(mAuxhel, radians(-180.0), dvec3(1.0, 0, 0));
+		mAuxhel = rotate(mAuxhel, radians(90.0), dvec3(0, 1.0, 0));
 		helice1->setModelMat(mAuxhel);
-		avionsito->addEntity(helice1);
-		Cylinder* helice2 = new Cylinder(10.0, 0, 30.0, glm::fvec3(0.0f, 0.0f, 2.55f));
+		helices->addEntity(helice1);
+		Cylinder* helice2 = new Cylinder(20.0, 10.0, 40.0, glm::fvec3(0.0f, 0.0f, 2.55f));
 		glm::dmat4 mAuxhel2 = helice2->modelMat();
-		mAuxhel2 = translate(mAuxhel2, dvec3(20, 50, 75));
-		mAuxhel2 = rotate(mAuxhel2, radians(-60.0), dvec3(1.0, 0, 1.0));
-		mAuxhel2 = rotate(mAuxhel2, radians(20.0), dvec3(0, 1.0, 0));
+		mAuxhel2 = translate(mAuxhel2, dvec3(0, 30, 80));
+		mAuxhel2 = rotate(mAuxhel2, radians(-180.0), dvec3(1.0, 0, 0));
+		mAuxhel2 = rotate(mAuxhel2, radians(-90.0), dvec3(0, 1.0, 0));
 		helice2->setModelMat(mAuxhel2);
-		avionsito->addEntity(helice2);
-		//avionsito->addEntity(helices);
+		helices->addEntity(helice2);
+		//chasis
+		CompoundEntity* chasis = new CompoundEntity();
+		Sphere* bola = new Sphere(75.0, glm::fvec3(2.5, 0, 0));
+		chasis->addEntity(helices);
+		chasis->addEntity(bola);
+		//avion
+		CompoundEntity* avion = new CompoundEntity();
+		avion->addEntity(chasis);
+		Cubo* alas = new Cubo(100.0);
+		glm::dmat4 mAuxalas = alas->modelMat();
+		mAuxalas = scale(mAuxalas, dvec3(3.0, 0.3, 1.0));
+		mAuxalas = rotate(mAuxalas, radians(-180.0), dvec3(1.0, 0, 0));
+		mAuxalas = rotate(mAuxalas, radians(90.0), dvec3(0, 1.0, 0));
+		alas->setModelMat(mAuxalas);
+		avion->addEntity(alas);
+		avionsito->addEntity(avion);
 	}
+	
 	//if (mId == 0) {
 	//	// Graphics objects (entities) of the scene
 	//	

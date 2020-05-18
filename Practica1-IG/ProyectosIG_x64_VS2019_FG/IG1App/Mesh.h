@@ -1,6 +1,6 @@
-//#pragma once
-#ifndef _H_Mesh_H_
-#define _H_Mesh_H_
+#pragma once
+//#ifndef _H_Mesh_H_
+//#define _H_Mesh_H_
 
 #include <GL/freeglut.h>
 #include <glm.hpp>
@@ -63,11 +63,26 @@ public:
 	IndexMesh() {
 		mPrimitive = GL_TRIANGLES;
 	};
-	~IndexMesh() {};
+	virtual ~IndexMesh() {};
 	virtual void render() const;
 	virtual void draw() const;
 	static IndexMesh* generaIndexCuboConTapas(GLdouble l);
-	static IndexMesh* generaCompoundEntity();
 	void buildNormalVectors();
 };
-#endif //_H_Scene_H_
+
+class MbR : public Mesh {
+protected:
+	int n;
+	glm::dvec3* perfil;
+	int m;
+
+public:
+	MbR(int n_, int m_, glm::dvec3* perfil_) {
+		n = n_; m = m_; perfil = perfil_;
+	};
+	virtual ~MbR() {};
+	virtual void render() const;
+	virtual void draw() const;
+	static MbR* generaIndexMeshByRevolution(int mm, int nn, glm::dvec3* perfil);
+};
+/*#endif*/ //_H_Scene_H_

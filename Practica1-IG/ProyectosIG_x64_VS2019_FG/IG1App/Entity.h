@@ -182,4 +182,20 @@ public:
 private:
 	std::vector<Abs_Entity*> gObjects;
 };
+
+class Cono : public EntityWithIndexMesh {
+public:
+	explicit Cono(GLdouble h, GLdouble r, GLdouble n);
+	~Cono();
+	virtual void render(glm::dmat4 const& modelViewMat) const;
+	virtual void update() {};
+};
+
+class Esfera : public EntityWithIndexMesh {
+public:
+	explicit Esfera(GLdouble r, GLdouble p, GLdouble m);
+	~Esfera();
+	virtual void render(glm::dmat4 const& modelViewMat) const;
+	virtual void update() {};
+};
 #endif //_H_Entities_H_

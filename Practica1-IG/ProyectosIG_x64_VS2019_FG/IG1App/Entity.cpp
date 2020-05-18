@@ -325,17 +325,14 @@ void Cubo::render(glm::dmat4 const& modelViewMat) const
 
 CompoundEntity::CompoundEntity()
 {
-	mMesh = IndexMesh::generaCompoundEntity();
 }
 
 void CompoundEntity::render(glm::dmat4 const& modelViewMat) const
 {
-	if (mMesh != nullptr) {
-		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
-		upload(aMat);
-		for (Abs_Entity* el : gObjects) {
-			el->render(aMat);
-		}
+	dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
+	upload(aMat);
+	for (Abs_Entity* el : gObjects) {
+		el->render(aMat);
 	}
 }
 
@@ -346,4 +343,52 @@ void CompoundEntity::update()
 void CompoundEntity::addEntity(Abs_Entity* ae)
 {
 	gObjects.push_back(ae);
+}
+
+Cono::Cono(GLdouble h, GLdouble r, GLdouble n)
+{
+	int m = 3;
+	dvec3* perfil = new dvec3[m];
+	perfil[0] = dvec3(0.5, 0.0, 0.0);
+	perfil[1] = dvec3(r, 0.0, 0.0);
+	perfil[2] = dvec3(0.5, h, 0.0);
+	this->mMesh = new MbR(m, n, perfil);
+}
+
+Cono::~Cono()
+{
+
+}
+
+void Cono::render(glm::dmat4 const& modelViewMat) const
+{
+
+}
+
+Esfera::Esfera(GLdouble r, GLdouble p, GLdouble m)
+{
+	int m_ = p;
+	dvec3* perfil = new dvec3[m_];
+	perfil[0] = dvec3(0.5, 0.0, 0.0);
+	perfil[1] = dvec3(r, 0.0, 0.0);
+	perfil[2] = dvec3(0.5, r, 0.0);
+	perfil[3] = dvec3(0.5, 0.0, 0.0);
+	perfil[4] = dvec3(r, 0.0, 0.0);
+	perfil[5] = dvec3(0.5, r, 0.0);perfil[0] = dvec3(0.5, 0.0, 0.0);
+	perfil[6] = dvec3(r, 0.0, 0.0);
+	perfil[7] = dvec3(0.5, r, 0.0);
+	perfil[8] = dvec3(0.5, 0.0, 0.0);
+	perfil[9] = dvec3(r, 0.0, 0.0);
+	perfil[10] = dvec3(0.5, r, 0.0);
+	this->mMesh = new MbR(m_, n, perfil);
+}
+
+Esfera::~Esfera()
+{
+
+}
+
+void Esfera::render(glm::dmat4 const& modelViewMat) const
+{
+
 }
