@@ -96,7 +96,11 @@ void Scene::init()
 		avion->addEntity(alas);
 		avionsito->addEntity(avion);
 	}
-	
+	if (mId == 4)
+	{
+		Cono* conito = new Cono(10,4,4);
+		gObjects.push_back(conito);
+	}
 	//if (mId == 0) {
 	//	// Graphics objects (entities) of the scene
 	//	

@@ -54,11 +54,6 @@ protected:
 };
 //-------------------------------------------------------------------------
 class IndexMesh : public Mesh {
-protected:
-	GLuint* vIndices = nullptr; // tabla de índices
-	GLuint nNumIndices = 0;
-	unsigned int indices[] ;
-	
 public:
 	IndexMesh() {
 		mPrimitive = GL_TRIANGLES;
@@ -68,9 +63,12 @@ public:
 	virtual void draw() const;
 	static IndexMesh* generaIndexCuboConTapas(GLdouble l);
 	void buildNormalVectors();
+protected:
+	GLuint* vIndices = nullptr; // tabla de índices
+	GLuint nNumIndices = 0;
 };
 
-class MbR : public Mesh {
+class MbR : public IndexMesh {
 protected:
 	int n;
 	glm::dvec3* perfil;

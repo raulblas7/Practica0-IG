@@ -406,10 +406,22 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 		 vNormals[vIndices[j + 1]] += n;
 		vNormals[vIndices[j + 2]] += n; 
 	 }
+	 
 	 //nos aseguramos que se normalizan 
 	 for (int k = 0; k < vNormals.size(); k++) {
 		 vNormals[k] = normalize(vNormals[k]);
 	 }
+ }
+
+ void MbR::render() const
+ {
+	 IndexMesh::render();
+
+ }
+
+ void MbR::draw() const
+ {
+	Mesh::draw();
  }
 
  MbR* MbR::generaIndexMeshByRevolution(int mm, int nn, glm::dvec3* perfil)
@@ -432,10 +444,44 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 			 GLdouble x = c * perfil[j].x + s * perfil[j].z;
 			 GLdouble z = -s * perfil[j].x + c * perfil[j].z;
 			 vertices[indice] = dvec3(x, perfil[j].y, z);
-		 }	 }
+		 }
+	 }
 	 //volcamos vector auxiliar vertices en vVertices de mesh
 	 for (int k = 0; k < mesh->mNumVertices; k++) {
-		 mesh->vVertices[k] = vertices[k];
+		 mesh->vVertices.emplace_back(vertices[k]);
 	 }
+	 int indiceMayor = 0;
+	 mesh->vIndices = new GLuint[mesh->nNumIndices];
+	 
+	 // El contador i recorre las muestras alrededor del eje Y
+	 for (int i = 0; i < nn; i++)
+	 {
+		 // El contador j recorre los vértices del perfil,
+		 // de abajo arriba. Las caras cuadrangulares resultan
+		 // al unir la muestra i-ésima con la (i+1)%nn-ésima
+		 for (int j = 0; j < mm - 1; j++)
+		 {
+			 // El contador indice sirve para llevar cuenta
+			  // de los índices generados hasta ahora. Se recorre
+			  // la cara desde la esquina inferior izquierda
+			 int indice = i * mm + j;
+			 // Los cuatro índices son entonces:
+
+			 mesh->vIndices[indiceMayor] = indice;
+			 indiceMayor++;
+			 mesh->vIndices[indiceMayor] = (indice + mm) % (nn * mm);
+			 indiceMayor++;
+			 mesh->vIndices[indiceMayor] = (indice + mm + 1) % (nn * mm);
+			 indiceMayor++;
+			 mesh->vIndices[indiceMayor] = (indice + mm + 1) % (nn * mm);
+			 indiceMayor++;
+			 mesh->vIndices[indiceMayor] = (indice + 1) % (nn * mm);
+			 indiceMayor++;
+			 mesh->vIndices[indiceMayor] = indice;
+			 indiceMayor++;
+		 }
+	 }
+
+	 mesh->buildNormalVectors();
 	 return mesh;
  }

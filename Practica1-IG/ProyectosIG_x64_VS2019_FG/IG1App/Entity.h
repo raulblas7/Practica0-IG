@@ -185,7 +185,7 @@ private:
 
 class Cono : public EntityWithIndexMesh {
 public:
-	explicit Cono(GLdouble h, GLdouble r, GLdouble n);
+	explicit Cono(GLdouble h, GLdouble r, GLuint n);
 	~Cono();
 	virtual void render(glm::dmat4 const& modelViewMat) const;
 	virtual void update() {};

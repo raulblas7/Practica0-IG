@@ -345,18 +345,20 @@ void CompoundEntity::addEntity(Abs_Entity* ae)
 	gObjects.push_back(ae);
 }
 
-Cono::Cono(GLdouble h, GLdouble r, GLdouble n)
+Cono::Cono(GLdouble h, GLdouble r, GLuint n)
 {
 	int m = 3;
 	dvec3* perfil = new dvec3[m];
 	perfil[0] = dvec3(0.5, 0.0, 0.0);
 	perfil[1] = dvec3(r, 0.0, 0.0);
 	perfil[2] = dvec3(0.5, h, 0.0);
-	this->mMesh = new MbR(m, n, perfil);
+	this->mMesh= MbR::generaIndexMeshByRevolution(m,n,perfil);
+
 }
 
 Cono::~Cono()
 {
+	delete mMesh; mMesh = nullptr;
 
 }
 
@@ -380,11 +382,12 @@ Esfera::Esfera(GLdouble r, GLdouble p, GLdouble m)
 	perfil[8] = dvec3(0.5, 0.0, 0.0);
 	perfil[9] = dvec3(r, 0.0, 0.0);
 	perfil[10] = dvec3(0.5, r, 0.0);
-	this->mMesh = new MbR(m_, n, perfil);
+//	this->mMesh = new MbR(m_, n, perfil);
 }
 
 Esfera::~Esfera()
 {
+	delete mMesh; mMesh = nullptr;
 
 }
 

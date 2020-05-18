@@ -1,1 +1,13 @@
-﻿  IG1App.vcxproj -> C:\Users\anass\Desktop\Practica0-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe
+﻿  Camera.cpp
+  Entity.cpp
+  IG1App.cpp
+  main.cpp
+  Mesh.cpp
+C:\Users\anass\Desktop\Practica0-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(75,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(110,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(116,20): warning C4018: '<': no coinciden signed/unsigned
+  Scene.cpp
+C:\Users\anass\Desktop\Practica0-IG\ProyectosIG_x64_VS2019_FG\IG1App\Scene.cpp(21,41): warning C4244: 'argumento': conversión de 'double' a 'GLuint'; posible pérdida de datos
+  Viewport.cpp
+  Generando código...
+  IG1App.vcxproj -> C:\Users\anass\Desktop\Practica0-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe
