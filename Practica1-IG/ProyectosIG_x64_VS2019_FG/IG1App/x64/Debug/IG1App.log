@@ -1,4 +1,5 @@
 ﻿  Entity.cpp
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Entity.cpp(376,9): warning C4244:  'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Entity.cpp(393,28): warning C4244:  'argumento': conversión de 'GLdouble' a 'int'; posible pérdida de datos
-  IG1App.vcxproj -> C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Entity.cpp(373,38): warning C4244: 'inicializando': conversión de 'GLdouble' a 'size_t'; posible pérdida de datos
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Entity.cpp(380,46): warning C4244: 'argumento': conversión de 'GLdouble' a 'int'; posible pérdida de datos
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Entity.cpp(380,43): warning C4244: 'argumento': conversión de 'GLdouble' a 'int'; posible pérdida de datos
+  IG1App.vcxproj -> C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe

@@ -1,6 +1,5 @@
-//#pragma once
-#ifndef _H_Entities_H_
-#define _H_Entities_H_
+#pragma once
+
 
 #include <GL/freeglut.h>
 #include <glm.hpp>
@@ -153,7 +152,7 @@ private:
 
 class EntityWithIndexMesh : public Abs_Entity {
 public:
-	explicit EntityWithIndexMesh();
+	explicit EntityWithIndexMesh() {};
 	~EntityWithIndexMesh() {};
 	virtual void render(glm::dmat4 const& modelViewMat) const = 0;
 	virtual void update() = 0;
@@ -198,4 +197,3 @@ public:
 	virtual void render(glm::dmat4 const& modelViewMat) const;
 	virtual void update() {};
 };
-#endif //_H_Entities_H_

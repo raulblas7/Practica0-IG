@@ -100,7 +100,7 @@ void Scene::init()
 	{
 		/*Cono* conito = new Cono(200.0,70.0,15.0);
 		gObjects.push_back(conito);*/
-		Esfera* esferita = new Esfera(200.0, 10.0, 15.0);
+		Esfera* esferita = new Esfera(200.0, 100.0, 50.0);
 		gObjects.push_back(esferita);
 	}
 	//if (mId == 0) {

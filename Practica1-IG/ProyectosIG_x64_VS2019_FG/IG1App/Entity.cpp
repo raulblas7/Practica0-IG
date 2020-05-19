@@ -300,9 +300,6 @@ AnilloCuadrado::~AnilloCuadrado() {
 	delete mMesh; mMesh = nullptr;
 }
 
-EntityWithIndexMesh::EntityWithIndexMesh()
-{
-}
 
 Cubo::Cubo(GLdouble l)
 {
@@ -373,24 +370,14 @@ void Cono::render(glm::dmat4 const& modelViewMat) const
 
 Esfera::Esfera(GLdouble r, GLdouble p, GLdouble m)
 {
-	int m_ = p;
-	dvec3* perfil = new dvec3[m_];
-	/*for (int i = 0; i < m_ - 3; i=i+3) {
-		perfil[i] = dvec3(r, 0.0, 0.0);
-		perfil[i+1] = dvec3(0.0, r, 0.0);
-		perfil[i+2] = dvec3(0.0, 0.0, r);
-	}*/
-	perfil[0] = dvec3(0.5, 0.0, 0.0);
-	perfil[1] = dvec3(r, 0.0, 0.0);
-	perfil[2] = dvec3(0.5, r, 0.0);
-	perfil[3] = dvec3(0.5, 0.0, 0.0);
-	perfil[4] = dvec3(r, 0.0, 0.0);
-	perfil[5] = dvec3(0.5, r, 0.0);
-	perfil[6] = dvec3(r, 0.0, 0.0);
-	perfil[7] = dvec3(0.5, r, 0.0);
-	perfil[8] = dvec3(0.5, 0.0, 0.0);
-	perfil[9] = dvec3(r, 0.0, 0.0);
-	this->mMesh = new MbR(m_, m, perfil);
+	glm::dvec3* perfil = new glm::dvec3[p];	
+	for (int i = 0; i < p; i++) {
+		//no se cual coger xd pero bueno se hace el circulo aunque no se si hay que poner los 90 grados y el 0.5
+		perfil[i]= glm::dvec3(0.5 +   r * cos(radians(90.0 + (360.0 / p) * i)), r * sin(radians(90.0 +  (360.0 / p) * i)), 0.0);
+		//perfil[i]= glm::dvec3(        r * cos(radians(90.0 + (360.0 / p) * i)), r * sin(radians(90.0 +  (360.0 / p) * i)), 0.0);
+		//perfil[i]= glm::dvec3(0.5 +   r * cos(radians(       (360.0 / p) * i)), r * sin(radians(        (360.0 / p) * i)), 0.0);
+	}
+	mMesh = MbR::generaIndexMeshByRevolution(p, m, perfil);
 }
 
 Esfera::~Esfera()
@@ -403,8 +390,10 @@ void Esfera::render(glm::dmat4 const& modelViewMat) const
 {
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
-		upload(aMat);
 		glEnable(GL_COLOR_MATERIAL);
+		upload(aMat);
+		//glPolygonMode(GL_FRONT, GL_LINE);
+		//glPolygonMode(GL_BACK, GL_LINE);
 		mMesh->render();
 	}
 }
