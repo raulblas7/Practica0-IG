@@ -79,8 +79,6 @@ public:
 		n = n_; m = m_; perfil = perfil_;
 	};
 	virtual ~MbR() {};
-	virtual void render() const;
-	virtual void draw() const;
 	static MbR* generaIndexMeshByRevolution(int mm, int nn, glm::dvec3* perfil);
 };
 /*#endif*/ //_H_Scene_H_

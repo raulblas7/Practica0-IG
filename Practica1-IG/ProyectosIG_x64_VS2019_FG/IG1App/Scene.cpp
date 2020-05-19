@@ -98,8 +98,10 @@ void Scene::init()
 	}
 	if (mId == 4)
 	{
-		Cono* conito = new Cono(10,4,4);
-		gObjects.push_back(conito);
+		/*Cono* conito = new Cono(200.0,70.0,15.0);
+		gObjects.push_back(conito);*/
+		Esfera* esferita = new Esfera(200.0, 10.0, 15.0);
+		gObjects.push_back(esferita);
 	}
 	//if (mId == 0) {
 	//	// Graphics objects (entities) of the scene

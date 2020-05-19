@@ -413,17 +413,6 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 }
  }
 
- void MbR::render() const
- {
-	 IndexMesh::render();
-
- }
-
- void MbR::draw() const
- {
-	Mesh::draw();
- }
-
  MbR* MbR::generaIndexMeshByRevolution(int mm, int nn, glm::dvec3* perfil)
  {
 	 MbR* mesh = new MbR(mm, nn, perfil);
@@ -431,6 +420,9 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 mesh->mPrimitive = GL_TRIANGLES;
 	 // Definir el número de vértices como nn*mm
 	 mesh->mNumVertices = nn * mm;
+	 mesh->vVertices.reserve(mesh->mNumVertices);
+	 mesh->vColors.reserve(mesh->mNumVertices);
+	 mesh->vNormals.reserve(mesh->mNumVertices);
 	 // Usar un vector auxiliar de vértices
 	 dvec3* vertices = new dvec3[mesh->mNumVertices];
 	 for (int i = 0; i < nn; i++) {
@@ -449,8 +441,10 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 //volcamos vector auxiliar vertices en vVertices de mesh
 	 for (int k = 0; k < mesh->mNumVertices; k++) {
 		 mesh->vVertices.emplace_back(vertices[k]);
+		 mesh->vColors.emplace_back(0.0, 0.0, 1.0, 1.0);
 	 }
 	 int indiceMayor = 0;
+	 mesh->nNumIndices = 6 * nn * (mm - 1);
 	 mesh->vIndices = new GLuint[mesh->nNumIndices];
 	 
 	 // El contador i recorre las muestras alrededor del eje Y
