@@ -100,7 +100,7 @@ void Scene::init()
 	{
 		/*Cono* conito = new Cono(200.0,70.0,15.0);
 		gObjects.push_back(conito);*/
-		Esfera* esferita = new Esfera(100.0, 100.0, 50.0, glm::fvec3(0.0, 0.0, 1.0));
+		Esfera* esferita = new Esfera(100.0, 50.0, 50.0, glm::fvec3(0.0, 0.0, 1.0));
 		glm::dmat4 mAuxesf = esferita->modelMat();
 		mAuxesf = translate(mAuxesf, dvec3(0, 0, 180));
 		esferita->setModelMat(mAuxesf);
@@ -113,7 +113,7 @@ void Scene::init()
 	}
 	if (mId == 5) {
 		//esfera
-		Esfera* esferitafinal = new Esfera(200.0, 100.0, 50.0, glm::fvec3(0.0, 0.6, 1.0));
+		Esfera* esferitafinal = new Esfera(200.0, 50, 50, glm::fvec3(0.0, 0.6, 1.0));
 		gObjects.push_back(esferitafinal);
 		//////////
 		CompoundEntity* avionsitofinal = new CompoundEntity();

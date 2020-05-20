@@ -35,6 +35,8 @@ void EjesRGB::render(dmat4 const& modelViewMat) const
 		glLineWidth(2);
 		mMesh->render();
 		glLineWidth(1);
+		glColor3f(1.0, 1.0, 1.0);
+
 	}
 }
 
@@ -368,16 +370,17 @@ void Cono::render(glm::dmat4 const& modelViewMat) const
 	}
 }
 
-Esfera::Esfera(GLdouble r, GLdouble p, GLdouble m, glm::fvec3 color_)
+Esfera::Esfera(GLdouble r, GLuint p, GLuint m, glm::fvec3 color_)
 {
 	color = color_;
 	glm::dvec3* perfil = new glm::dvec3[p];	
 	for (int i = 0; i < p; i++) {
-		//no se cual coger xd pero bueno se hace el circulo aunque no se si hay que poner los 90 grados y el 0.5
-		perfil[i]= glm::dvec3(0.5 +   r * cos(radians(90.0 + (360.0 / p) * i)), r * sin(radians(90.0 +  (360.0 / p) * i)), 0.0);
-		//perfil[i]= glm::dvec3(        r * cos(radians(90.0 + (360.0 / p) * i)), r * sin(radians(90.0 +  (360.0 / p) * i)), 0.0);
-		//perfil[i]= glm::dvec3(0.5 +   r * cos(radians(       (360.0 / p) * i)), r * sin(radians(        (360.0 / p) * i)), 0.0);
+		f64 x = r * cos(radians(-90.0 + (180.0 / p) * i));
+		f64 y = r * sin(radians(-90.0 + (180.0 / p) * i));
+		perfil[i]= glm::dvec3(x,y,0.0);
 	}
+	perfil[(int)p-1] = glm::dvec3(0.0, r, 0.0);
+
 	mMesh = MbR::generaIndexMeshByRevolution(p, m, perfil);
 }
 
@@ -391,11 +394,10 @@ void Esfera::render(glm::dmat4 const& modelViewMat) const
 {
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
+		upload(aMat);
 		glEnable(GL_COLOR_MATERIAL);
 		glColor3f(color.x, color.y, color.z);
-		upload(aMat);
-		//glPolygonMode(GL_FRONT, GL_LINE);
-		//glPolygonMode(GL_BACK, GL_LINE);
 		mMesh->render();
+
 	}
 }
