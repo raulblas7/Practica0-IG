@@ -441,7 +441,7 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 //volcamos vector auxiliar vertices en vVertices de mesh
 	 for (int k = 0; k < mesh->mNumVertices; k++) {
 		 mesh->vVertices.emplace_back(vertices[k]);
-		 mesh->vColors.emplace_back(0.0, 0.0, 1.0, 1.0);
+		 //mesh->vColors.emplace_back(0.0, 0.0, 1.0, 1.0);
 	 }
 	 int indiceMayor = 0;
 	 mesh->nNumIndices = 6 * nn * (mm - 1);

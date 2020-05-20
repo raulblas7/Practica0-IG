@@ -100,8 +100,60 @@ void Scene::init()
 	{
 		/*Cono* conito = new Cono(200.0,70.0,15.0);
 		gObjects.push_back(conito);*/
-		Esfera* esferita = new Esfera(200.0, 100.0, 50.0);
+		Esfera* esferita = new Esfera(100.0, 100.0, 50.0, glm::fvec3(0.0, 0.0, 1.0));
+		glm::dmat4 mAuxesf = esferita->modelMat();
+		mAuxesf = translate(mAuxesf, dvec3(0, 0, 180));
+		esferita->setModelMat(mAuxesf);
 		gObjects.push_back(esferita);
+		Sphere* esferita2 = new Sphere(100.0, glm::fvec3(0.0, 0.0, 1.0));
+		glm::dmat4 mAuxesf2 = esferita2->modelMat();
+		mAuxesf2 = translate(mAuxesf2, dvec3(180, 0, 0));
+		esferita2->setModelMat(mAuxesf2);
+		gObjects.push_back(esferita2);
+	}
+	if (mId == 5) {
+		//esfera
+		Esfera* esferitafinal = new Esfera(200.0, 100.0, 50.0, glm::fvec3(0.0, 0.6, 1.0));
+		gObjects.push_back(esferitafinal);
+		//////////
+		CompoundEntity* avionsitofinal = new CompoundEntity();
+		gObjects.push_back(avionsitofinal);
+		//helices
+		CompoundEntity* helicesfinal = new CompoundEntity();
+		Cylinder* helicef1 = new Cylinder(20.0, 10.0, 40.0, glm::fvec3(0.0f, 0.0f, 2.55f));
+		glm::dmat4 mAuxhelf = helicef1->modelMat();
+		mAuxhelf = translate(mAuxhelf, dvec3(0, 230, 80));
+		mAuxhelf = rotate(mAuxhelf, radians(-180.0), dvec3(1.0, 0, 0));
+		mAuxhelf = rotate(mAuxhelf, radians(90.0), dvec3(0, 1.0, 0));
+		helicef1->setModelMat(mAuxhelf);
+		helicesfinal->addEntity(helicef1);
+		Cylinder* helicef2 = new Cylinder(20.0, 10.0, 40.0, glm::fvec3(0.0f, 0.0f, 2.55f));
+		glm::dmat4 mAuxhelf2 = helicef2->modelMat();
+		mAuxhelf2 = translate(mAuxhelf2, dvec3(0, 230, 80));
+		mAuxhelf2 = rotate(mAuxhelf2, radians(-180.0), dvec3(1.0, 0, 0));
+		mAuxhelf2 = rotate(mAuxhelf2, radians(-90.0), dvec3(0, 1.0, 0));
+		helicef2->setModelMat(mAuxhelf2);
+		helicesfinal->addEntity(helicef2);
+		//chasis
+		CompoundEntity* chasisfinal = new CompoundEntity();
+		Sphere* bolafinal = new Sphere(75.0, glm::fvec3(2.5, 0, 0));
+		glm::dmat4 mAuxbolf = bolafinal->modelMat();
+		mAuxbolf = translate(mAuxbolf, dvec3(0, 275, 0));
+		bolafinal->setModelMat(mAuxbolf);
+		chasisfinal->addEntity(helicesfinal);
+		chasisfinal->addEntity(bolafinal);
+		//avion
+		CompoundEntity* avionfinal = new CompoundEntity();
+		avionfinal->addEntity(chasisfinal);
+		Cubo* alasf = new Cubo(100.0);
+		glm::dmat4 mAuxalasf = alasf->modelMat();
+		mAuxalasf = translate(mAuxalasf, dvec3(0, 275, 0));
+		mAuxalasf = scale(mAuxalasf, dvec3(3.0, 0.3, 1.0));
+		mAuxalasf = rotate(mAuxalasf, radians(-180.0), dvec3(1.0, 0, 0));
+		mAuxalasf = rotate(mAuxalasf, radians(90.0), dvec3(0, 1.0, 0));
+		alasf->setModelMat(mAuxalasf);
+		avionfinal->addEntity(alasf);
+		avionsitofinal->addEntity(avionfinal);
 	}
 	//if (mId == 0) {
 	//	// Graphics objects (entities) of the scene

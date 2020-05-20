@@ -192,8 +192,10 @@ public:
 
 class Esfera : public EntityWithIndexMesh {
 public:
-	explicit Esfera(GLdouble r, GLdouble p, GLdouble m);
+	explicit Esfera(GLdouble r, GLdouble p, GLdouble m, glm::fvec3 color);
 	~Esfera();
 	virtual void render(glm::dmat4 const& modelViewMat) const;
 	virtual void update() {};
+protected:
+	glm::fvec3 color = glm::fvec3(-1, -1, -1);
 };

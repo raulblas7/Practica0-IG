@@ -368,8 +368,9 @@ void Cono::render(glm::dmat4 const& modelViewMat) const
 	}
 }
 
-Esfera::Esfera(GLdouble r, GLdouble p, GLdouble m)
+Esfera::Esfera(GLdouble r, GLdouble p, GLdouble m, glm::fvec3 color_)
 {
+	color = color_;
 	glm::dvec3* perfil = new glm::dvec3[p];	
 	for (int i = 0; i < p; i++) {
 		//no se cual coger xd pero bueno se hace el circulo aunque no se si hay que poner los 90 grados y el 0.5
@@ -391,6 +392,7 @@ void Esfera::render(glm::dmat4 const& modelViewMat) const
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 		glEnable(GL_COLOR_MATERIAL);
+		glColor3f(color.x, color.y, color.z);
 		upload(aMat);
 		//glPolygonMode(GL_FRONT, GL_LINE);
 		//glPolygonMode(GL_BACK, GL_LINE);

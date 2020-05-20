@@ -179,6 +179,13 @@ void IG1App::key(unsigned char key, int x, int y)
 	case 'u':
 		mScene->update();
 		break;
+	case '5':
+
+		delete mScene;
+		mScene = new Scene;
+		mScene->setState(5);
+		mScene->init();
+		break;
 	case '4':
 
 		delete mScene;
