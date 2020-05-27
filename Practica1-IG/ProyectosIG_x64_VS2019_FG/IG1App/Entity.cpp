@@ -36,6 +36,9 @@ void EjesRGB::render(dmat4 const& modelViewMat) const
 		mMesh->render();
 		glLineWidth(1);
 		glColor3f(1.0, 1.0, 1.0);
+		glDisable(GL_COLOR_MATERIAL);
+
+
 
 	}
 }
@@ -293,6 +296,7 @@ void AnilloCuadrado::render(dmat4 const& modelViewMat)const {
 			glPolygonMode(GL_BACK, GL_LINE);
 			mMesh->render();
 			glColor3f(1.0, 1.0, 1.0);
+			glDisable(GL_COLOR_MATERIAL);
 
 		}
 	
@@ -318,8 +322,26 @@ void Cubo::render(glm::dmat4 const& modelViewMat) const
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 		upload(aMat);
+		//glEnable(GL_COLOR_MATERIAL);
+		setCopper();
 		mMesh->render();
+		glColor3f(1.0, 1.0, 1.0);
+		//glDisable(GL_COLOR_MATERIAL);
 	}
+}
+
+void Cubo::setCopper() const
+{
+	GLuint face = GL_FRONT_AND_BACK;
+
+	glm::fvec4 ambient  = { 0.19125, 0.0735, 0.0225, 1 };
+	glm::fvec4 diffuse  = { 0.7038, 0.27048, 0.0828, 1 };
+	glm::fvec4 specular  = { 0.256777, 0.137622, 0.086014, 1 };
+	GLfloat expF = 12.8;
+	glMaterialfv(face, GL_AMBIENT, value_ptr(ambient));
+	glMaterialfv(face, GL_DIFFUSE, value_ptr(diffuse));
+	glMaterialfv(face, GL_SPECULAR, value_ptr(specular));
+	glMaterialf(face, GL_SHININESS, expF);
 }
 
 CompoundEntity::CompoundEntity()
@@ -329,7 +351,15 @@ CompoundEntity::CompoundEntity()
 void CompoundEntity::render(glm::dmat4 const& modelViewMat) const
 {
 	dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
-	upload(aMat);
+	if (spotlight!=nullptr)
+	{
+		spotlight->upload(aMat);
+	}
+	else
+	{
+		upload(aMat);
+
+	}
 	for (Abs_Entity* el : gObjects) {
 		el->render(aMat);
 	}
@@ -343,6 +373,7 @@ void CompoundEntity::addEntity(Abs_Entity* ae)
 {
 	gObjects.push_back(ae);
 }
+
 
 Cono::Cono(GLdouble h, GLdouble r, GLuint n)
 {
@@ -367,6 +398,8 @@ void Cono::render(glm::dmat4 const& modelViewMat) const
 		upload(aMat);
 		glEnable(GL_COLOR_MATERIAL);
 		mMesh->render();
+		glColor3f(1.0, 1.0, 1.0);
+		glDisable(GL_COLOR_MATERIAL);
 	}
 }
 
@@ -395,9 +428,38 @@ void Esfera::render(glm::dmat4 const& modelViewMat) const
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 		upload(aMat);
-		glEnable(GL_COLOR_MATERIAL);
-		glColor3f(color.x, color.y, color.z);
-		mMesh->render();
+
+		if (material!=nullptr)
+		{
+			Esfera::setGold();
+			mMesh->render();
+
+		}
+		else
+		{
+			glEnable(GL_COLOR_MATERIAL);
+			glColor3f(color.x, color.y, color.z);
+			mMesh->render();
+			glColor3f(1.0, 1.0, 1.0);
+			glDisable(GL_COLOR_MATERIAL);
+
+		}
+		
 
 	}
+}
+
+void Esfera::setGold()const
+{
+	GLuint face = GL_FRONT_AND_BACK;
+
+	glm::fvec4 ambient = { 0.24725f, 0.1995f, 0.0745f, 1.0f };
+	glm::fvec4 diffuse = { 0.75164f, 0.60648f, 0.22648f, 1.0f };
+	glm::fvec4 specular = { 0.628281f, 0.0555802f, 0.366064f, 1.0f };
+	GLfloat expF = 52.1; 
+	glMaterialfv(face, GL_AMBIENT, value_ptr(ambient));
+	glMaterialfv(face, GL_DIFFUSE, value_ptr(diffuse));
+	glMaterialfv(face, GL_SPECULAR, value_ptr(specular));
+	glMaterialf(face, GL_SHININESS,expF);
+
 }

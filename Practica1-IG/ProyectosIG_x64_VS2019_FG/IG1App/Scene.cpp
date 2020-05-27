@@ -114,12 +114,15 @@ void Scene::init()
 	if (mId == 5) {
 		//esfera
 		Esfera* esferitafinal = new Esfera(200.0, 50, 50, glm::fvec3(0.0, 0.6, 1.0));
+		Material* oro = new Material();
+		//oro->setGold();
+		//esferitafinal->setMaterial(oro);
 		gObjects.push_back(esferitafinal);
 		//////////
-		CompoundEntity* avionsitofinal = new CompoundEntity();
+		 avionsitofinal = new CompoundEntity();
 		gObjects.push_back(avionsitofinal);
 		//helices
-		CompoundEntity* helicesfinal = new CompoundEntity();
+		 helicesfinal = new CompoundEntity();
 		Cylinder* helicef1 = new Cylinder(20.0, 10.0, 40.0, glm::fvec3(0.0f, 0.0f, 2.55f));
 		glm::dmat4 mAuxhelf = helicef1->modelMat();
 		mAuxhelf = translate(mAuxhelf, dvec3(0, 230, 80));
@@ -154,6 +157,17 @@ void Scene::init()
 		alasf->setModelMat(mAuxalasf);
 		avionfinal->addEntity(alasf);
 		avionsitofinal->addEntity(avionfinal);
+
+		glm::dmat4 mAvioncitoFinal = avionsitofinal->modelMat();
+		mAvioncitoFinal = translate(mAvioncitoFinal, dvec3(0, 25, 0));
+		avionsitofinal->setModelMat(mAvioncitoFinal);
+
+
+		avionsitofinal->addLight();
+		luzAvion = avionsitofinal->getLight();
+		luzAvion->setPosDir(fvec3(0, -1, 0));
+		luzAvion->setSpot(fvec3(1), 360.0, 10);
+
 	}
 	//if (mId == 0) {
 	//	// Graphics objects (entities) of the scene
@@ -237,21 +251,114 @@ void Scene::init()
 }
 //-------------------------------------------------------------------------
 void Scene::sceneDirLight(Camera const& cam) const {
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	glm::fvec4 posDir = { 1, 1, 1, 0 };
-	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixd(value_ptr(cam.viewMat()));
-	glLightfv(GL_LIGHT0, GL_POSITION, value_ptr(posDir));
-	glm::fvec4 ambient = { 0, 0, 0, 1 };
-	glm::fvec4 diffuse = { 1, 1, 1, 1 };
-	glm::fvec4 specular = { 0.5, 0.5, 0.5, 1 };
-	glLightfv(GL_LIGHT0, GL_AMBIENT, value_ptr(ambient));
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, value_ptr(diffuse));
-	glLightfv(GL_LIGHT0, GL_SPECULAR, value_ptr(specular));
+	
+		if (dirLight)
+		{
+			glEnable(GL_LIGHT0);
+
+		}
+		else
+		{
+			glDisable(GL_LIGHT0);
+		}
+		glm::fvec4 posDir = { 1, 1, 1, 0 };
+
+		glMatrixMode(GL_MODELVIEW);
+		glLoadMatrixd(value_ptr(cam.viewMat()));
+		glLightfv(GL_LIGHT0, GL_POSITION, value_ptr(posDir));
+		glm::fvec4 ambient = { 0, 0, 0, 1 };
+		glm::fvec4 diffuse = { 1, 1, 1, 1 };
+		glm::fvec4 specular = { 0.5, 0.5, 0.5, 1 };
+		glLightfv(GL_LIGHT0, GL_AMBIENT, value_ptr(ambient));
+		glLightfv(GL_LIGHT0, GL_DIFFUSE, value_ptr(diffuse));
+		glLightfv(GL_LIGHT0, GL_SPECULAR, value_ptr(specular));
+	
+
+	
 }
 
-void Scene::free() 
+void Scene::scenePosLight(Camera const& cam) const
+{
+
+	if (posLight)
+	{
+		glEnable(GL_LIGHT1);
+
+	}
+	else
+	{
+		glDisable(GL_LIGHT1);
+	}
+	glm::fvec4 v = { 1000, 1000, 0, 1 };
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixd(value_ptr(cam.viewMat()));
+	glLightfv(GL_LIGHT1, GL_POSITION, value_ptr(v));
+	glm::fvec4 ambient = { 0, 0, 0, 1 };
+	glm::fvec4 diffuse = { 0, 2, 0, 1.0 };
+	glm::fvec4 specular = { 0.5, 0.5, 0.5, 1 };
+	glLightfv(GL_LIGHT1, GL_AMBIENT, value_ptr(ambient));
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, value_ptr(diffuse));
+	glLightfv(GL_LIGHT1, GL_SPECULAR, value_ptr(specular));
+
+
+}
+
+void Scene::sceneSpotLight(Camera const& cam) const
+{
+
+	if (spotLight)
+	{
+		glEnable(GL_LIGHT2);
+
+	}
+	else
+	{
+		glDisable(GL_LIGHT2);
+	}
+	glm::fvec4 v = { 0, 500, 500, 1.0 };
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixd(value_ptr(cam.viewMat()));
+	glLightfv(GL_LIGHT2, GL_POSITION, value_ptr(v));
+	glm::fvec4 ambient = { 0, 0, 0, 1 };
+	glm::fvec4 diffuse = { 0.1, 2, 0.1, 1.0 };
+	glm::fvec4 specular = { 0.5, 0.5, 0.5, 1 };
+	glLightfv(GL_LIGHT2, GL_AMBIENT, value_ptr(ambient));
+	glLightfv(GL_LIGHT2, GL_DIFFUSE, value_ptr(diffuse));
+	glLightfv(GL_LIGHT2, GL_SPECULAR, value_ptr(specular));
+
+	glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 270.0);
+	glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, 5);
+	glm::fvec3 dir = { 0, 0, -1.0 };
+	glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, value_ptr(dir));
+	
+	
+}
+
+void Scene::move()
+{
+	
+	/*glm::dmat4 mAvionsitofinal = avionsitofinal->modelMat();
+	mAvionsitofinal = translate(dmat4(1), dvec3(200.0 * cos(radians(rotation)), 200.0 * sin(radians(rotation)), 0));
+	mAvionsitofinal = rotate(mAvionsitofinal, radians(rotation), dvec3(0,1 , 1));
+	avionsitofinal->setModelMat(mAvionsitofinal);*/
+
+	
+
+	glm::dmat4 mHelicesfinal = helicesfinal->modelMat();
+	mHelicesfinal = translate(dmat4(1), dvec3(1 * cos(radians(rotation)), 1 * sin(radians(rotation)), 0));
+	mHelicesfinal = rotate(mHelicesfinal, radians(-rotation), dvec3(1, 0, 0));
+	helicesfinal->setModelMat(mHelicesfinal);
+
+		rotation += 5.0;
+
+		//helicesfinal->setModelMat(translate(dmat4(1.0), dvec3(-100.0, 200.0, -100.0)));
+		//glm::dmat4 aMat = (rotate(mHelicesfinal, radians(rotation), dvec3(0, 1, 0)));
+		//helicesfinal->setModelMat(rotate(aMat, radians(rotation), dvec3(0, 0, 1)));
+}
+
+void Scene::free()
 { // release memory and resources   
 
 	for (Abs_Entity* el : gObjects)
@@ -262,15 +369,26 @@ void Scene::free()
 	{
 		delete tx;  tx = nullptr;
 	}
+	delete spotSceneLight;
+	delete directionalLight;
+	delete positionalLight;
+	delete luzMinero;
+
 }
 //-------------------------------------------------------------------------
 void Scene::setGL() 
 {
+
 	// OpenGL basic setting
 	//glClearColor(0.0, 0.0, 0.0, 0.0);  // background color (alpha=1 -> opaque)
 	glClearColor(0.7, 0.8, 0.9, 0.0);
 	glEnable(GL_DEPTH_TEST);  // enable Depth test 
 	glEnable(GL_TEXTURE_2D);  //enable texture
+	// Se activa la iluminación
+	glEnable(GL_LIGHTING);
+	// Se activa la normalización de los vectores normales
+	glEnable(GL_NORMALIZE);
+	setLights();
 
 }
 //-------------------------------------------------------------------------
@@ -279,18 +397,43 @@ void Scene::resetGL()
 	glClearColor(.0, .0, .0, .0);  // background color (alpha=1 -> opaque)
 	glDisable(GL_DEPTH_TEST);  // disable Depth test 	
 	glDisable(GL_TEXTURE_2D); //disable texture
+	glDisable(GL_LIGHTING);
+	glDisable(GL_NORMALIZE);
+
 }
+void Scene::setLights()
+{
+	directionalLight = new DirLight();
+	positionalLight = new PosLight();
+	glm::fvec3 v = { 1000, 1000, 0 };
+	positionalLight->setPosDir(v);
+	positionalLight->setDiff(glm::fvec4(0, 2, 0,1));
+	spotSceneLight = new SpotLight(glm::fvec3(0, 500, 500));
+	spotSceneLight->setDiff(glm::fvec4(0, 2, 0, 1));
+
+	luzMinero = new PosLight();
+	luzMinero->setPosDir(glm::fvec3(0, 0, -1));
+	
+}
+
 //-------------------------------------------------------------------------
 
 void Scene::render(Camera const& cam) const 
 {
-	sceneDirLight(cam);
+	//sceneDirLight(cam);
+	//scenePosLight(cam);
+	//sceneSpotLight(cam);
+	directionalLight->upload(cam.viewMat());
+	positionalLight->upload(cam.viewMat());
+	spotSceneLight->upload(cam.viewMat());
+	luzMinero->upload(dmat4(1.0));
 	cam.upload();
 
 	for (Abs_Entity* el : gObjects)
 	{
 	  el->render(cam.viewMat());
 	}
+	
 }
 void Scene::update()
 { // release memory and resources   

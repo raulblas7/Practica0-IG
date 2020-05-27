@@ -179,6 +179,57 @@ void IG1App::key(unsigned char key, int x, int y)
 	case 'u':
 		mScene->update();
 		break;
+	case 'q':
+		//mScene->setDirLight(false);
+		mScene->directionalLight->disable();
+
+		break;
+	case 'w':
+		//mScene->setDirLight(true);
+		mScene->directionalLight->enable();
+		break;
+	case 'a':
+		//mScene->setPosLight(false);
+		mScene->positionalLight->disable();
+
+		break;
+	case 's':
+		//mScene->setPosLight(true);
+		mScene->positionalLight->enable();
+
+		break;
+	case 'z':
+		//mScene->setSpotLight(false);
+		mScene->spotSceneLight->disable();
+
+		break;
+	case 'x':
+		//mScene->setSpotLight(true);
+		mScene->spotSceneLight->enable();
+		break;
+	case 't':
+		if (mScene->luzAvion != nullptr)
+		{
+		mScene->luzAvion->disable();
+		}
+		break;
+	case 'g':
+		if (mScene->luzAvion!=nullptr)
+		{
+			mScene->luzAvion->enable();
+		}
+		break;
+	case 'y':
+		mScene->move();
+	case 'd':
+		mScene->luzMinero->disable(); 
+		break;
+	case 'f':
+		mScene->luzMinero->enable();
+		break;
+	case 'e':
+		mScene->sceneBlack();
+		break;
 	case '5':
 
 		delete mScene;

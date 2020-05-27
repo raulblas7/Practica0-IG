@@ -6,6 +6,8 @@
 
 #include "Mesh.h"
 #include "Texture.h"
+#include "Material.h"
+#include "Light.h"
 //-------------------------------------------------------------------------
 
 class Abs_Entity  // abstract class
@@ -164,6 +166,8 @@ public:
 	~Cubo();
 	virtual void render(glm::dmat4 const& modelViewMat) const;
 	virtual void update() {};
+	virtual void setCopper()const;
+
 };
 
 class CompoundEntity : public Abs_Entity {
@@ -174,12 +178,21 @@ public:
 		{
 			delete el;  el = nullptr;
 		}
+		if (spotlight!=nullptr)
+		{
+			delete spotlight;
+			spotlight = nullptr;
+		}
 	};
 	virtual void render(glm::dmat4 const& modelViewMat) const;
 	virtual void update();
 	void addEntity(Abs_Entity* ae);
+	void addLight() { spotlight = new SpotLight(); };
+	SpotLight* getLight() { return spotlight; }
 private:
 	std::vector<Abs_Entity*> gObjects;
+	SpotLight* spotlight=nullptr;
+
 };
 
 class Cono : public EntityWithIndexMesh {
@@ -190,12 +203,26 @@ public:
 	virtual void update() {};
 };
 
-class Esfera : public EntityWithIndexMesh {
+class EntityWithMaterial : public Abs_Entity {
+public:
+	EntityWithMaterial() : Abs_Entity() { };
+	virtual ~EntityWithMaterial() { };
+
+	void setMaterial(Material* matl) { material = matl; };
+protected:
+	Material* material = nullptr;
+};
+
+class Esfera : public EntityWithMaterial {
 public:
 	explicit Esfera(GLdouble r, GLuint p, GLuint m, glm::fvec3 color);
 	~Esfera();
 	virtual void render(glm::dmat4 const& modelViewMat) const;
 	virtual void update() {};
 protected:
+	virtual void setGold()const;
+
 	glm::fvec3 color = glm::fvec3(-1, -1, -1);
 };
+
+
