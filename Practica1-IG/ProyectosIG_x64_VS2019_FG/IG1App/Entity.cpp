@@ -346,20 +346,14 @@ void Cubo::setCopper() const
 
 CompoundEntity::CompoundEntity()
 {
+
 }
 
 void CompoundEntity::render(glm::dmat4 const& modelViewMat) const
 {
 	dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
-	if (spotlight!=nullptr)
-	{
-		spotlight->upload(aMat);
-	}
-	else
-	{
+	
 		upload(aMat);
-
-	}
 	for (Abs_Entity* el : gObjects) {
 		el->render(aMat);
 	}
@@ -415,12 +409,12 @@ Esfera::Esfera(GLdouble r, GLuint p, GLuint m, glm::fvec3 color_)
 	perfil[(int)p-1] = glm::dvec3(0.0, r, 0.0);
 
 	mMesh = MbR::generaIndexMeshByRevolution(p, m, perfil);
+	delete[]perfil;
 }
 
 Esfera::~Esfera()
 {
 	delete mMesh; mMesh = nullptr;
-
 }
 
 void Esfera::render(glm::dmat4 const& modelViewMat) const
@@ -428,24 +422,15 @@ void Esfera::render(glm::dmat4 const& modelViewMat) const
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 		upload(aMat);
-
-		if (material!=nullptr)
+		if (material != nullptr)
 		{
 			Esfera::setGold();
-			mMesh->render();
-
 		}
-		else
-		{
-			glEnable(GL_COLOR_MATERIAL);
-			glColor3f(color.x, color.y, color.z);
-			mMesh->render();
-			glColor3f(1.0, 1.0, 1.0);
-			glDisable(GL_COLOR_MATERIAL);
-
-		}
-		
-
+		glEnable(GL_COLOR_MATERIAL);
+		glColor3f(color.x, color.y, color.z);
+		mMesh->render();
+		glColor3f(1.0, 1.0, 1.0);
+		glDisable(GL_COLOR_MATERIAL);
 	}
 }
 
@@ -462,4 +447,40 @@ void Esfera::setGold()const
 	glMaterialfv(face, GL_SPECULAR, value_ptr(specular));
 	glMaterialf(face, GL_SHININESS,expF);
 
+}
+Avion::Avion()
+{
+	spotlight = new SpotLight();
+}
+Avion::~Avion()
+{
+	for (Abs_Entity* el : gObjects)
+	{
+		delete el;  el = nullptr;
+	}
+	if (spotlight != nullptr)
+	{
+		delete spotlight;
+		spotlight = nullptr;
+	}
+}
+void Avion::render(glm::dmat4 const& modelViewMat) const
+{
+	dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
+	
+		spotlight->upload(aMat);
+		upload(aMat);
+
+	for (Abs_Entity* el : gObjects) {
+		el->render(aMat);
+	}
+}
+
+void Avion::update()
+{
+}
+
+void Avion::addEntity(Abs_Entity* ae)
+{
+	gObjects.push_back(ae);
 }

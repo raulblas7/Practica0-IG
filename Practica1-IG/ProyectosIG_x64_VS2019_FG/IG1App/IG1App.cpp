@@ -179,53 +179,50 @@ void IG1App::key(unsigned char key, int x, int y)
 	case 'u':
 		mScene->update();
 		break;
-	case 'q':
-		//mScene->setDirLight(false);
-		mScene->directionalLight->disable();
-
-		break;
 	case 'w':
-		//mScene->setDirLight(true);
-		mScene->directionalLight->enable();
-		break;
-	case 'a':
-		//mScene->setPosLight(false);
-		mScene->positionalLight->disable();
+		//mScene->setDirLight(false);
+		mScene->getDirLight()->disable();
 
+		break;
+	case 'q':
+		//mScene->setDirLight(true);
+		mScene->getDirLight()->enable();
 		break;
 	case 's':
-		//mScene->setPosLight(true);
-		mScene->positionalLight->enable();
-
+		//mScene->setPosLight(false);
+		mScene->getPosLight()->disable();
 		break;
-	case 'z':
-		//mScene->setSpotLight(false);
-		mScene->spotSceneLight->disable();
-
+	case 'a':
+		//mScene->setPosLight(true);
+		mScene->getPosLight()->enable();
 		break;
 	case 'x':
-		//mScene->setSpotLight(true);
-		mScene->spotSceneLight->enable();
+		//mScene->setSpotLight(false);
+		mScene->getSpotLight()->disable();
 		break;
-	case 't':
-		if (mScene->luzAvion != nullptr)
-		{
-		mScene->luzAvion->disable();
-		}
+	case 'z':
+		//mScene->setSpotLight(true);
+		mScene->getSpotLight()->enable();
 		break;
 	case 'g':
-		if (mScene->luzAvion!=nullptr)
+		if (mScene->getPlaneLight() != nullptr)
 		{
-			mScene->luzAvion->enable();
+		mScene->getPlaneLight()->disable();
+		}
+		break;
+	case 't':
+		if (mScene->getPlaneLight()!=nullptr)
+		{
+			mScene->getPlaneLight()->enable();
 		}
 		break;
 	case 'y':
 		mScene->move();
-	case 'd':
-		mScene->luzMinero->disable(); 
-		break;
 	case 'f':
-		mScene->luzMinero->enable();
+		mScene->getMineroLight()->disable();
+		break;
+	case 'd':
+		mScene->getMineroLight()->enable();
 		break;
 	case 'e':
 		mScene->sceneBlack();

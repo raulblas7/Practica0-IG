@@ -1,5 +1,6 @@
 ﻿  Scene.cpp
 C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Scene.cpp(103,46): warning C4244: 'argumento': conversión de 'double' a 'GLuint'; posible pérdida de datos
 C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Scene.cpp(103,40): warning C4244: 'argumento': conversión de 'double' a 'GLuint'; posible pérdida de datos
-C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Scene.cpp(384,33): warning C4305: 'argumento': truncamiento de 'double' a 'GLclampf'
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Scene.cpp(377,33): warning C4305: 'argumento': truncamiento de 'double' a 'GLclampf'
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Scene.cpp(399,39): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
   IG1App.vcxproj -> C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe

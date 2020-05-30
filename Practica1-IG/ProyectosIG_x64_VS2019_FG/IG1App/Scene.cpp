@@ -113,61 +113,59 @@ void Scene::init()
 	}
 	if (mId == 5) {
 		//esfera
-		Esfera* esferitafinal = new Esfera(200.0, 50, 50, glm::fvec3(0.0, 0.6, 1.0));
+		Esfera* esferitafinal = new Esfera(200.0, 50, 50, glm::fvec3(0.93, 1.93, 1.85));
 		Material* oro = new Material();
-		//oro->setGold();
-		//esferitafinal->setMaterial(oro);
+		oro->setGold();
+		esferitafinal->setMaterial(oro);
 		gObjects.push_back(esferitafinal);
 		//////////
-		 avionsitofinal = new CompoundEntity();
-		gObjects.push_back(avionsitofinal);
-		//helices
-		 helicesfinal = new CompoundEntity();
-		Cylinder* helicef1 = new Cylinder(20.0, 10.0, 40.0, glm::fvec3(0.0f, 0.0f, 2.55f));
+		//helice1 del avion 
+		Cylinder* helicef1 = new Cylinder(20.0, 5.0, 60.0, glm::fvec3(0.0f, 0.0f, 2.55f));
 		glm::dmat4 mAuxhelf = helicef1->modelMat();
-		mAuxhelf = translate(mAuxhelf, dvec3(0, 230, 80));
+		mAuxhelf = translate(mAuxhelf, dvec3(0, 0, 40));
 		mAuxhelf = rotate(mAuxhelf, radians(-180.0), dvec3(1.0, 0, 0));
 		mAuxhelf = rotate(mAuxhelf, radians(90.0), dvec3(0, 1.0, 0));
 		helicef1->setModelMat(mAuxhelf);
-		helicesfinal->addEntity(helicef1);
-		Cylinder* helicef2 = new Cylinder(20.0, 10.0, 40.0, glm::fvec3(0.0f, 0.0f, 2.55f));
+		//helice1 del avion 
+		Cylinder* helicef2 = new Cylinder(20.0, 5.0, 60.0, glm::fvec3(0.0f, 0.0f, 2.55f));
 		glm::dmat4 mAuxhelf2 = helicef2->modelMat();
-		mAuxhelf2 = translate(mAuxhelf2, dvec3(0, 230, 80));
+		mAuxhelf2 = translate(mAuxhelf2, dvec3(0, 0, 40));
 		mAuxhelf2 = rotate(mAuxhelf2, radians(-180.0), dvec3(1.0, 0, 0));
 		mAuxhelf2 = rotate(mAuxhelf2, radians(-90.0), dvec3(0, 1.0, 0));
 		helicef2->setModelMat(mAuxhelf2);
-		helicesfinal->addEntity(helicef2);
-		//chasis
-		CompoundEntity* chasisfinal = new CompoundEntity();
-		Sphere* bolafinal = new Sphere(75.0, glm::fvec3(2.5, 0, 0));
+		//cuerpo del avion 
+		Sphere* bolafinal = new Sphere(40.0, glm::fvec3(2.5, 0, 0));
 		glm::dmat4 mAuxbolf = bolafinal->modelMat();
-		mAuxbolf = translate(mAuxbolf, dvec3(0, 275, 0));
 		bolafinal->setModelMat(mAuxbolf);
-		chasisfinal->addEntity(helicesfinal);
-		chasisfinal->addEntity(bolafinal);
-		//avion
-		CompoundEntity* avionfinal = new CompoundEntity();
-		avionfinal->addEntity(chasisfinal);
-		Cubo* alasf = new Cubo(100.0);
+		//alas del avion 
+		Cubo* alasf = new Cubo(60.0);
 		glm::dmat4 mAuxalasf = alasf->modelMat();
-		mAuxalasf = translate(mAuxalasf, dvec3(0, 275, 0));
-		mAuxalasf = scale(mAuxalasf, dvec3(3.0, 0.3, 1.0));
+		mAuxalasf = scale(mAuxalasf, dvec3(2.0, 0.3, 1.0));
 		mAuxalasf = rotate(mAuxalasf, radians(-180.0), dvec3(1.0, 0, 0));
 		mAuxalasf = rotate(mAuxalasf, radians(90.0), dvec3(0, 1.0, 0));
 		alasf->setModelMat(mAuxalasf);
-		avionfinal->addEntity(alasf);
-		avionsitofinal->addEntity(avionfinal);
-
-		glm::dmat4 mAvioncitoFinal = avionsitofinal->modelMat();
-		mAvioncitoFinal = translate(mAvioncitoFinal, dvec3(0, 25, 0));
-		avionsitofinal->setModelMat(mAvioncitoFinal);
-
-
-		avionsitofinal->addLight();
+		//compound entity de helices
+		helicesfinal = new CompoundEntity();
+		helicesfinal->addEntity(helicef2);
+		helicesfinal->addEntity(helicef1);
+		//compound entity de chasis(cuerpo +helices)
+		CompoundEntity* chasisfinal = new CompoundEntity();
+		chasisfinal->addEntity(helicesfinal);
+		chasisfinal->addEntity(bolafinal);
+		//AVION FINAL (chasis + alas )
+		avionsitofinal = new Avion();
+		avionsitofinal->addEntity(chasisfinal);
+		avionsitofinal->addEntity(alasf);
+		//Luces del avion 
 		luzAvion = avionsitofinal->getLight();
-		luzAvion->setPosDir(fvec3(0, -1, 0));
-		luzAvion->setSpot(fvec3(1), 360.0, 10);
-
+		luzAvion->setSpot(fvec3(0, -1, 0), 60.0, 4);
+		luzAvion->disable();
+		//Transladar posicion completa del avion
+		glm::dmat4 mAvioncitoFinal = avionsitofinal->modelMat();
+		mAvioncitoFinal = translate(avionsitofinal->modelMat(), dvec3(0, radio, 0));
+		avionsitofinal->setModelMat(mAvioncitoFinal);
+		//
+		gObjects.push_back(avionsitofinal);
 	}
 	//if (mId == 0) {
 	//	// Graphics objects (entities) of the scene
@@ -338,24 +336,19 @@ void Scene::sceneSpotLight(Camera const& cam) const
 
 void Scene::move()
 {
-	
-	/*glm::dmat4 mAvionsitofinal = avionsitofinal->modelMat();
-	mAvionsitofinal = translate(dmat4(1), dvec3(200.0 * cos(radians(rotation)), 200.0 * sin(radians(rotation)), 0));
-	mAvionsitofinal = rotate(mAvionsitofinal, radians(rotation), dvec3(0,1 , 1));
-	avionsitofinal->setModelMat(mAvionsitofinal);*/
+	if (avionsitofinal != nullptr && helicesfinal != nullptr) {
+		//Cambio en la rotacion de los  helices en el eje z  y del avion como compound entity rotamos en el eje x y aplicamos su correspondiente traslacion
+		helicesfinal->setModelMat(rotate(helicesfinal->modelMat(), radians(helicesAngle), dvec3(0, 0, 1)));
 
-	
+		glm::dmat4 mAvioncitoFinal = avionsitofinal->modelMat();
+		mAvioncitoFinal=translate(dmat4(1.0), dvec3(0.0, radio * cos(radians(avionAngle)), radio * sin(radians(avionAngle))));
+		mAvioncitoFinal=rotate(mAvioncitoFinal, radians(avionAngle), dvec3(1, 0, 0));
+		avionsitofinal->setModelMat(mAvioncitoFinal);
+		avionAngle += 1.8;
+		helicesAngle += 0.05;
 
-	glm::dmat4 mHelicesfinal = helicesfinal->modelMat();
-	mHelicesfinal = translate(dmat4(1), dvec3(1 * cos(radians(rotation)), 1 * sin(radians(rotation)), 0));
-	mHelicesfinal = rotate(mHelicesfinal, radians(-rotation), dvec3(1, 0, 0));
-	helicesfinal->setModelMat(mHelicesfinal);
+	}
 
-		rotation += 5.0;
-
-		//helicesfinal->setModelMat(translate(dmat4(1.0), dvec3(-100.0, 200.0, -100.0)));
-		//glm::dmat4 aMat = (rotate(mHelicesfinal, radians(rotation), dvec3(0, 1, 0)));
-		//helicesfinal->setModelMat(rotate(aMat, radians(rotation), dvec3(0, 0, 1)));
 }
 
 void Scene::free()
@@ -403,17 +396,27 @@ void Scene::resetGL()
 }
 void Scene::setLights()
 {
+	GLfloat amb[] = { 0.2, 0.2, 0.2, 1.0 };
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
+
 	directionalLight = new DirLight();
+
 	positionalLight = new PosLight();
 	glm::fvec3 v = { 1000, 1000, 0 };
 	positionalLight->setPosDir(v);
 	positionalLight->setDiff(glm::fvec4(0, 2, 0,1));
-	spotSceneLight = new SpotLight(glm::fvec3(0, 500, 500));
+
+	spotSceneLight = new SpotLight(glm::fvec3(0, 0, 500));
 	spotSceneLight->setDiff(glm::fvec4(0, 2, 0, 1));
+
 
 	luzMinero = new PosLight();
 	luzMinero->setPosDir(glm::fvec3(0, 0, -1));
 	
+	directionalLight->disable();
+	positionalLight->disable();
+	spotSceneLight->disable();
+	luzMinero->disable();
 }
 
 //-------------------------------------------------------------------------

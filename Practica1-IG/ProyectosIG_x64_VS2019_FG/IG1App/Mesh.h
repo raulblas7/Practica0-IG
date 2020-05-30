@@ -58,7 +58,7 @@ public:
 	IndexMesh() {
 		mPrimitive = GL_TRIANGLES;
 	};
-	virtual ~IndexMesh() {};
+	virtual ~IndexMesh() { delete vIndices; vIndices = nullptr; };
 	virtual void render() const;
 	virtual void draw() const;
 	static IndexMesh* generaIndexCuboConTapas(GLdouble l);

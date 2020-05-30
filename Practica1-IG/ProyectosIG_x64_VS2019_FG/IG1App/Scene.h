@@ -51,11 +51,12 @@ public:
 	{
 		spotLight = active;
 	}
-	DirLight* directionalLight;
-	PosLight* positionalLight;
-	SpotLight* spotSceneLight;
-	PosLight* luzMinero;
-	SpotLight* luzAvion=nullptr;
+	    
+	DirLight* getDirLight() { return directionalLight; }
+	PosLight* getPosLight() { return positionalLight; }
+	SpotLight* getSpotLight() { return spotSceneLight; }
+	PosLight* getMineroLight() { return luzMinero; }
+	SpotLight* getPlaneLight() { return luzAvion; }
 
 	void move();
 
@@ -70,11 +71,18 @@ protected:
 	bool spotLight = false;
 	std::vector<Abs_Entity*> gObjects;  // Entities (graphic objects) of the scene
 	std::vector<Texture*>gTextures;
-	CompoundEntity* avionsitofinal;
-	CompoundEntity* helicesfinal;
-	double rotation = 90;
-
 	
+private:
+	DirLight* directionalLight = nullptr;
+	PosLight* positionalLight = nullptr;
+	SpotLight* spotSceneLight = nullptr;
+	PosLight* luzMinero = nullptr;
+	SpotLight* luzAvion = nullptr;
+	Avion* avionsitofinal = nullptr;
+	CompoundEntity* helicesfinal = nullptr;
+	double helicesAngle = 0.0;
+	double avionAngle = 0.0;
+	int radio = 250;
 };
 //-------------------------------------------------------------------------
 

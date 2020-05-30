@@ -9,6 +9,7 @@
 #include <ext\matrix_transform.hpp>
 #include <gtc/matrix_transform.hpp>  
 #include <gtc/type_ptr.hpp>
+#include "Light.h"
 
 //-------------------------------------------------------------------------
 
@@ -75,6 +76,8 @@ protected:
 	void setVM();
 	void setPM();
 	void setAxes();
+	PosLight* luzMinero;
+
 	
 };
 //-------------------------------------------------------------------------

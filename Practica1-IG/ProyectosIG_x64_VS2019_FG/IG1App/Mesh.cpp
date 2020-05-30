@@ -385,7 +385,6 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 
 	 //construimos el vector de normales
 	 cubitoConTapa->buildNormalVectors();
-
 	 return cubitoConTapa;
  }
 
@@ -477,5 +476,6 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 }
 
 	 mesh->buildNormalVectors();
+	 delete[]vertices;
 	 return mesh;
  }

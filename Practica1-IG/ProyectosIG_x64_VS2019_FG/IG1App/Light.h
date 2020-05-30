@@ -53,6 +53,9 @@ public:
     };
     virtual void upload(glm::dmat4 const& modelViewMat) const;
     void setSpot(glm::fvec3 dir, GLfloat cf, GLfloat e);
+    void setCutoff(GLfloat cf) { cutoff = cf; };
+    void setExp(GLfloat e) { exp = e; };
+    void setDir(glm::fvec3 dir) { direction = glm::fvec4(dir, 0.0);  };
 };
 
 
