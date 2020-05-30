@@ -76,7 +76,6 @@ protected:
 	void setVM();
 	void setPM();
 	void setAxes();
-	PosLight* luzMinero;
 
 	
 };

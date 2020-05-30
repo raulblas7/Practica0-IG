@@ -218,6 +218,7 @@ void IG1App::key(unsigned char key, int x, int y)
 		break;
 	case 'y':
 		mScene->move();
+		break;
 	case 'f':
 		mScene->getMineroLight()->disable();
 		break;
