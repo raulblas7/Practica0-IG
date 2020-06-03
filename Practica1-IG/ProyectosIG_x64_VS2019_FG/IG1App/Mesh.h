@@ -62,6 +62,7 @@ public:
 	virtual void render() const;
 	virtual void draw() const;
 	static IndexMesh* generaIndexCuboConTapas(GLdouble l);
+	static IndexMesh* generateGrid(GLdouble lado, GLuint nDiv);
 	void buildNormalVectors();
 protected:
 	GLuint* vIndices = nullptr; // tabla de índices

@@ -230,3 +230,11 @@ private:
 	SpotLight* spotlight = nullptr;
 
 };
+
+class Grid : public EntityWithIndexMesh{
+public:
+	explicit Grid(GLdouble l, GLint numRej);
+	~Grid();
+	virtual void render(glm::dmat4 const& modelViewMat) const;
+	virtual void update() {};
+};

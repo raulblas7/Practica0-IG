@@ -388,6 +388,80 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 return cubitoConTapa;
  }
 
+ IndexMesh* IndexMesh::generateGrid(GLdouble lado, GLuint nDiv)
+ {
+	 dvec3* perfil = new dvec3[nDiv+1];
+	 for (int i = 0; i <= nDiv ; i++)
+	 {
+		 perfil[i] = dvec3(i , i, 0.0 );
+		 
+	 }
+	
+	 IndexMesh* grid = new IndexMesh();
+	 // Definir primitiva
+	 grid->mPrimitive = GL_TRIANGLES;
+	 // Definir el número de vértices como nn*mm
+	 grid->mNumVertices = (nDiv+1)*(nDiv+1);
+	 grid->vVertices.reserve(grid->mNumVertices);
+	 grid->vColors.reserve(grid->mNumVertices);
+	 grid->vNormals.reserve(grid->mNumVertices);
+	 // Usar un vector auxiliar de vértices
+	 dvec3* vertices = new dvec3[grid->mNumVertices];
+	 for (int i = 0; i < nDiv+1; i++) {
+		 // Generar la muestra i-ésima de vértices
+		 GLdouble div = i * lado / nDiv;
+		 
+		 // R_y(theta) es la matriz de rotación alrededor del eje Y
+		 for (int j = 0; j < nDiv+1; j++) {
+			 int indice = i * nDiv + j;
+			 GLdouble x = div*  perfil[j].x;
+			 GLdouble z = div*  perfil[j].z;
+			 vertices[indice] = dvec3(x, 0, z);
+		 }
+	 }
+	 //volcamos vector auxiliar vertices en vVertices de mesh
+	 for (int k = 0; k < grid->mNumVertices; k++) {
+		 grid->vVertices.emplace_back(vertices[k]);
+		 grid->vColors.emplace_back(0.0, 0.0, 1.0, 1.0);
+	 }
+	 int indiceMayor = 0;
+	 grid->nNumIndices = 6 * nDiv * (nDiv - 1);
+	 grid->vIndices = new GLuint[grid->nNumIndices];
+
+	 // El contador i recorre las muestras alrededor del eje Y
+	 for (int i = 0; i < nDiv; i++)
+	 {
+		 // El contador j recorre los vértices del perfil,
+		 // de abajo arriba. Las caras cuadrangulares resultan
+		 // al unir la muestra i-ésima con la (i+1)%nn-ésima
+		 for (int j = 0; j < nDiv - 1; j++)
+		 {
+			 // El contador indice sirve para llevar cuenta
+			  // de los índices generados hasta ahora. Se recorre
+			  // la cara desde la esquina inferior izquierda
+			 int indice = i * nDiv + j;
+			 // Los cuatro índices son entonces:
+
+			 grid->vIndices[indiceMayor] = indice;
+			 indiceMayor++;
+			 grid->vIndices[indiceMayor] = (indice + nDiv) % (nDiv * nDiv);
+			 indiceMayor++;
+			 grid->vIndices[indiceMayor] = (indice + nDiv + 1) % (nDiv * nDiv);
+			 indiceMayor++;
+			 grid->vIndices[indiceMayor] = (indice + nDiv + 1) % (nDiv * nDiv);
+			 indiceMayor++;
+			 grid->vIndices[indiceMayor] = (indice + 1) % (nDiv * nDiv);
+			 indiceMayor++;
+			 grid->vIndices[indiceMayor] = indice;
+			 indiceMayor++;
+		 }
+	 }
+	 grid->buildNormalVectors();
+	 delete[]vertices;
+	 delete[]perfil;
+	 return grid;
+ }
+
  void IndexMesh::buildNormalVectors()
  {
 	 //vNormals le ponemos del mismo tamaño que vVertices usando mNumVertices
