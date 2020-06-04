@@ -393,8 +393,8 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 dvec3* perfil = new dvec3[nDiv+1];
 	 for (int i = 0; i <= nDiv ; i++)
 	 {
-		 GLdouble div = i * lado / nDiv;
-		 perfil[i] = dvec3(div , div, 0.0 );
+		// GLdouble div = i * lado / nDiv;
+		 perfil[i] = dvec3(0.0 , i, 0.0 );
 		 
 	 }
 	
@@ -407,23 +407,20 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 grid->vColors.reserve(grid->mNumVertices);
 	 grid->vNormals.reserve(grid->mNumVertices);
 	 // Usar un vector auxiliar de vértices
-	 dvec3* vertices = new dvec3[grid->mNumVertices];
+	 /*dvec3* vertices = new dvec3[grid->mNumVertices];
 	 for (int i = 0; i < nDiv; i++) {
 		 // Generar la muestra i-ésima de vértices
 		 GLdouble txz = lado / nDiv;
-		 for (int j = 0; j < nDiv; j++) {
+		 for (int j = 0; j <= nDiv; j++) {
 			 int indice = i * (nDiv + 1) + j;
-			 GLdouble x = i * perfil[j].x + txz * perfil[j].z;
-			 GLdouble z = i * perfil[i].y + txz * perfil[j].z;
+			 GLdouble x =  i*perfil[j].y  *txz;
+			 GLdouble z = perfil[j].y *txz;
 			 vertices[indice] = dvec3(x, 0, z);
 		 }
-	 }
+	 }*/
 	 //volcamos vector auxiliar vertices en vVertices de mesh
-	 for (int k = 0; k < grid->mNumVertices; k++) {
-		 grid->vVertices.emplace_back(vertices[k]);
-		 grid->vColors.emplace_back(0.0, 0.0, 1.0, 1.0);
-	 }
-	/* grid->vVertices.emplace_back(0.0, 0.0, 200.0);
+	
+	 /*grid->vVertices.emplace_back(0.0, 0.0, 200.0);
 	 grid->vVertices.emplace_back(200.0, 0.0, 200.0);
 	 grid->vVertices.emplace_back(200.0, 0.0, 0.0);
 	 grid->vVertices.emplace_back(0.0, 0.0, 0.0);
@@ -433,12 +430,64 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 grid->vVertices.emplace_back(0.0, 0.0, 0.0);
 	 grid->vVertices.emplace_back(0.0, 0.0, 0.0);*/
 	
+	 dvec3* vertices = new dvec3[grid->mNumVertices];
 	 int indiceMayor = 0;
-	 grid->nNumIndices = 6 * (nDiv+1) * (nDiv);
+
+	 for (int j = 0; j <= nDiv; ++j)
+	 {
+		 for (int i = 0; i <= nDiv; ++i)
+		 {
+			 float x = lado*(float)i / (float)nDiv;
+			 float y = lado*(float)j / (float)nDiv;
+			 float z = sin(x * 2.0f * 3.141526f) * sin(y * 2.0f * 3.141526f) * 0.1f;
+			vertices[indiceMayor]=dvec3(x, y, z);
+			indiceMayor++;
+		 }
+	 }
+
+	 for (int k = 0; k < grid->mNumVertices; k++) {
+		 grid->vVertices.emplace_back(vertices[k]);
+		 grid->vColors.emplace_back(0.0, 0.0, 1.0, 1.0);
+	 }
+	  indiceMayor = 0;
+	 grid->nNumIndices = 6 * (nDiv) * (nDiv);
 	 grid->vIndices = new GLuint[grid->nNumIndices];
 
+	 for (int j = 0; j < nDiv; ++j)
+	 {
+		 for (int i = 0; i < nDiv; ++i)
+		 {
+			 /*int row1 = j * (nDiv + 1);
+			 int row2 = (j + 1) * (nDiv + 1);
+
+			 // triangle 1
+			 grid->vIndices[indiceMayor]=glm::uvec3(row1 + i, row1 + i + 1, row2 + i + 1);	
+
+			 // triangle 2
+			 grid->vIndices[indiceMayor]=(glm::uvec3(row1 + i, row2 + i + 1, row2 + i));*/
+			 int indice = i * (nDiv)+j;
+			 // Los cuatro índices son entonces:
+
+			 grid->vIndices[indiceMayor] = indice; //
+			 indiceMayor++;
+			 grid->vIndices[indiceMayor] = (indice + nDiv) % (nDiv * nDiv);
+			 indiceMayor++;
+			 grid->vIndices[indiceMayor] = (indice + nDiv + 1) % (nDiv * nDiv);
+			 indiceMayor++;
+			 grid->vIndices[indiceMayor] = (indice + nDiv + 1) % (nDiv * nDiv);
+			 indiceMayor++;
+			 grid->vIndices[indiceMayor] = (indice + 1) % (nDiv * nDiv);
+			 indiceMayor++;
+			 grid->vIndices[indiceMayor] = indice;
+			 indiceMayor++;
+		 }
+	 }
+
+
+	
+
 	 // El contador i recorre las muestras alrededor del eje Y
-	 for (int i = 0; i <= nDiv; i++)
+	 for (int i = 0; i < nDiv; i++)
 	 {
 		 // El contador j recorre los vértices del perfil,
 		 // de abajo arriba. Las caras cuadrangulares resultan
@@ -448,10 +497,10 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 			 // El contador indice sirve para llevar cuenta
 			  // de los índices generados hasta ahora. Se recorre
 			  // la cara desde la esquina inferior izquierda
-			 int indice = i * (nDiv+1) + j;
+			 int indice = i * (nDiv) + j;
 			 // Los cuatro índices son entonces:
 
-			 grid->vIndices[indiceMayor] = indice;
+			 grid->vIndices[indiceMayor] = indice; //
 			 indiceMayor++;
 			 grid->vIndices[indiceMayor] = (indice + nDiv) % (nDiv * nDiv);
 			 indiceMayor++;
