@@ -51,7 +51,7 @@ void Scene::init()
 		//mAuxs = rotate(mAuxs, radians(45.0), dvec3(0, 1.0, 0));
 		//sonrisa->setModelMat(mAuxs);
 		//gObjects.push_back(sonrisa);
-		Grid* grid = new Grid(200, 1);
+		Grid* grid = new Grid(200, 2);
 		gObjects.push_back(grid);
 
 	}

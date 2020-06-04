@@ -393,7 +393,8 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 dvec3* perfil = new dvec3[nDiv+1];
 	 for (int i = 0; i <= nDiv ; i++)
 	 {
-		 perfil[i] = dvec3(i , i, 0.0 );
+		 GLdouble div = i * lado / nDiv;
+		 perfil[i] = dvec3(div , div, 0.0 );
 		 
 	 }
 	
@@ -407,15 +408,13 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 grid->vNormals.reserve(grid->mNumVertices);
 	 // Usar un vector auxiliar de vértices
 	 dvec3* vertices = new dvec3[grid->mNumVertices];
-	 for (int i = 0; i < nDiv+1; i++) {
+	 for (int i = 0; i < nDiv; i++) {
 		 // Generar la muestra i-ésima de vértices
-		 GLdouble div = i * lado / nDiv;
-		 
-		 // R_y(theta) es la matriz de rotación alrededor del eje Y
-		 for (int j = 0; j < nDiv+1; j++) {
-			 int indice = i * nDiv + j;
-			 GLdouble x = div*  perfil[j].x;
-			 GLdouble z = div*  perfil[j].z;
+		 GLdouble txz = lado / nDiv;
+		 for (int j = 0; j < nDiv; j++) {
+			 int indice = i * (nDiv + 1) + j;
+			 GLdouble x = i * perfil[j].x + txz * perfil[j].z;
+			 GLdouble z = i * perfil[i].y + txz * perfil[j].z;
 			 vertices[indice] = dvec3(x, 0, z);
 		 }
 	 }
@@ -424,22 +423,32 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 		 grid->vVertices.emplace_back(vertices[k]);
 		 grid->vColors.emplace_back(0.0, 0.0, 1.0, 1.0);
 	 }
+	/* grid->vVertices.emplace_back(0.0, 0.0, 200.0);
+	 grid->vVertices.emplace_back(200.0, 0.0, 200.0);
+	 grid->vVertices.emplace_back(200.0, 0.0, 0.0);
+	 grid->vVertices.emplace_back(0.0, 0.0, 0.0);
+	 grid->vVertices.emplace_back(0.0, 0.0, 200.0);
+	 grid->vVertices.emplace_back(200.0, 0.0, 200.0);
+	 grid->vVertices.emplace_back(200.0, 0.0, 0.0);
+	 grid->vVertices.emplace_back(0.0, 0.0, 0.0);
+	 grid->vVertices.emplace_back(0.0, 0.0, 0.0);*/
+	
 	 int indiceMayor = 0;
-	 grid->nNumIndices = 6 * nDiv * (nDiv - 1);
+	 grid->nNumIndices = 6 * (nDiv+1) * (nDiv);
 	 grid->vIndices = new GLuint[grid->nNumIndices];
 
 	 // El contador i recorre las muestras alrededor del eje Y
-	 for (int i = 0; i < nDiv; i++)
+	 for (int i = 0; i <= nDiv; i++)
 	 {
 		 // El contador j recorre los vértices del perfil,
 		 // de abajo arriba. Las caras cuadrangulares resultan
 		 // al unir la muestra i-ésima con la (i+1)%nn-ésima
-		 for (int j = 0; j < nDiv - 1; j++)
+		 for (int j = 0; j < nDiv ; j++)
 		 {
 			 // El contador indice sirve para llevar cuenta
 			  // de los índices generados hasta ahora. Se recorre
 			  // la cara desde la esquina inferior izquierda
-			 int indice = i * nDiv + j;
+			 int indice = i * (nDiv+1) + j;
 			 // Los cuatro índices son entonces:
 
 			 grid->vIndices[indiceMayor] = indice;
@@ -457,9 +466,14 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 		 }
 	 }
 	 grid->buildNormalVectors();
-	 delete[]vertices;
+	// delete[]vertices;
 	 delete[]perfil;
 	 return grid;
+ }
+
+ IndexMesh* IndexMesh::generateGridTex(GLdouble lado, GLuint nDiv)
+ {
+	 return nullptr;
  }
 
  void IndexMesh::buildNormalVectors()
