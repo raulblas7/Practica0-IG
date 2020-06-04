@@ -1,0 +1,1 @@
+Hemos implementado el cambio de escenas pero esta comentado por el hecho de que no logramos conseguir que las texturas salgan bien tras los cambios de escena, sin embargo lo que es cambiar de escena si eso se descomenta.
