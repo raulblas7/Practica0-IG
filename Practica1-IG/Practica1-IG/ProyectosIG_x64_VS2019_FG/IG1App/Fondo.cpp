@@ -7,12 +7,17 @@ void Fondo::render() const
 {
 	if (malla != nullptr) {
 		
-		//mCamera->upload();
-         //glMatrixMode(GL_MODELVIEW);
-		//glLoadMatrixd(value_ptr(mCamera->viewMat()));		
-		img->bind(GL_REPLACE);
-		glPolygonMode(GL_FRONT, GL_FILL);
+		mCamera->upload();
+		glDepthMask(GL_FALSE);
+		glEnable(GL_BLEND);
+		mCamera->viewMat();
+		img->bind(GL_DECAL);
+		zelda->bind(GL_DECAL);
+		glPolygonMode(GL_BACK, GL_FILL);
 		malla->render();
 		img->unbind();
+		zelda->unbind();
+		glDepthMask(GL_TRUE);
+		glDisable(GL_BLEND);
 	}
 }

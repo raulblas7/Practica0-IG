@@ -2,8 +2,7 @@
 #ifndef _H_Mesh_H_
 #define _H_Mesh_H_
 
-#include <GL/freeglut.h>
-#include <glm.hpp>
+#include "GLinclude.h"
 
 #include <vector>
 

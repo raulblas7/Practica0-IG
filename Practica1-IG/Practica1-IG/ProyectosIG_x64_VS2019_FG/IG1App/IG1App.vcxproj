@@ -124,7 +124,10 @@
     <ClInclude Include="CheckML.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Fondo.h" />
+    <ClInclude Include="glad.h" />
+    <ClInclude Include="GLinclude.h" />
     <ClInclude Include="IG1App.h" />
+    <ClInclude Include="khrplatform.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Pixmap32RGBA.h" />
     <ClInclude Include="Scene.h" />

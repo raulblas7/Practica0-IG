@@ -1,4 +1,6 @@
-﻿  Fondo.cpp
+﻿  Camera.cpp
+  Entity.cpp
+  Fondo.cpp
 C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Fondo.h(19,68): warning C4244:  'argumento': conversión de 'GLdouble' a 'GLsizei'; posible pérdida de datos
   IG1App.cpp
 C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Fondo.h(19,64): warning C4244:  'argumento': conversión de 'GLdouble' a 'GLsizei'; posible pérdida de datos
@@ -6,6 +8,61 @@ C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\Proyectos
   main.cpp
 C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Fondo.h(19,64): warning C4244:  'argumento': conversión de 'GLdouble' a 'GLsizei'; posible pérdida de datos
 C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Fondo.h(19,68): warning C4244:  'argumento': conversión de 'GLdouble' a 'GLsizei'; posible pérdida de datos
-  Generando código...
+  Mesh.cpp
 C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Fondo.h(19,64): warning C4244:  'argumento': conversión de 'GLdouble' a 'GLsizei'; posible pérdida de datos
-  IG1App.vcxproj -> C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(81,20): warning C4018:  '<': no coinciden signed/unsigned
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(116,20): warning C4018:  '<': no coinciden signed/unsigned
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(122,20): warning C4018:  '<': no coinciden signed/unsigned
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(180,20): warning C4018:  '<': no coinciden signed/unsigned
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(200,21): warning C4018:  '<': no coinciden signed/unsigned
+  Pixmap32RGBA.cpp
+  Scene.cpp
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(228,12): warning C4244:  'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
+  Texture.cpp
+  Viewport.cpp
+  Generando código...
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Scene.cpp(21,42): warning C4244:  'argumento': conversión de 'double' a 'GLuint'; posible pérdida de datos
+Camera.obj : error LNK2001: símbolo externo glad_glLoadMatrixd sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glLoadMatrixd sin resolver
+Camera.obj : error LNK2001: símbolo externo glad_glMatrixMode sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glMatrixMode sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glCullFace sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glLineWidth sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glPointSize sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glPolygonMode sin resolver
+Fondo.obj : error LNK2001: símbolo externo glad_glPolygonMode sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glDepthMask sin resolver
+Fondo.obj : error LNK2001: símbolo externo glad_glDepthMask sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glDisable sin resolver
+Fondo.obj : error LNK2001: símbolo externo glad_glDisable sin resolver
+Scene.obj : error LNK2001: símbolo externo glad_glDisable sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glEnable sin resolver
+Fondo.obj : error LNK2001: símbolo externo glad_glEnable sin resolver
+Scene.obj : error LNK2001: símbolo externo glad_glEnable sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glBlendFunc sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glReadBuffer sin resolver
+Scene.obj : error LNK2001: símbolo externo glad_glReadBuffer sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glColor3d sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glColor4dv sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glCopyTexImage2D sin resolver
+Scene.obj : error LNK2001: símbolo externo glad_glCopyTexImage2D sin resolver
+Entity.obj : error LNK2001: símbolo externo glad_glBindTexture sin resolver
+Fondo.obj : error LNK2001: símbolo externo glad_glBindTexture sin resolver
+Scene.obj : error LNK2001: símbolo externo glad_glBindTexture sin resolver
+Texture.obj : error LNK2001: símbolo externo glad_glBindTexture sin resolver
+IG1App.obj : error LNK2001: símbolo externo glad_glClear sin resolver
+IG1App.obj : error LNK2001: símbolo externo glad_glGetString sin resolver
+Mesh.obj : error LNK2001: símbolo externo glad_glDrawArrays sin resolver
+Mesh.obj : error LNK2001: símbolo externo glad_glColorPointer sin resolver
+Mesh.obj : error LNK2001: símbolo externo glad_glDisableClientState sin resolver
+Mesh.obj : error LNK2001: símbolo externo glad_glEnableClientState sin resolver
+Mesh.obj : error LNK2001: símbolo externo glad_glTexCoordPointer sin resolver
+Mesh.obj : error LNK2001: símbolo externo glad_glVertexPointer sin resolver
+Scene.obj : error LNK2001: símbolo externo glad_glClearColor sin resolver
+Texture.obj : error LNK2001: símbolo externo glad_glTexParameteri sin resolver
+Texture.obj : error LNK2001: símbolo externo glad_glTexImage2D sin resolver
+Texture.obj : error LNK2001: símbolo externo glad_glTexEnvi sin resolver
+Texture.obj : error LNK2001: símbolo externo glad_glDeleteTextures sin resolver
+Texture.obj : error LNK2001: símbolo externo glad_glGenTextures sin resolver
+Viewport.obj : error LNK2001: símbolo externo glad_glViewport sin resolver
+C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe : fatal error LNK1120: 30 externos sin resolver
