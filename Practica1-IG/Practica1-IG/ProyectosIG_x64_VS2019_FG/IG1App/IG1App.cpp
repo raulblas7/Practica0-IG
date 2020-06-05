@@ -70,6 +70,7 @@ void IG1App::iniWinOpenGL()
 	
 	mWinId = glutCreateWindow("IG1App");  // with its associated OpenGL context, return window's identifier 
 	
+	if (!gladLoadGL()) { printf("GLAD: Something went wrong!\n"); }
 	// Callback registration
 	glutReshapeFunc(s_resize);
 	glutKeyboardFunc(s_key);

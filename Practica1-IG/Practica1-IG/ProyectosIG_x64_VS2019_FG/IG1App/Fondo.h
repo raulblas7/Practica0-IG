@@ -8,9 +8,9 @@ class Fondo
 {
 public:
 	Fondo() {
-		malla= malla->generaRectanguloTexCor(glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT), 1, 1);
+		malla = malla->generaRectanguloTexCor(glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT), 1, 1); /*malla->setTwoUnits();*/
 		img = new Texture(); zelda = new Texture();
-		img->load("..//Bmps//noche.bmp"); zelda->load("..//Bmps//Zelda.bmp", 50);
+		img->load("..//Bmps//noche.bmp"/*,100, GL_TEXTURE0*/); zelda->load("..//Bmps//Zelda.bmp", 50/*, GL_TEXTURE1*/);
 		mViewPort = new Viewport(glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
 		mCamera = new Camera(mViewPort); mCamera->set2D();
 	}

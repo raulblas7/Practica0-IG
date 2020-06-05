@@ -8,7 +8,6 @@
 //#include <GL/glut.h>  // OpenGL Utility Toolkit
 
 #include "GLinclude.h"
-
 #include "Viewport.h"
 #include "Camera.h"
 #include "Scene.h"

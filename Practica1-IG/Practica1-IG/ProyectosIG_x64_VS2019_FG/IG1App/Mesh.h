@@ -37,6 +37,7 @@ public:
 	GLuint size() const { return mNumVertices; };   // number of elements
 	std::vector<glm::dvec3> const& vertices() const { return vVertices; };
 	std::vector<glm::dvec4> const& colors() const { return vColors; };
+	void setTwoUnits() { twoUnits = true; }; //EXTRA 2
 		
 protected:
 	
@@ -46,7 +47,7 @@ protected:
 	std::vector<glm::dvec4> vColors;    // color array
 	std::vector<glm::dvec2> vTexCoords;//texture array
 	virtual void draw() const;
-	
+	bool twoUnits = false; //EXTRA 2
 };
 //-------------------------------------------------------------------------
 

@@ -23,6 +23,8 @@ void Mesh::render() const
 			glColorPointer(4, GL_DOUBLE, 0, vColors.data());  // components number (rgba=4), type of each component, stride, pointer  
 		}
 		if (vTexCoords.size() > 0) {
+			/*if(twoUnits){ glClientActiveTexture(GL_TEXTURE0); }*/ //EXTRA 2
+			//
 			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 			glTexCoordPointer(2, GL_DOUBLE, 0, vTexCoords.data());
 		}
