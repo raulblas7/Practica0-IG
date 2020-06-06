@@ -40,9 +40,9 @@ void Texture::bind(GLenum textureUnit, GLuint mixMode)
 }
 void Texture::unbind(GLenum textureUnit) const
 {
-	glBindTexture(textureUnit, 0);
+	glActiveTexture(textureUnit);
     glBindTexture(GL_TEXTURE_2D, 0);
-
+	glActiveTexture(GL_TEXTURE0);
 }
 //-------------------------------------------------------------------------
 
