@@ -238,3 +238,11 @@ public:
 	virtual void render(glm::dmat4 const& modelViewMat) const;
 	virtual void update() {};
 };
+class GridCube : public CompoundEntity {
+public:
+	explicit GridCube();
+	~GridCube() {
+	};
+	virtual void render(glm::dmat4 const& modelViewMat) const;
+	virtual void update();
+};

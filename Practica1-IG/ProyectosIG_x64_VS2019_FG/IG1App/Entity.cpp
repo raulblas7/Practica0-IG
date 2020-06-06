@@ -508,3 +508,8 @@ void Grid::render(glm::dmat4 const& modelViewMat) const
 		glDisable(GL_COLOR_MATERIAL);
 	}
 }
+
+GridCube::GridCube()
+{
+
+}

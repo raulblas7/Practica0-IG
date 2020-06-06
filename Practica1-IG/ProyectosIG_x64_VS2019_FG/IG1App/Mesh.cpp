@@ -522,7 +522,16 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 
  IndexMesh* IndexMesh::generateGridTex(GLdouble lado, GLuint nDiv)
  {
-	 return nullptr;
+	 IndexMesh* grid = generateGrid(lado,nDiv);
+	 grid->vTexCoords.reserve(grid->mNumVertices);
+
+	 for (int i = 0; i < grid->mNumVertices; i++)
+	 {
+		 grid->vTexCoords.emplace_back(i, 1);
+		 grid->vTexCoords.emplace_back(i, 0);
+	 }	
+
+	 return grid;
  }
 
  void IndexMesh::buildNormalVectors()
