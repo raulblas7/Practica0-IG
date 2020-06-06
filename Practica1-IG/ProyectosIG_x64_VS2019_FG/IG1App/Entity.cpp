@@ -487,7 +487,7 @@ void Avion::addEntity(Abs_Entity* ae)
 
 Grid::Grid(GLdouble l, GLint numRej)
 {
-	mMesh = IndexMesh::generateGrid(l,numRej);
+	mMesh = IndexMesh::generateGridTex(l,numRej);
 
 }
 
@@ -511,5 +511,99 @@ void Grid::render(glm::dmat4 const& modelViewMat) const
 
 GridCube::GridCube()
 {
+	Texture* supinf = new Texture();
+	supinf->load("..//Bmps//stones.bmp");
+	Texture* otros = new Texture();
+	otros->load("..//Bmps//checker.bmp");
 
+	Grid* ab = new Grid(200, 20);
+	ab->setTexture(supinf);
+	
+	Grid* ar = new Grid(200, 20);
+	ar->setTexture(supinf);
+	ar->setModelMat(translate(ar->modelMat(), glm::dvec3(0, 200, 0)));
+
+	Grid* fr = new Grid(200, 20);
+	fr->setTexture(otros);
+	fr->setModelMat(rotate(fr->modelMat(), radians(90.0),glm::dvec3(0, 0, 1)));
+
+	Grid* at = new Grid(200, 20);
+	at->setTexture(otros);
+	at->setModelMat(rotate(at->modelMat(), radians(90.0), glm::dvec3(0, 0, 1)));
+	at->setModelMat(translate(fr->modelMat(), glm::dvec3(0,0 , -200)));
+	
+	Grid* iz = new Grid(200, 20);
+	iz->setTexture(otros);
+	at->setModelMat(rotate(at->modelMat(), radians(90.0), glm::dvec3(-1, 0, 0)));
+
+	Grid* de = new Grid(200, 20);	
+	de->setTexture(otros);
+	at->setModelMat(rotate(at->modelMat(), radians(90.0), glm::dvec3(1, 0, 0)));
+
+	addEntity(ar);
+	addEntity(ab);
+	addEntity(iz);
+	addEntity(de);
+	addEntity(fr);
+	addEntity(at);
+}
+
+void GridCube::render(glm::dmat4 const& modelViewMat) const
+{
+}
+
+SirenCube::SirenCube()
+{
+	Texture* supinf = new Texture();
+	supinf->load("..//Bmps//stones.bmp");
+	Texture* otros = new Texture();
+	otros->load("..//Bmps//checker.bmp");
+
+	Grid* ab = new Grid(200, 20);
+	ab->setTexture(supinf);
+
+	Grid* ar = new Grid(200, 20);
+	ar->setTexture(supinf);
+	ar->setModelMat(translate(ar->modelMat(), glm::dvec3(0, 200, 0)));
+
+	Grid* fr = new Grid(200, 20);
+	fr->setTexture(otros);
+	fr->setModelMat(rotate(fr->modelMat(), radians(90.0), glm::dvec3(0, 0, 1)));
+
+	Grid* at = new Grid(200, 20);
+	at->setTexture(otros);
+	at->setModelMat(rotate(at->modelMat(), radians(90.0), glm::dvec3(0, 0, 1)));
+	at->setModelMat(translate(fr->modelMat(), glm::dvec3(0, 0, -200)));
+
+	Grid* iz = new Grid(200, 20);
+	iz->setTexture(otros);
+	at->setModelMat(rotate(at->modelMat(), radians(90.0), glm::dvec3(-1, 0, 0)));
+
+	Grid* de = new Grid(200, 20);
+	de->setTexture(otros);
+	at->setModelMat(rotate(at->modelMat(), radians(90.0), glm::dvec3(1, 0, 0)));
+
+	Esfera* sir = new Esfera(50, 50, 50, fvec3(0, 0, 0));
+	at->setModelMat(translate(fr->modelMat(), glm::dvec3(0, 200, 0)));
+
+
+	addEntity(ar);
+	addEntity(ab);
+	addEntity(iz);
+	addEntity(de);
+	addEntity(fr);
+	addEntity(at);
+	addEntity(sir);
+}
+
+void SirenCube::render(glm::dmat4 const& modelViewMat) const
+{
+	dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
+
+	spotlight->upload(aMat);
+	upload(aMat);
+
+	for (Abs_Entity* el : gObjects) {
+		el->render(aMat);
+	}
 }

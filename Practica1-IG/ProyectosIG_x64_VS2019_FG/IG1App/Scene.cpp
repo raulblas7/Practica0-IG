@@ -170,6 +170,31 @@ void Scene::init()
 		//
 		gObjects.push_back(avionsitofinal);
 	}
+	if (mId==6)
+	{
+
+	}
+	if (mId == 7)
+	{
+		Esfera* esferitafinal = new Esfera(200.0, 50, 50, glm::fvec3(0.93, 1.93, 1.85));
+		Material* oro = new Material();
+		oro->setGold();
+		esferitafinal->setMaterial(oro);
+		gObjects.push_back(esferitafinal);
+
+		//sirena
+		
+		sir = new SirenCube();
+		luzSirena = sir->getLight();
+		luzSirena->setSpot(fvec3(0, -1, 0), 60.0, 4);
+		luzSirena->disable();
+		//Transladar posicion completa del avion
+		glm::dmat4 mSir = sir->modelMat();
+		mSir = translate(sir->modelMat(), dvec3(0, radio, 0));
+		sir->setModelMat(mSir);
+		//
+		gObjects.push_back(sir);
+	}
 	//if (mId == 0) {
 	//	// Graphics objects (entities) of the scene
 	//	
@@ -354,6 +379,20 @@ void Scene::move()
 
 }
 
+void Scene::sirenMove()
+{
+	if (sir != nullptr) {
+		//Cambio en la rotacion de los  helices en el eje z  y del avion como compound entity rotamos en el eje x y aplicamos su correspondiente traslacion
+
+		glm::dmat4 mSir = sir->modelMat();
+		mSir = translate(dmat4(1.0), dvec3(0.0, radio * cos(radians(avionAngle)), radio * sin(radians(avionAngle))));
+		mSir = rotate(mSir, radians(avionAngle), dvec3(1, 0, 0));
+		avionsitofinal->setModelMat(mSir);
+		avionAngle += 1.8;
+
+	}
+}
+
 void Scene::free()
 { // release memory and resources   
 
@@ -409,8 +448,9 @@ void Scene::setLights()
 	positionalLight->setPosDir(v);
 	positionalLight->setDiff(glm::fvec4(0, 2, 0,1));
 
-	spotSceneLight = new SpotLight(glm::fvec3(0, 0, 500));
-	spotSceneLight->setDiff(glm::fvec4(0, 2, 0, 1));
+	spotSceneLight = new SpotLight(glm::fvec3(0, 0, 300));
+	spotSceneLight->setDiff(glm::fvec4(1, 1, 1, 1));
+	spotSceneLight->setSpec(glm::fvec4(0.5, 0.5, 0.5, 1));
 
 
 	luzMinero = new PosLight();

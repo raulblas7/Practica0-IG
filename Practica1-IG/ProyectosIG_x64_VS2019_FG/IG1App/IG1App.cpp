@@ -205,19 +205,22 @@ void IG1App::key(unsigned char key, int x, int y)
 		mScene->getSpotLight()->enable();
 		break;
 	case 'g':
-		if (mScene->getPlaneLight() != nullptr)
+		if (mScene->getSirenaLight() != nullptr)
 		{
-		mScene->getPlaneLight()->disable();
+		mScene->getSirenaLight()->disable();
 		}
 		break;
 	case 't':
-		if (mScene->getPlaneLight()!=nullptr)
+		if (mScene->getSirenaLight()!=nullptr)
 		{
-			mScene->getPlaneLight()->enable();
+			mScene->getSirenaLight()->enable();
 		}
 		break;
 	case 'y':
 		mScene->move();
+		break;
+	case 'j':
+		mScene->sirenMove();
 		break;
 	case 'f':
 		mScene->getMineroLight()->disable();

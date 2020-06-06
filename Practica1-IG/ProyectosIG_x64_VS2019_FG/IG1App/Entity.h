@@ -182,7 +182,7 @@ public:
 	virtual void render(glm::dmat4 const& modelViewMat) const;
 	virtual void update();
 	void addEntity(Abs_Entity* ae);
-private:
+protected:
 	std::vector<Abs_Entity*> gObjects;
 
 };
@@ -226,7 +226,6 @@ public:
 	void addEntity(Abs_Entity* ae);
 	SpotLight* getLight() { return spotlight; }
 private:
-	std::vector<Abs_Entity*> gObjects;
 	SpotLight* spotlight = nullptr;
 
 };
@@ -243,6 +242,17 @@ public:
 	explicit GridCube();
 	~GridCube() {
 	};
+	virtual void render(glm::dmat4 const& modelViewMat) const ;
+	virtual void update() {};
+};
+class  SirenCube : public CompoundEntity {
+public:
+	explicit  SirenCube();
+	~SirenCube() {
+	};
 	virtual void render(glm::dmat4 const& modelViewMat) const;
-	virtual void update();
+	virtual void update() {};
+	SpotLight* getLight() { return spotlight; }
+private:
+	SpotLight* spotlight = nullptr;
 };

@@ -57,8 +57,10 @@ public:
 	SpotLight* getSpotLight() { return spotSceneLight; }
 	PosLight* getMineroLight() { return luzMinero; }
 	SpotLight* getPlaneLight() { return luzAvion; }
+	SpotLight* getSirenaLight() { return luzSirena; }
 
 	void move();
+	void  sirenMove();
 
 protected:
 	void free();
@@ -78,8 +80,11 @@ private:
 	SpotLight* spotSceneLight = nullptr;
 	PosLight* luzMinero = nullptr;
 	SpotLight* luzAvion = nullptr;
+	SpotLight* luzSirena = nullptr;
+
 	Avion* avionsitofinal = nullptr;
 	CompoundEntity* helicesfinal = nullptr;
+	SirenCube* sir = nullptr;
 	double helicesAngle = 0.0;
 	double avionAngle = 0.0;
 	int radio = 250;
