@@ -11,13 +11,18 @@ void Fondo::render() const
 		glDepthMask(GL_FALSE);
 		glEnable(GL_BLEND);
 		mCamera->viewMat();
-		img->bind(/*GL_TEXTURE0, */GL_DECAL);
-		zelda->bind(/*GL_TEXTURE1, */GL_DECAL);
+		img->bind(GL_TEXTURE0, GL_DECAL);
+
+		zelda->bind(GL_TEXTURE1, GL_DECAL);
+		
 		glPolygonMode(GL_BACK, GL_FILL);
 		malla->render();
-		img->unbind(/*GL_TEXTURE0*/);
-		zelda->unbind(/*GL_TEXTURE1*/);
+		
+		zelda->unbind(GL_TEXTURE1);
+		img->unbind(GL_TEXTURE0);
 		glDepthMask(GL_TRUE);
 		glDisable(GL_BLEND);
+		glDisable(GL_TEXTURE_2D);
+
 	}
 }
