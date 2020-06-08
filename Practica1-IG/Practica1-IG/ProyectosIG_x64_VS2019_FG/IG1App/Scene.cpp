@@ -38,32 +38,39 @@ void Scene::init()
 		//load textures
 		Texture* baldosaC = new Texture();
 		baldosaC->load("..//Bmps//baldosaC.bmp");
-		Texture* baldosaF = new Texture();
-		baldosaF->load("..//Bmps//baldosaF.bmp");
+		/*Texture* baldosaF = new Texture();
+		baldosaF->load("..//Bmps//baldosaF.bmp");*/
 		Texture* baldosaP = new Texture();
 		baldosaP->load("..//Bmps//baldosaP.bmp");
-		Texture* container = new Texture();
-		container->load("..//Bmps//container.bmp");
-		Texture* grass = new Texture();
-		grass->load("..//Bmps//grass.bmp");
-		Texture* papelC = new Texture();
-		papelC->load("..//Bmps//papelC.bmp");
+		
+		/*Texture* grass = new Texture();
+		grass->load("..//Bmps//grass.bmp");*/
+		/*Texture* papelC = new Texture();
+		papelC->load("..//Bmps//papelC.bmp");*/
 		Texture* papelE = new Texture();
 		papelE->load("..//Bmps//papelE.bmp");
-		Texture* windowC = new Texture();
-		windowC->load("..//Bmps//windowC.bmp");
+		/*Texture* windowC = new Texture();
+		windowC->load("..//Bmps//windowC.bmp");*/
 		Texture* windowV = new Texture();
 		windowV->load("..//Bmps//windowV.bmp", 121);
+		
+		Texture* container = new Texture();
+		container->load("..//Bmps//container.bmp");
 		Texture* foto = new Texture();
 		foto->loadColorBuffer();
-
 		//push to the vector of textures
+		gTextures.push_back(foto);
 		gTextures.push_back(baldosaC);
 		gTextures.push_back(baldosaP);
 		gTextures.push_back(container);
 		gTextures.push_back(windowV);
-		gTextures.push_back(foto);
+		gTextures.push_back(papelE);
 
+		auto c = new Caja(100);
+		c->setTexture(container);
+		c->setTextureInt(baldosaC);
+		gObjects.push_back(c);
+		c->setModelMat(translate(dmat4(1), dvec3(-100.0, 50.0, -100.0)));
 		auto g = new Estrella3D(100.0, 9, 100.0);
 		gObjects.push_back(g);
 		g->setTexture(baldosaP);
@@ -73,11 +80,7 @@ void Scene::init()
 		a->setTexture(baldosaC);
 		gObjects.push_back(a);
 		a->setModelMat(rotate(a->modelMat(), radians(90.0), dvec3(1.0, 0, 0)));
-		auto c = new Caja(100);
-		c->setTexture(container);
-		c->setTextureInt(papelE);
-		gObjects.push_back(c);
-		c->setModelMat(translate(dmat4(1), dvec3(-100.0, 50.0, -100.0)));
+		
 
 		auto d = new Habitacion(500.0);
 		d->setTexture(windowV);

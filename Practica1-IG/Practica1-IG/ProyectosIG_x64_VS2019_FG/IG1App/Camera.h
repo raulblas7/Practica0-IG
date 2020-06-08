@@ -1,6 +1,7 @@
 //#pragma once
 #ifndef _H_Camera_H_
 #define _H_Camera_H_
+#include "CheckML.h"
 
 #include "GLinclude.h"
 #include <gtc/matrix_access.hpp> 

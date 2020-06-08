@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "CheckML.h"
 
 #include <gtc/matrix_transform.hpp>  
 #include <gtc/type_ptr.hpp>
@@ -78,8 +79,8 @@ void Sierpinski::render(dmat4 const& modelViewMat)const {
 		glColor4dv(value_ptr(mColor));
 		mMesh->render();
 		glPointSize(1);
-		GLdouble* x =new GLdouble( 1.0);
-		glColor4dv(x);
+		 const GLdouble x = 1.0;
+		glColor4dv(&x);
 	}
 }
 
