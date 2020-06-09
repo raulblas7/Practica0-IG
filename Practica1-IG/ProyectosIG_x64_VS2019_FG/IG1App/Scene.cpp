@@ -51,8 +51,15 @@ void Scene::init()
 		//mAuxs = rotate(mAuxs, radians(45.0), dvec3(0, 1.0, 0));
 		//sonrisa->setModelMat(mAuxs);
 		//gObjects.push_back(sonrisa);
-		Grid* grid = new Grid(1000, 10);
+		/*Texture* grTex = new Texture();
+	    grTex->load("..//Bmps//stones.bmp",121);	
+		gTextures.push_back(grTex);
+	Grid* grid = new Grid(1000, 10);
 		gObjects.push_back(grid);
+		grid->setTexture(grTex);*/
+		GridCube* grida= new GridCube();
+		gObjects.push_back(grida);
+
 
 	}
 	if (mId == 1) {
