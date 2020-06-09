@@ -475,15 +475,15 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
  IndexMesh* IndexMesh::generateGridTex(GLdouble lado, GLuint nDiv)
  {
 	 IndexMesh* grid = generateGrid(lado,nDiv);
-	// grid->vTexCoords.reserve(grid->mNumVertices);
-
-	 for (int i = 0; i < grid->mNumVertices; i++)
-	 {
-		 grid->vTexCoords.emplace_back(i, 1);
-		 grid->vTexCoords.emplace_back(i, 0);
+	 grid->vTexCoords.reserve(grid->mNumVertices);
+	 //Vector de texturas
+	 for (int i = 0; i <= nDiv ; i++) {
+		 for (int j = 0; j <= nDiv ; j++) {
+			 double x = (double)i / nDiv;
+			 double y = (double)j / nDiv;
+			 grid->vTexCoords.emplace_back(x, y);
+		 }
 	 }
-
-	
 	 return grid;
  }
 

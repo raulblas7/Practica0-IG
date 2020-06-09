@@ -54,7 +54,7 @@ void Scene::init()
 		/*Texture* grTex = new Texture();
 	    grTex->load("..//Bmps//stones.bmp",121);	
 		gTextures.push_back(grTex);
-	Grid* grid = new Grid(1000, 10);
+	Grid* grid = new Grid(1000, 5);
 		gObjects.push_back(grid);
 		grid->setTexture(grTex);*/
 		GridCube* grida= new GridCube();
@@ -425,9 +425,10 @@ void Scene::setGL()
 	//glClearColor(0.0, 0.0, 0.0, 0.0);  // background color (alpha=1 -> opaque)
 	glClearColor(0.7, 0.8, 0.9, 0.0);
 	glEnable(GL_DEPTH_TEST);  // enable Depth test 
-	glEnable(GL_TEXTURE_2D);  //enable texture
 	// Se activa la iluminación
 	glEnable(GL_LIGHTING);
+	glEnable(GL_TEXTURE_2D);  //enable texture
+
 	// Se activa la normalización de los vectores normales
 	glEnable(GL_NORMALIZE);
 	setLights();
@@ -457,7 +458,9 @@ void Scene::setLights()
 
 	spotSceneLight = new SpotLight(glm::fvec3(0, 0, 300));
 	spotSceneLight->setDiff(glm::fvec4(1, 1, 1, 1));
+	spotSceneLight->setAmb(glm::fvec4(0, 0, 0, 1));
 	spotSceneLight->setSpec(glm::fvec4(0.5, 0.5, 0.5, 1));
+	spotSceneLight->setSpot(glm::fvec3(1, 1, -1),30.0,4);
 
 
 	luzMinero = new PosLight();
