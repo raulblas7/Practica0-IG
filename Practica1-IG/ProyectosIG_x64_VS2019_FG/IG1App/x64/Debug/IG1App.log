@@ -1,48 +1,40 @@
-﻿  Entity.cpp
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Entity.cpp(340,21): warning C4305:  'inicializando': truncamiento de 'double' a 'GLfloat'
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Entity.cpp(404,20): warning C4018:  '<': no coinciden signed/unsigned
-  Mesh.cpp
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Entity.cpp(444,21): warning C4305:  'inicializando': truncamiento de 'double' a 'GLfloat'
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(96,20): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(131,20): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(137,20): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(195,20): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(215,21): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(243,12): warning C4244:  'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(359,21): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(363,11): warning C4244:  'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(394,21): warning C4018:  '<=': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(436,21): warning C4018:  '<=': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(438,22): warning C4018:  '<=': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(440,13): warning C4244:  'inicializando': conversión de 'GLdouble' a 'float'; posible pérdida de datos
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(441,13): warning C4244:  'inicializando': conversión de 'GLdouble' a 'float'; posible pérdida de datos
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(448,21): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(456,21): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(458,22): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(490,21): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(495,22): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(543,21): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(547,21): warning C4018:  '<': no coinciden signed/unsigned
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,34): warning C4244:  'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,34): warning C4244:         with
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,34): warning C4244:         [
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,34): warning C4244:             T=glm::f64
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,34): warning C4244:         ]
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,54): warning C4244:  'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,54): warning C4244:         with
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,54): warning C4244:         [
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,54): warning C4244:             T=glm::f64
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,54): warning C4244:         ]
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,73): warning C4244:  'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,73): warning C4244:         with
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,73): warning C4244:         [
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,73): warning C4244:             T=glm::f64
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,73): warning C4244:         ]
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,93): warning C4244:  'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,93): warning C4244:         with
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,93): warning C4244:         [
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,93): warning C4244:             T=glm::f64
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(550,93): warning C4244:         ]
-  Generando código...
-C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(588,21): warning C4018:  '<': no coinciden signed/unsigned
-  IG1App.vcxproj -> C:\Users\forev\OneDrive\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe
+﻿  Mesh.cpp
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(96,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(131,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(137,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(195,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(215,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(243,12): warning C4244: 'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(359,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(363,11): warning C4244: 'inicializando': conversión de 'GLdouble' a 'int'; posible pérdida de datos
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(405,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(419,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(423,22): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(431,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(442,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(447,22): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(480,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(494,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(498,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(501,34): warning C4244: 'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
+          with
+          [
+              T=glm::f64
+          ]
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(501,54): warning C4244: 'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
+          with
+          [
+              T=glm::f64
+          ]
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(501,73): warning C4244: 'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
+          with
+          [
+              T=glm::f64
+          ]
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(501,93): warning C4244: 'argumento': conversión de 'T' a 'const unsigned __int64'; posible pérdida de datos
+          with
+          [
+              T=glm::f64
+          ]
+C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\IG1App\Mesh.cpp(539,21): warning C4018: '<': no coinciden signed/unsigned
+  IG1App.vcxproj -> C:\Users\anass\Desktop\Practica0-IG\Practica1-IG\ProyectosIG_x64_VS2019_FG\bin\IG1AppDebug.exe

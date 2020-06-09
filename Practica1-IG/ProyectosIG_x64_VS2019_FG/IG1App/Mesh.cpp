@@ -1,4 +1,4 @@
-#include "Mesh.h"
+ï»¿#include "Mesh.h"
 #include "CheckML.h"
 #include <fstream>
 using namespace std;
@@ -37,7 +37,7 @@ void Mesh::render() const
 			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 			glTexCoordPointer(2, GL_DOUBLE, 0, vTexCoords.data());
 		}
-		// se añaden comandos para la tabla de normales :
+		// se aÃ±aden comandos para la tabla de normales :
 		if (vNormals.size() > 0) {
 			glEnableClientState(GL_NORMAL_ARRAY);
 			glNormalPointer(GL_DOUBLE, 0, vNormals.data());
@@ -127,13 +127,13 @@ Mesh* Mesh::generaSierpinski(GLdouble rd, GLuint numP) {
 		(triangulo->vVertices[0].z + triangulo->vVertices[1].z) / 2);
 
 	meshita->vVertices.emplace_back(pMedio);
-	//añadiendo todos los vertices - 4, uno del primer punto medio y 3 del triangulo principal
+	//aÃ±adiendo todos los vertices - 4, uno del primer punto medio y 3 del triangulo principal
 	for (int i = 0; i < numP - 1 - triangulo->mNumVertices; i++) {
 		glm::dvec3 randomVertex = triangulo->vVertices[rand() % 3];
 		pMedio = glm::dvec3((pMedio.x + randomVertex.x) / 2, (pMedio.y + randomVertex.y) / 2, (pMedio.z + randomVertex.z) / 2);
 		meshita->vVertices.emplace_back(pMedio);
 	}
-	//añadiendo color a los puntos
+	//aÃ±adiendo color a los puntos
 	for (int i = 0; i < numP; i++) {
 		meshita->vColors.emplace_back(255.0, 255.0, 0.0, 1.0);
 	}
@@ -325,13 +325,13 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
  void IndexMesh::render() const {
 	 Mesh::render();
 	 // Comandos OpenGL para enviar datos de arrays a GPU
-	 // Nuevos comandos para la tabla de índices
+	 // Nuevos comandos para la tabla de Ã­ndices
 		 if (vIndices != nullptr) {
 			 glEnableClientState(GL_INDEX_ARRAY);
 			 glIndexPointer(GL_UNSIGNED_INT, 0, vIndices);
 		 }
 	 // Comandos OpenGL para deshabilitar datos enviados
-	// Nuevo comando para la tabla de índices:
+	// Nuevo comando para la tabla de Ã­ndices:
 		 glDisableClientState(GL_INDEX_ARRAY);
  }
  // Comando para renderizar la malla indexada enviada
@@ -354,7 +354,7 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 		 4,6,2, 2,6,0,
 		 1,7,3, 3,7, 5
 	 };
-	 //vIndices del tamaño de nNumIndices y se inicializa
+	 //vIndices del tamaÃ±o de nNumIndices y se inicializa
 	 cubitoConTapa->vIndices = new GLuint[cubitoConTapa->nNumIndices];
 	 for (int i = 0; i < cubitoConTapa->nNumIndices; i++) {
 		 cubitoConTapa->vIndices[i] = indices[i];
@@ -390,139 +390,91 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 
  IndexMesh* IndexMesh::generateGrid(GLdouble lado, GLuint nDiv)
  {
-	 dvec3* perfil = new dvec3[nDiv+1];
-	 for (int i = 0; i <= nDiv ; i++)
-	 {
-		// GLdouble div = i * lado / nDiv;
-		 perfil[i] = dvec3(0.0 , i, 0.0 );
-		 
-	 }
-	
 	 IndexMesh* grid = new IndexMesh();
 	 // Definir primitiva
 	 grid->mPrimitive = GL_TRIANGLES;
-	 // Definir el número de vértices como nn*mm
-	 grid->mNumVertices = (nDiv+1)*(nDiv+1);
+
+	 // Definir el nï¿½mero de vï¿½rtices como nn*mm
+	 grid->mNumVertices = (nDiv + 1) * (nDiv + 1);
 	 grid->vVertices.reserve(grid->mNumVertices);
 	 grid->vColors.reserve(grid->mNumVertices);
 	 grid->vNormals.reserve(grid->mNumVertices);
-	 // Usar un vector auxiliar de vértices
-	 /*dvec3* vertices = new dvec3[grid->mNumVertices];
-	 for (int i = 0; i < nDiv; i++) {
-		 // Generar la muestra i-ésima de vértices
-		 GLdouble txz = lado / nDiv;
-		 for (int j = 0; j <= nDiv; j++) {
-			 int indice = i * (nDiv + 1) + j;
-			 GLdouble x =  i*perfil[j].y  *txz;
-			 GLdouble z = perfil[j].y *txz;
-			 vertices[indice] = dvec3(x, 0, z);
-		 }
-	 }*/
-	 //volcamos vector auxiliar vertices en vVertices de mesh
-	
-	 /*grid->vVertices.emplace_back(0.0, 0.0, 200.0);
-	 grid->vVertices.emplace_back(200.0, 0.0, 200.0);
-	 grid->vVertices.emplace_back(200.0, 0.0, 0.0);
-	 grid->vVertices.emplace_back(0.0, 0.0, 0.0);
-	 grid->vVertices.emplace_back(0.0, 0.0, 200.0);
-	 grid->vVertices.emplace_back(200.0, 0.0, 200.0);
-	 grid->vVertices.emplace_back(200.0, 0.0, 0.0);
-	 grid->vVertices.emplace_back(0.0, 0.0, 0.0);
-	 grid->vVertices.emplace_back(0.0, 0.0, 0.0);*/
-	
-	 dvec3* vertices = new dvec3[grid->mNumVertices];
-	 int indiceMayor = 0;
 
-	 for (int j = 0; j <= nDiv; ++j)
+	 dvec3* perfil = new dvec3[nDiv + 1];
+
+	 for (int i = 0; i < nDiv+1; i++)
 	 {
-		 for (int i = 0; i <= nDiv; ++i)
-		 {
-			 float x = lado*(float)i / (float)nDiv;
-			 float y = lado*(float)j / (float)nDiv;
-			 float z = sin(x * 2.0f * 3.141526f) * sin(y * 2.0f * 3.141526f) * 0.1f;
-			vertices[indiceMayor]=dvec3(x, y, z);
-			indiceMayor++;
+		 GLdouble div = i * lado / nDiv;    //te desplaza en el eje x
+
+		 perfil[i] = dvec3(div, 0.0, 0.0);
+
+	 }
+
+	 //el perfil esta en el eje y, hecho de abajo a arriba
+	 //se hace el grid de izquierda a derecha
+
+	 // Usar un vector auxiliar de vï¿½rtices
+	 dvec3* vertices = new dvec3[grid->mNumVertices];
+	 int indice = 0;
+	 for (int i = 0; i < nDiv + 1; i++) {
+		 // Generar la muestra i-ï¿½sima de vï¿½rtices
+		 GLdouble div = i * lado / nDiv;    //te desplaza en el eje x
+
+		 for (int j = 0; j < nDiv + 1; j++) {
+			 GLdouble y = perfil[j].x;
+			 vertices[indice] = dvec3(div, 0, y);
+			 indice++;
 		 }
 	 }
 
+	 //volcamos vector auxiliar vertices en vVertices de mesh
 	 for (int k = 0; k < grid->mNumVertices; k++) {
 		 grid->vVertices.emplace_back(vertices[k]);
 		 grid->vColors.emplace_back(0.0, 0.0, 1.0, 1.0);
 	 }
-	  indiceMayor = 0;
-	 grid->nNumIndices = 6 * (nDiv) * (nDiv);
+
+
+	 int indiceMayor = 0;
+	 grid->nNumIndices = 6 * nDiv *nDiv;
 	 grid->vIndices = new GLuint[grid->nNumIndices];
-
-	 for (int j = 0; j < nDiv; ++j)
-	 {
-		 for (int i = 0; i < nDiv; ++i)
-		 {
-			 /*int row1 = j * (nDiv + 1);
-			 int row2 = (j + 1) * (nDiv + 1);
-
-			 // triangle 1
-			 grid->vIndices[indiceMayor]=glm::uvec3(row1 + i, row1 + i + 1, row2 + i + 1);	
-
-			 // triangle 2
-			 grid->vIndices[indiceMayor]=(glm::uvec3(row1 + i, row2 + i + 1, row2 + i));*/
-			 int indice = i * (nDiv)+j;
-			 // Los cuatro índices son entonces:
-
-			 grid->vIndices[indiceMayor] = indice; //
-			 indiceMayor++;
-			 grid->vIndices[indiceMayor] = (indice + nDiv) % (nDiv * nDiv);
-			 indiceMayor++;
-			 grid->vIndices[indiceMayor] = (indice + nDiv + 1) % (nDiv * nDiv);
-			 indiceMayor++;
-			 grid->vIndices[indiceMayor] = (indice + nDiv + 1) % (nDiv * nDiv);
-			 indiceMayor++;
-			 grid->vIndices[indiceMayor] = (indice + 1) % (nDiv * nDiv);
-			 indiceMayor++;
-			 grid->vIndices[indiceMayor] = indice;
-			 indiceMayor++;
-		 }
-	 }
-
-
-	
 
 	 // El contador i recorre las muestras alrededor del eje Y
 	 for (int i = 0; i < nDiv; i++)
 	 {
-		 // El contador j recorre los vértices del perfil,
+		 // El contador j recorre los vï¿½rtices del perfil,
 		 // de abajo arriba. Las caras cuadrangulares resultan
-		 // al unir la muestra i-ésima con la (i+1)%nn-ésima
+		 // al unir la muestra i-ï¿½sima con la (i+1)%nn-ï¿½sima
 		 for (int j = 0; j < nDiv ; j++)
 		 {
 			 // El contador indice sirve para llevar cuenta
-			  // de los índices generados hasta ahora. Se recorre
+			  // de los ï¿½ndices generados hasta ahora. Se recorre
 			  // la cara desde la esquina inferior izquierda
-			 int indice = i * (nDiv) + j;
-			 // Los cuatro índices son entonces:
+			 int indice = i * (nDiv + 1) + j;
+			 // Los cuatro ï¿½ndices son entonces:
 
-			 grid->vIndices[indiceMayor] = indice; //
+			 grid->vIndices[indiceMayor] = indice;
 			 indiceMayor++;
-			 grid->vIndices[indiceMayor] = (indice + nDiv) % (nDiv * nDiv);
+			 grid->vIndices[indiceMayor] = (indice + nDiv + 1) % ((nDiv + 1) * (nDiv + 1));
 			 indiceMayor++;
-			 grid->vIndices[indiceMayor] = (indice + nDiv + 1) % (nDiv * nDiv);
+			 grid->vIndices[indiceMayor] = (indice + (nDiv + 1) + 1) % ((nDiv + 1) * (nDiv + 1));
 			 indiceMayor++;
-			 grid->vIndices[indiceMayor] = (indice + nDiv + 1) % (nDiv * nDiv);
+			 grid->vIndices[indiceMayor] = (indice + (nDiv + 1) + 1) % ((nDiv + 1) * (nDiv + 1));
 			 indiceMayor++;
-			 grid->vIndices[indiceMayor] = (indice + 1) % (nDiv * nDiv);
+			 grid->vIndices[indiceMayor] = (indice + 1);
 			 indiceMayor++;
 			 grid->vIndices[indiceMayor] = indice;
 			 indiceMayor++;
 		 }
 	 }
 	 grid->buildNormalVectors();
-	// delete[]vertices;
+	 delete[]vertices;
 	 delete[]perfil;
 	 return grid;
  }
 
  IndexMesh* IndexMesh::generateGridTex(GLdouble lado, GLuint nDiv)
  {
-	/* IndexMesh* grid = generateGrid(lado,nDiv);
+	 IndexMesh* grid = generateGrid(lado,nDiv);
 	 grid->vTexCoords.reserve(grid->mNumVertices);
 
 	 for (int i = 0; i < grid->mNumVertices; i++)
@@ -531,13 +483,12 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 		 grid->vTexCoords.emplace_back(i, 0);
 	 }	
 
-	 return grid;*/
-	 return nullptr;
+	 return grid;
  }
 
  void IndexMesh::buildNormalVectors()
  {
-	 //vNormals le ponemos del mismo tamaño que vVertices usando mNumVertices
+	 //vNormals le ponemos del mismo tamaÃ±o que vVertices usando mNumVertices
 	 vNormals.reserve(mNumVertices);
 	 //lo inicializamos a 0
 	 for (int i = 0; i < mNumVertices; i++) {
@@ -564,19 +515,19 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 MbR* mesh = new MbR(mm, nn, perfil);
 	 // Definir primitiva
 	 mesh->mPrimitive = GL_TRIANGLES;
-	 // Definir el número de vértices como nn*mm
+	 // Definir el nÃºmero de vÃ©rtices como nn*mm
 	 mesh->mNumVertices = nn * mm;
 	 mesh->vVertices.reserve(mesh->mNumVertices);
 	 mesh->vColors.reserve(mesh->mNumVertices);
 	 mesh->vNormals.reserve(mesh->mNumVertices);
-	 // Usar un vector auxiliar de vértices
+	 // Usar un vector auxiliar de vÃ©rtices
 	 dvec3* vertices = new dvec3[mesh->mNumVertices];
 	 for (int i = 0; i < nn; i++) {
-		 // Generar la muestra i-ésima de vértices
+		 // Generar la muestra i-Ã©sima de vÃ©rtices
 		 GLdouble theta = i * 360 / nn;
 		 GLdouble c = cos(radians(theta));
 		 GLdouble s = sin(radians(theta));
-		 // R_y(theta) es la matriz de rotación alrededor del eje Y
+		 // R_y(theta) es la matriz de rotaciÃ³n alrededor del eje Y
 		 for (int j = 0; j < mm; j++) {
 			 int indice = i * mm + j;
 			 GLdouble x = c * perfil[j].x + s * perfil[j].z;
@@ -596,16 +547,16 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 // El contador i recorre las muestras alrededor del eje Y
 	 for (int i = 0; i < nn; i++)
 	 {
-		 // El contador j recorre los vértices del perfil,
+		 // El contador j recorre los vÃ©rtices del perfil,
 		 // de abajo arriba. Las caras cuadrangulares resultan
-		 // al unir la muestra i-ésima con la (i+1)%nn-ésima
+		 // al unir la muestra i-Ã©sima con la (i+1)%nn-Ã©sima
 		 for (int j = 0; j < mm - 1; j++)
 		 {
 			 // El contador indice sirve para llevar cuenta
-			  // de los índices generados hasta ahora. Se recorre
+			  // de los Ã­ndices generados hasta ahora. Se recorre
 			  // la cara desde la esquina inferior izquierda
 			 int indice = i * mm + j;
-			 // Los cuatro índices son entonces:
+			 // Los cuatro Ã­ndices son entonces:
 
 			 mesh->vIndices[indiceMayor] = indice;
 			 indiceMayor++;

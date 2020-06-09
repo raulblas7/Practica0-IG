@@ -487,7 +487,7 @@ void Avion::addEntity(Abs_Entity* ae)
 
 Grid::Grid(GLdouble l, GLint numRej)
 {
-	mMesh = IndexMesh::generateGridTex(l,numRej);
+	mMesh = IndexMesh::generateGrid(l,numRej);
 
 }
 
