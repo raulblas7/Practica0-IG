@@ -3,6 +3,7 @@
 
 #include <GL/freeglut.h>
 #include <glm.hpp>
+#include "CheckML.h"
 
 #include "Mesh.h"
 #include "Texture.h"
@@ -241,18 +242,31 @@ class GridCube : public CompoundEntity {
 public:
 	explicit GridCube();
 	~GridCube() {
+		delete supinf; supinf = nullptr;
+		delete otros; otros = nullptr;
 	};
 	virtual void render(glm::dmat4 const& modelViewMat) const ;
 	virtual void update() {};
+	Texture* supinf;
+	Texture* otros;
 };
 class  SirenCube : public CompoundEntity {
 public:
 	explicit  SirenCube();
 	~SirenCube() {
+		delete supinf; supinf = nullptr;
+		delete otros; otros = nullptr;
+		if (spotlight != nullptr)
+		{
+			delete spotlight;
+			spotlight = nullptr;
+		}
 	};
 	virtual void render(glm::dmat4 const& modelViewMat) const;
 	virtual void update() {};
 	SpotLight* getLight() { return spotlight; }
 private:
 	SpotLight* spotlight = nullptr;
+	Texture* supinf;
+	Texture* otros;
 };

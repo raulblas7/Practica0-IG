@@ -2,6 +2,8 @@
 #include "PixMap32RGBA.h"
 #include <fstream>
 #include <exception>
+#include "CheckML.h"
+
 //using namespace std;
 //---------------------------------------------------------------------------
 

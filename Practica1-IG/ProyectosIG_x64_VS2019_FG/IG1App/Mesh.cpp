@@ -401,6 +401,7 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 	 grid->vNormals.reserve(grid->mNumVertices);
 
 	 dvec3* perfil = new dvec3[nDiv + 1];
+	 int half = lado / 2;
 
 	 for (int i = 0; i < nDiv+1; i++)
 	 {
@@ -422,7 +423,7 @@ Mesh* Mesh::generaTrianguloRGB(GLdouble rd) {
 
 		 for (int j = 0; j < nDiv + 1; j++) {
 			 GLdouble y = perfil[j].x;
-			 vertices[indice] = dvec3(div, 0, y);
+			 vertices[indice] = dvec3(div-half, 0, y-half);
 			 indice++;
 		 }
 	 }

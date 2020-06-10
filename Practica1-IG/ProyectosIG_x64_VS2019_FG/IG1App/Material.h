@@ -1,6 +1,7 @@
 #pragma once
 #include <GL/freeglut.h>
 #include <glm.hpp>
+#include "CheckML.h"
 
 class Material
 {

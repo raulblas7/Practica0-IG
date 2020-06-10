@@ -8,6 +8,7 @@
 #include <GL/freeglut.h>
 #include <string>
 #include <glm.hpp>
+#include "CheckML.h"
 
 
 class PixMap32RGBA {   

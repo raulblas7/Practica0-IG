@@ -15,51 +15,42 @@ void Scene::init()
 	
 	gObjects.push_back(new EjesRGB(400.0));
 	if (mId == 0) {
-		////cabeza
-		//Sphere* esfera = new Sphere(100.0, glm::fvec3(1.0, 0.6, 0));
-		////esfera->setColor(glm::fvec3(2.30f, 0.25f, 0.25f));
-		//gObjects.push_back(esfera);
-		////ojos
-		//Cylinder* cono = new Cylinder(10.0, 0, 30.0, glm::fvec3(0.0f, 0.0f, 2.55f));
-		//glm::dmat4 mAux = cono->modelMat();
-		//mAux = translate(mAux, dvec3(20, 50, 75));
-		//mAux = rotate(mAux, radians(-60.0), dvec3(1.0, 0, 1.0));
-		//mAux = rotate(mAux, radians(20.0), dvec3(0, 1.0, 0));
-		//cono->setModelMat(mAux);
-		//gObjects.push_back(cono);
-		//Cylinder* cono2 = new Cylinder(10.0, 0, 30.0, glm::fvec3(0.0f, 1.50f, 2.20f));
-		//glm::dmat4 mAuxx = cono2->modelMat();
-		//mAuxx = translate(mAuxx, dvec3(70, 50, 35));
-		//mAuxx = rotate(mAuxx, radians(-60.0), dvec3(1.0, 0, 1.0));
-		//mAuxx = rotate(mAuxx, radians(20.0), dvec3(0, 1.0, 0));
-		//cono2->setModelMat(mAuxx);
-		//gObjects.push_back(cono2);
+		//cabeza
+		Sphere* esfera = new Sphere(100.0, glm::fvec3(1.0, 0.6, 0));
+		//esfera->setColor(glm::fvec3(2.30f, 0.25f, 0.25f));
+		gObjects.push_back(esfera);
+		//ojos
+		Cylinder* cono = new Cylinder(10.0, 0, 30.0, glm::fvec3(0.0f, 0.0f, 2.55f));
+		glm::dmat4 mAux = cono->modelMat();
+		mAux = translate(mAux, dvec3(20, 50, 75));
+		mAux = rotate(mAux, radians(-60.0), dvec3(1.0, 0, 1.0));
+		mAux = rotate(mAux, radians(20.0), dvec3(0, 1.0, 0));
+		cono->setModelMat(mAux);
+		gObjects.push_back(cono);
+		Cylinder* cono2 = new Cylinder(10.0, 0, 30.0, glm::fvec3(0.0f, 1.50f, 2.20f));
+		glm::dmat4 mAuxx = cono2->modelMat();
+		mAuxx = translate(mAuxx, dvec3(70, 50, 35));
+		mAuxx = rotate(mAuxx, radians(-60.0), dvec3(1.0, 0, 1.0));
+		mAuxx = rotate(mAuxx, radians(20.0), dvec3(0, 1.0, 0));
+		cono2->setModelMat(mAuxx);
+		gObjects.push_back(cono2);
 
-		////Gorro
-		//Disk* gorro = new Disk(50.0, 90.0, glm::fvec3(2.30f, 0.25f, 0.25f));
-		//glm::dmat4 mAuxg = gorro->modelMat();
-		//mAuxg = translate(mAuxg, dvec3(0, 85, 0));
-		//mAuxg = rotate(mAuxg, radians(-90.0), dvec3(0, 1.0, 0));
-		//mAuxg = rotate(mAuxg, radians(-90.0), dvec3(1.0, 0, 0));
-		//gorro->setModelMat(mAuxg);
-		//gObjects.push_back(gorro);
+		//Gorro
+		Disk* gorro = new Disk(50.0, 90.0, glm::fvec3(2.30f, 0.25f, 0.25f));
+		glm::dmat4 mAuxg = gorro->modelMat();
+		mAuxg = translate(mAuxg, dvec3(0, 85, 0));
+		mAuxg = rotate(mAuxg, radians(-90.0), dvec3(0, 1.0, 0));
+		mAuxg = rotate(mAuxg, radians(-90.0), dvec3(1.0, 0, 0));
+		gorro->setModelMat(mAuxg);
+		gObjects.push_back(gorro);
 
-		////sonrisa
-		//PartialDisk* sonrisa = new PartialDisk(60.0, 80.0, 90, 180, glm::fvec3(0.67f, 2.55f, 0.06f));
-		//glm::dmat4 mAuxs = sonrisa->modelMat();
-		//mAuxs = translate(mAuxs, dvec3(58, 20, 58));
-		//mAuxs = rotate(mAuxs, radians(45.0), dvec3(0, 1.0, 0));
-		//sonrisa->setModelMat(mAuxs);
-		//gObjects.push_back(sonrisa);
-		/*Texture* grTex = new Texture();
-	    grTex->load("..//Bmps//stones.bmp",121);	
-		gTextures.push_back(grTex);
-	Grid* grid = new Grid(1000, 5);
-		gObjects.push_back(grid);
-		grid->setTexture(grTex);*/
-		GridCube* grida= new GridCube();
-		gObjects.push_back(grida);
-
+		//sonrisa
+		PartialDisk* sonrisa = new PartialDisk(60.0, 80.0, 90, 180, glm::fvec3(0.67f, 2.55f, 0.06f));
+		glm::dmat4 mAuxs = sonrisa->modelMat();
+		mAuxs = translate(mAuxs, dvec3(58, 20, 58));
+		mAuxs = rotate(mAuxs, radians(45.0), dvec3(0, 1.0, 0));
+		sonrisa->setModelMat(mAuxs);
+		gObjects.push_back(sonrisa);
 
 	}
 	if (mId == 1) {
@@ -179,6 +170,9 @@ void Scene::init()
 	}
 	if (mId==6)
 	{
+		GridCube* cube = new GridCube();
+		gObjects.push_back(cube);
+
 
 	}
 	if (mId == 7)
@@ -193,12 +187,13 @@ void Scene::init()
 		
 		sir = new SirenCube();
 		luzSirena = sir->getLight();
-		luzSirena->setSpot(fvec3(0, -1, 0), 60.0, 4);
+		luzSirena->setSpot(fvec3(0, -1, 0), 30.0, 0);
 		luzSirena->disable();
-		//Transladar posicion completa del avion
+		//Transladar posicion completa del sir
 		glm::dmat4 mSir = sir->modelMat();
 		mSir = translate(sir->modelMat(), dvec3(0, radio, 0));
 		sir->setModelMat(mSir);
+
 		//
 		gObjects.push_back(sir);
 	}
@@ -380,7 +375,8 @@ void Scene::move()
 		mAvioncitoFinal=rotate(mAvioncitoFinal, radians(avionAngle), dvec3(1, 0, 0));
 		avionsitofinal->setModelMat(mAvioncitoFinal);
 		avionAngle += 1.8;
-		helicesAngle += 0.05;
+		helicesAngle += 5.0;
+
 
 	}
 
@@ -389,13 +385,14 @@ void Scene::move()
 void Scene::sirenMove()
 {
 	if (sir != nullptr) {
-		//Cambio en la rotacion de los  helices en el eje z  y del avion como compound entity rotamos en el eje x y aplicamos su correspondiente traslacion
 
+		luzSirena->setPosDir(fvec3(100 * sin(radians(avionAngle)), 0, 100 * cos(radians(avionAngle))));
 		glm::dmat4 mSir = sir->modelMat();
 		mSir = translate(dmat4(1.0), dvec3(0.0, radio * cos(radians(avionAngle)), radio * sin(radians(avionAngle))));
 		mSir = rotate(mSir, radians(avionAngle), dvec3(1, 0, 0));
-		avionsitofinal->setModelMat(mSir);
+		sir->setModelMat(mSir);
 		avionAngle += 1.8;
+		helicesAngle += 1;
 
 	}
 }
@@ -460,7 +457,7 @@ void Scene::setLights()
 	spotSceneLight->setDiff(glm::fvec4(1, 1, 1, 1));
 	spotSceneLight->setAmb(glm::fvec4(0, 0, 0, 1));
 	spotSceneLight->setSpec(glm::fvec4(0.5, 0.5, 0.5, 1));
-	spotSceneLight->setSpot(glm::fvec3(1, 1, -1),30.0,4);
+	spotSceneLight->setSpot(glm::fvec3(0, 0, -1), 23, 100);
 
 
 	luzMinero = new PosLight();

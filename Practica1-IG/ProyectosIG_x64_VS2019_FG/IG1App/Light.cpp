@@ -1,5 +1,6 @@
 #include "Light.h"
 #include <gtc\type_ptr.hpp>
+#include "CheckML.h"
 
 GLuint Light::cont = 0;
 

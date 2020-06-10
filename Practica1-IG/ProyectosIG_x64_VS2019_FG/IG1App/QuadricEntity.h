@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.h"
+#include "CheckML.h"
 
 class QuadricEntity : public Abs_Entity
 {

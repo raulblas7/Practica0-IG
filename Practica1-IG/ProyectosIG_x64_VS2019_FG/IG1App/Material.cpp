@@ -1,4 +1,6 @@
 #include "Material.h"
+#include "CheckML.h"
+
 #include <gtc\type_ptr.hpp>
     void Material::upload()
 {

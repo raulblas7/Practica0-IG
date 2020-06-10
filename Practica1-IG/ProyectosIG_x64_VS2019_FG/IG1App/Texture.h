@@ -4,6 +4,8 @@
 
 #include <GL/freeglut.h>
 #include <glm.hpp>
+#include "CheckML.h"
+
 #include "Pixmap32RGBA.h"
 #include <string>
 //-------------------------------------------------------------------------

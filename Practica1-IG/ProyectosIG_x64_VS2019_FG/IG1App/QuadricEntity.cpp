@@ -1,4 +1,5 @@
 #include "QuadricEntity.h"
+#include "CheckML.h"
 
 QuadricEntity::QuadricEntity() {
 	q = gluNewQuadric();
