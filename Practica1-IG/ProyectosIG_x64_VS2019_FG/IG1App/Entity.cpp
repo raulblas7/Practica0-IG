@@ -499,10 +499,13 @@ void Grid::render(glm::dmat4 const& modelViewMat) const
 	if (mMesh != nullptr) {
 		dmat4 aMat = modelViewMat * mModelMat;  // glm matrix multiplication
 		upload(aMat);
-		
+		glEnable(GL_CULL_FACE);
+		glCullFace(GL_BACK);
 		mTexture->bind(GL_MODULATE);
+		glPolygonMode(GL_BACK, GL_FILL);
 		mMesh->render();
 		mTexture->unbind();
+		glDisable(GL_CULL_FACE);
 	}
 }
 
@@ -513,31 +516,33 @@ GridCube::GridCube()
 	 otros = new Texture();
 	otros->load("..//Bmps//stones.bmp");
 
-	Grid* ab = new Grid(200, 10);
+	Grid* ab = new Grid(200, 20);
 	ab->setTexture(supinf);
 	ab->setModelMat(translate(ab->modelMat(), glm::dvec3(0, -100, 0)));
 
-	Grid* ar = new Grid(200, 10);
+	Grid* ar = new Grid(200, 20);
 	ar->setTexture(supinf);
 	ar->setModelMat(translate(ar->modelMat(), glm::dvec3(0, 100, 0)));
+	ar->setModelMat(rotate(ar->modelMat(), radians(180.0), glm::dvec3(1, 0, 1)));
 
-	Grid* fr = new Grid(200, 10);
+	Grid* fr = new Grid(200, 20);
 	fr->setTexture(otros);
 	fr->setModelMat(translate(fr->modelMat(), glm::dvec3(0, 0, 100)));
 	fr->setModelMat(rotate(fr->modelMat(), radians(90.0),glm::dvec3(-1, 0, 0)));
 
 
-	Grid* at = new Grid(200, 10);
+	Grid* at = new Grid(200, 20);
 	at->setTexture(otros);
 	at->setModelMat(translate(at->modelMat(), glm::dvec3(0, 0, -100)));
-	at->setModelMat(rotate(at->modelMat(), radians(90.0), glm::dvec3(-1, 0, 0)));
+	at->setModelMat(rotate(at->modelMat(), radians(180.0), glm::dvec3(0, 1, 1)));
 	
-	Grid* iz = new Grid(200, 10);
+	Grid* iz = new Grid(200, 20);
 	iz->setTexture(otros);
 	iz->setModelMat(translate(iz->modelMat(), glm::dvec3(-100, 0, 0)));
-	iz->setModelMat(rotate(iz->modelMat(), radians(90.0), glm::dvec3(0, 0, 1)));
+	iz->setModelMat(rotate(iz->modelMat(), radians(180.0), glm::dvec3(1, 1, 0)));
 
-	Grid* de = new Grid(200, 10);	
+
+	Grid* de = new Grid(200, 20);	
 	de->setTexture(otros);
 	de->setModelMat(translate(de->modelMat(), glm::dvec3(100, 0, 0)));
 	de->setModelMat(rotate(de->modelMat(), radians(90.0), glm::dvec3(0, 0, 1)));
@@ -569,31 +574,33 @@ SirenCube::SirenCube()
 	otros = new Texture();
 	otros->load("..//Bmps//stones.bmp");
 	GLint lado = 50;
-	Grid* ab = new Grid(lado, 10);
+	Grid* ab = new Grid(lado, 20);
 	ab->setTexture(supinf);
 	ab->setModelMat(translate(ab->modelMat(), glm::dvec3(0, -lado/2, 0)));
 
-	Grid* ar = new Grid(lado, 10);
+	Grid* ar = new Grid(lado, 20);
 	ar->setTexture(supinf);
 	ar->setModelMat(translate(ar->modelMat(), glm::dvec3(0, lado/2, 0)));
+	ar->setModelMat(rotate(ar->modelMat(), radians(180.0), glm::dvec3(1, 0, 1)));
 
-	Grid* fr = new Grid(lado, 10);
+
+	Grid* fr = new Grid(lado, 20);
 	fr->setTexture(otros);
 	fr->setModelMat(translate(fr->modelMat(), glm::dvec3(0, 0, lado/2)));
 	fr->setModelMat(rotate(fr->modelMat(), radians(90.0), glm::dvec3(-1, 0, 0)));
 
 
-	Grid* at = new Grid(lado, 10);
+	Grid* at = new Grid(lado, 20);
 	at->setTexture(otros);
 	at->setModelMat(translate(at->modelMat(), glm::dvec3(0, 0, -lado/2)));
-	at->setModelMat(rotate(at->modelMat(), radians(90.0), glm::dvec3(-1, 0, 0)));
+	at->setModelMat(rotate(at->modelMat(), radians(180.0), glm::dvec3(0, 1, 1)));
 
-	Grid* iz = new Grid(lado, 10);
+	Grid* iz = new Grid(lado, 20);
 	iz->setTexture(otros);
 	iz->setModelMat(translate(iz->modelMat(), glm::dvec3(-lado/2, 0, 0)));
-	iz->setModelMat(rotate(iz->modelMat(), radians(90.0), glm::dvec3(0, 0, 1)));
+	iz->setModelMat(rotate(iz->modelMat(), radians(180.0), glm::dvec3(1, 1, 0)));
 
-	Grid* de = new Grid(lado, 10);
+	Grid* de = new Grid(lado, 20);
 	de->setTexture(otros);
 	de->setModelMat(translate(de->modelMat(), glm::dvec3(lado/2, 0, 0)));
 	de->setModelMat(rotate(de->modelMat(), radians(90.0), glm::dvec3(0, 0, 1)));
@@ -608,7 +615,10 @@ SirenCube::SirenCube()
 
 	Esfera* sir = new Esfera(10, 50, 50, fvec3(1, 0, 0));
 	sir->setModelMat(translate(sir->modelMat(), glm::dvec3(0, lado/2, 0)));
-	spotlight = new SpotLight(fvec3(0,-20,0));
+	spotlight = new SpotLight(fvec3(0,-40,0));
+	spotlight->setAmb(glm::fvec4(0, 0, 0, 1));
+	spotlight->setSpot(fvec3(0, -1, 0), 30.0, 0);
+	spotlight->disable();
 
 	addEntity(sir);
 }

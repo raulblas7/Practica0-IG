@@ -160,6 +160,7 @@ void Scene::init()
 		//Luces del avion 
 		luzAvion = avionsitofinal->getLight();
 		luzAvion->setSpot(fvec3(0, -1, 0), 60.0, 4);
+		luzAvion->setAmb(glm::fvec4(0, 0, 0, 1));
 		luzAvion->disable();
 		//Transladar posicion completa del avion
 		glm::dmat4 mAvioncitoFinal = avionsitofinal->modelMat();
@@ -187,8 +188,7 @@ void Scene::init()
 		
 		sir = new SirenCube();
 		luzSirena = sir->getLight();
-		luzSirena->setSpot(fvec3(0, -1, 0), 30.0, 0);
-		luzSirena->disable();
+		
 		//Transladar posicion completa del sir
 		glm::dmat4 mSir = sir->modelMat();
 		mSir = translate(sir->modelMat(), dvec3(0, radio, 0));
@@ -392,7 +392,6 @@ void Scene::sirenMove()
 		mSir = rotate(mSir, radians(avionAngle), dvec3(1, 0, 0));
 		sir->setModelMat(mSir);
 		avionAngle += 1.8;
-		helicesAngle += 1;
 
 	}
 }
@@ -443,7 +442,7 @@ void Scene::resetGL()
 }
 void Scene::setLights()
 {
-	GLfloat amb[] = { 0.2, 0.2, 0.2, 1.0 };
+	GLfloat amb[] = { 0.1, 0.1, 0.1, 1.0 };
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
 
 	directionalLight = new DirLight();
@@ -457,7 +456,7 @@ void Scene::setLights()
 	spotSceneLight->setDiff(glm::fvec4(1, 1, 1, 1));
 	spotSceneLight->setAmb(glm::fvec4(0, 0, 0, 1));
 	spotSceneLight->setSpec(glm::fvec4(0.5, 0.5, 0.5, 1));
-	spotSceneLight->setSpot(glm::fvec3(0, 0, -1), 23, 100);
+	spotSceneLight->setSpot(glm::fvec3(0, 0, -1), 15.0, 0.5);
 
 
 	luzMinero = new PosLight();
